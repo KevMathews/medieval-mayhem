@@ -29,6 +29,92 @@ class Player {
         this.damage = 20;
         this.gold = 0;
         this.dualWield = 'Not Learned';
+        this.magicBladeAccuracy = .65;
+        this.magicBladeDamage = 30;
+        this.lightningBoltAccuracy = .65;
+        this.lightningBoltDamage = 45;
+        this.fireBallAccuracy = .65;
+        this.fireballDamage = 60;
+        this.lightningBoltLearned = 'No';
+        this.fireBallLearned = 'No';
+    }
+    fireBall(){
+        let randomNumber = Math.random();
+        if (randomNumber <= player.fireBallAccuracy){
+            let damageDone = this.fireballDamage - boss.enemy[currentEnemy].armor;
+            $playerText.text(`${player.name} hurl a FireBall at ${boss.enemy[currentEnemy].name} scorching them for ${damageDone} damage!!`);
+            boss.enemy[currentEnemy].health -= damageDone;
+            $playerPicture.attr('src', './images/player1attack3.gif');
+            
+            setTimeout(
+                function() 
+                {
+                    player.displayStats();
+                }, 1600);
+            checkIfDead();
+        }else {
+            $playerText.text(`${player.name} throws a FireBall at ${boss.enemy[currentEnemy].name} but they dodge the attack!!`);
+            $playerPicture.attr('src', './images/player1attack3.gif');
+            
+            setTimeout(
+                function() 
+                {
+                    player.displayStats();
+                }, 1600);
+            checkIfDead();
+        }
+    }
+    lightningBolt(){
+        let randomNumber = Math.random();
+        if (randomNumber <= player.lightningBoltAccuracy){
+            let damageDone = this.lightningBoltDamage - boss.enemy[currentEnemy].armor;
+            $playerText.text(`${player.name} summons a Bolt of Lightning from the ground striking ${boss.enemy[currentEnemy].name} for ${damageDone} damage!`);
+            boss.enemy[currentEnemy].health -= damageDone;
+            $playerPicture.attr('src', './images/player1attack4.gif');
+            
+            setTimeout(
+                function() 
+                {
+                    player.displayStats();
+                }, 1600);
+            checkIfDead();
+        }else {
+            $playerText.text(`${player.name} summons a Bolt of Lightning from the ground, but  ${boss.enemy[currentEnemy].name} skillfully evade it!`);
+            $playerPicture.attr('src', './images/player1attack4.gif');
+            
+            setTimeout(
+                function() 
+                {
+                    player.displayStats();
+                }, 1600);
+            checkIfDead();
+        }
+    }
+    magicBlade(){
+        let randomNumber = Math.random();
+        if (randomNumber <= player.magicBladeAccuracy){
+            let damageDone = this.magicBladeDamage - boss.enemy[currentEnemy].armor;
+            $playerText.text(`${player.name} flings their Magic Blade at ${boss.enemy[currentEnemy].name} hitting them for ${damageDone} damage!`);
+            boss.enemy[currentEnemy].health -= damageDone;
+            $playerPicture.attr('src', './images/player1attack2.gif');
+            
+            setTimeout(
+                function() 
+                {
+                    player.displayStats();
+                }, 1600);
+            checkIfDead();
+        }else {
+            $playerText.text(`${player.name} throws their Magic Blade at ${boss.enemy[currentEnemy].name} missing badly!`);
+            $playerPicture.attr('src', './images/player1attack2.gif');
+            
+            setTimeout(
+                function() 
+                {
+                    player.displayStats();
+                }, 1600);
+            checkIfDead();
+        }
     }
     dualWieldAttack() {
         let randomNumber = Math.random();
@@ -444,4 +530,15 @@ $('#attack').on('click', ()=>{
 // player dual wield attack
 $('#dualWield').on('click', ()=>{
     player.dualWieldAttack();
+})
+
+$('#magicBlade').on('click', ()=>{
+    player.magicBlade();
+})
+
+$('#lightningBolt').on('click', ()=>{
+    player.lightningBolt();
+})
+$('#fireBall').on('click', ()=>{
+    player.fireBall();
 })

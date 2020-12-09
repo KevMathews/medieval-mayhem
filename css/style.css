@@ -74,9 +74,10 @@ body {
   padding-left: 10px;
 }
 #playerPictureDiv {
-background-color: green;
+
 width: 25vw;
 height: 45vh;
+transform: translateX(25px)
 }
 
 #enemyStats {
@@ -87,13 +88,14 @@ height: 45vh;
   padding-right: 10px;
 }
 #enemyPictureDiv {
-background-color: green;
+
 width: 25vw;
 height: 45vh;
 max-width: 100%;
+transform: translateX(-120px)
 }
 img {
-  max-width: 100%;
+  width: 135%;
 }
 #playerCombatText {
   background-color: orange;
