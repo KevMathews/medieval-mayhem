@@ -1,4 +1,8 @@
+/* <style>
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
+</style> */
 body {
+  /* font-family: 'Boogaloo', cursive; */
     text-align: center;
 }
 .fancy {
@@ -114,7 +118,8 @@ body {
 
 width: 25vw;
 height: 35vh;
-transform: translateX(25px)
+transform: translateX(25px);
+transform: translateY(-25%);
 }
 
 #enemyStats {
@@ -156,8 +161,39 @@ img {
 }
 .playerNamePlate {
   width: 90%;
-  z-index: 200;
+  z-index:-1000;
 }
 #maintitleLogo {
   width: 90%;
+}
+.playerName{
+  
+  transform: translateY(50%)
+}
+#playerNameDiv{
+  /* background-color: yellow; */
+  transform: translateY(-62px);
+  z-index:1000;
+  font-size: 36px;
+  font-family: 'Boogaloo', cursive;
+  text-shadow: 1px 2px 3px #4d4d4d; 
+	color: #222;
+	/* font: 28px 'LeagueGothicRegular'; */
+}
+#bossNameDiv {
+  transform: translateY(-62px);
+  z-index:1000;
+  font-size: 36px;
+  font-family: 'Boogaloo', cursive;
+  text-shadow: 1px 2px 3px #4d4d4d; 
+	color: #222;
+}
+#playerDamageDiv {
+  font-size: 36px;
+  font-family: 'Boogaloo', cursive;
+  transform: translateY(80px);
+
+}
+.emptyDot {
+  opacity: 0%;
 }
