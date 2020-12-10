@@ -1,4 +1,6 @@
-// console.log($)
+let player_One;
+
+console.log(player_One);
 $playerHealth = $('.playerHealth');
 $storeMessage = $('#storeMessage');
 $playerGold = $('.playerGold');
@@ -7,6 +9,7 @@ $playerAccuracy = $('.playerAccuracy');
 $playerDualWield = $('.playerDualWield');
 $playerDualWieldAccuracy = $('.playerDualWieldAccuracy');
 $playerText = $('#playerCombatText');
+$playerName = $('.playerName');
 $enemyText = $('#enemyCombatText');
 $bossName =$('.bossName');
 $bossHealth = $('.bossHealth');
@@ -19,7 +22,7 @@ $playerPicture =$('#playerPicture');
 class Player {
     constructor(name){
         this.maxHealth = 200.00;
-        this.health = 200.00;
+        this.health = 20.00;
         this.healthPercent = 100;
         this.energy = 100;
         this.armor = 5;
@@ -207,6 +210,7 @@ class Player {
     }
     displayStats() {
         $storeMessage.empty();
+        $playerName.text(player.name);
         $playerHealth.empty();
         $playerHealth.text(player.health);
         $progressBar.empty();
@@ -259,6 +263,7 @@ class Enemy {
             let damageDone = this.damage - player.armor;
             player.health -= damageDone;
             $enemyText.text(`${this.name} Belches a might Burst of Fire at ${player.name} and scorches them for ${damageDone} DAMAGE!`);
+            checkPlayerDead();
             player.displayStats();
                 }else {
                     $enemyText.text(`${this.name} Unleashes a mighty Burst of Fire, but ${player.name} skillfully DODGES away!`);
@@ -280,6 +285,7 @@ class Enemy {
             let damageDone = this.damage - player.armor;
             player.health -= damageDone;
             $enemyText.text(`${this.name} shoots a Kinetic Bolt at ${player.name} for ${damageDone} with his wand!`);
+            checkPlayerDead();
             player.displayStats();
                 }else {
                 $enemyText.text(`${this.name} Hurls a bolt of Energy from his Wand towards ${player.name} but MISSES!`);
@@ -301,6 +307,7 @@ class Enemy {
             let damageDone = this.damage - player.armor;
             player.health -= damageDone;
             $enemyText.text(`${this.name} summons his trusty companion Fang who bites ${player.name} for ${damageDone} DAMAGE!`);
+            checkPlayerDead();
             player.displayStats();
                 }else {$enemyText.text(`${this.name} calls his companion Fang who bites at ${player.name} but MISSES!!`);
                 setTimeout(
@@ -321,6 +328,7 @@ class Enemy {
             let damageDone = this.damage - player.armor;
             player.health -= damageDone;
             $enemyText.text(`${this.name} lurch forward and pierce ${player.name} for ${damageDone}!`);
+            checkPlayerDead();
             player.displayStats();
                 }else{
                     $enemyText.text(`${this.name} inches forth towards ${player.name} on sluggo, but MISSES their attack!`);
@@ -344,6 +352,7 @@ class Enemy {
         let damageDone = this.damage - player.armor;
         player.health -= damageDone;
         $enemyText.text(`${this.name} lets fly an arrow from his trust bow and hits ${player.name} for ${damageDone} damage!`);
+        checkPlayerDead();
         player.displayStats();
         
             setTimeout(
@@ -424,7 +433,9 @@ const weaponsOwned = {
     item4: [0, 40, 50],
     item5: [0, 50, 60]
 }
-const player = new Player('Kevin');
+
+const player = new Player();
+
 const boss = new EnemyBoss();
 boss.createEnemies(1);
 boss.createEnemies(2);
@@ -434,6 +445,12 @@ boss.createEnemies(5);
 
 let currentEnemy = 0;
 let reportedEnemy = 1;
+
+let checkPlayerDead = function() {
+    if (player.health <= 0){
+        $playerPicture.attr('src', './images/player1death2.gif');
+    }
+}
 
 let checkIfDead = function(){
     if (boss.enemy[4].health <= 0){
@@ -467,8 +484,7 @@ let checkIfDead = function(){
                 {
                     $enemyPicture.attr('src', './images/enemy5idle.gif');
                 }, 5800);
-            upgradeStore();
-            upgradeStore();
+
                 }else if(boss.enemy[currentEnemy].health <= 0 && currentEnemy == 2){
                 // load boss 3 death gif here with settimeout
                 setTimeout(
@@ -488,7 +504,7 @@ let checkIfDead = function(){
                     {
                         $enemyPicture.attr('src', './images/enemy4idle.gif');
                     }, 5800);
-                upgradeStore();
+                
                 }else if(boss.enemy[currentEnemy].health <= 0 && currentEnemy == 1){
                 // load boss 2 death gif here with settimeout
                 setTimeout(
@@ -508,7 +524,7 @@ let checkIfDead = function(){
                     {
                         $enemyPicture.attr('src', './images/enemy3idle.gif');
                     }, 5800);
-                upgradeStore();
+                
                 }else if(boss.enemy[0].health <= 0 && currentEnemy == 0){
                 // load boss 1 death gif here with settimeout
                 setTimeout(
@@ -528,7 +544,7 @@ let checkIfDead = function(){
                     {
                         $enemyPicture.attr('src', './images/enemy2idle.gif');
                     }, 5800);
-                upgradeStore();
+                
                 } else {
                     // might need a settimeout here to delay from player to enemy attack animation and text
                     boss.enemy[currentEnemy].enemyHit();
@@ -536,6 +552,19 @@ let checkIfDead = function(){
     }
 }
 
+
+$(document).ready(function() {
+        $("#newGame").submit(function(e) {
+        e.preventDefault();
+        var player_One = $('#nameOne').val();
+        player.name = player_One;
+        player.displayStats();
+    });
+  });
+
+  $('.fancy').click(function(){
+      $('#startbutton').css('visibility', 'visible');
+  })
 
 //  updates/sets stats on various bosses
 boss.enemy[0].name='Taz\'dingo';
@@ -599,10 +628,10 @@ $('#buyDualWield').on('click', () => {
 
 
 //  close upgrade store popup
-let span = document.getElementsByClassName("close")[0];
-span.onclick = function() {
-    document.getElementById("myModal").style.display = "none";
-  }
+// let span = document.getElementsByClassName("close")[0];
+// span.onclick = function() {
+//     document.getElementById("myModal").style.display = "none";
+//   }
 
   //  player attack
 $('#attack').on('click', ()=>{

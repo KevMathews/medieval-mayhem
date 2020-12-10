@@ -1,8 +1,45 @@
 body {
     text-align: center;
 }
-
-.modal {
+.fancy {
+  height: 40px;
+}
+#startbutton {
+ visibility: hidden;
+ width: 20%;
+ margin-left: 0px;
+ margin-right: 0px;
+  
+}
+#myModal{
+  display:flex;
+  background-color:#f15a29;
+  align-items: center;
+  justify-content: center;
+}
+/* .modal-header {
+  height: 40vh;
+  width: 100vw;
+  background-color: orange;
+} */
+.modal-content {
+  background-color: red;
+  margin-top: 50px;
+  border: 0px;
+}
+.modal-body {
+  /* background-color: pink; */
+}
+.modal-dialog{
+  
+  height: 40vh;
+  width: 100vw;
+}
+.modal-footer{
+  
+  text-align: center;
+}
+/* .modal {
     display: none; 
     position: fixed; 
     z-index: 100; 
@@ -37,7 +74,7 @@ body {
     color: #000;
     text-decoration: none;
     cursor: pointer;
-  }
+  } */
   #dualWield {
       display: none;
   }
@@ -52,17 +89,17 @@ body {
     margin-top: 5px;
   }
 #playerName {
-    background-color: blue;
+    
     width: 24vw;
     height: 15vh;
 }
 #gameTitle {
-  background-color: red;
+  
   width: 50vw;
   height: 15vh;
 }
 #enemyName {
-  background-color: yellow;
+  
   width: 24vw;
   height: 15vh;
 }
@@ -76,7 +113,7 @@ body {
 #playerPictureDiv {
 
 width: 25vw;
-height: 45vh;
+height: 35vh;
 transform: translateX(25px)
 }
 
@@ -90,9 +127,11 @@ transform: translateX(25px)
 #enemyPictureDiv {
 
 width: 25vw;
-height: 45vh;
+height: 35vh;
 max-width: 100%;
-transform: translateX(-120px)
+
+transform: translateX(-120px);
+
 }
 img {
   width: 135%;
@@ -111,4 +150,14 @@ img {
   background-color: cyan;
   width: 98vw;
   height: 18vh;
+}
+#titleLogo {
+  width: 70%; 
+}
+.playerNamePlate {
+  width: 90%;
+  z-index: 200;
+}
+#maintitleLogo {
+  width: 90%;
 }

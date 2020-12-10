@@ -1,6 +1,9 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -10,20 +13,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medival Mayhem</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script>
+      $(window).on('load',function(){
+    $('#myModal').modal('show');
+  });
+</script> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Medieval Mayham</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="./css/style.css">
+
+<script>
+	$(document).ready(function(){
+		$("#myModal").modal('show');
+	});
+</script>
+
 </head>
 <body>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <!-- <div class="modal-content">
+      <div class="modal-header"> -->
+        
+        <img id='maintitleLogo' src="./images/logomain2.png"/>
+      </div> 
+      <div class="modal-body">
+        
+        
+          <form name="form1" method="post" id="newGame">
+            <p id="userInput">
+              <label>Player name:</label>
+              <br />
+              <input type="text" name="p1" id="nameOne" value="" required />
+
+              <input class='fancy' id="submit" type="submit" value="Click to Enter Name" />
+              <!-- <input  id="submit" type="submit" value="New Game" data-dismiss="modal"/> -->
+            </p>
+          <img data-dismiss="modal" id="startbutton" type="submit" value="New Game" src="./images/start.gif"/>
+          <!-- <button data-dismiss="modal" id="startbutton" type="submit" value="New Game"></button>START GAME</button> -->
+        </form>
+       
+      </div>
+      <!-- <div class="modal-footer"> -->
+       
+        
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 <!-- Trigger/Open The Modal -->
 
 
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<!-- <div id="my2ndModal" class="modal"> -->
 
   <!-- Modal content -->
-  <div class="modal-content">
+  <!-- <div class="modal-content">
     <span class="close">&times;</span>
     <p>Purchase Upgrades!<br>
         <button id='buyHealthUpgrade'>Buy 5 Point Health Upgrade for 10 gold</button>
@@ -37,17 +95,28 @@
     </p>
   </div>
 
-</div>
+</div> -->
+<!-- <div id="myModal" class="modal fade">
+  <div id='modalTitle'></div>
+  <div id='modalClose'>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <br><br>
+  <div id='modalInput'></div>
+</div> -->
 <section>
+<!-- <div id='playerName'>
+  <img class='playerNamePlate' src="./images/charactername.png"/>
+</div> -->
 <div id='playerName'>
-Player Name
-</div>
+  <img class='playerNamePlate'src="./images/charactername.png"/>
+  <span class='playerName'></span>
+  </div>
 <div id='gameTitle'>
-Title<br>
-Medival Mayhem
+<img id='titleLogo' src="./images/logo2.png"/>
 </div>
 <div id='enemyName'>
-Enemy Name
+<img class='playerNamePlate'src="./images/charactername.png"/>
 <span class='bossName'></span>
 </div>
 <div id='playerStats'>
