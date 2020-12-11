@@ -562,17 +562,15 @@ let checkPlayerDead = function() {
 let checkIfDead = function(){
     if (boss.enemy[4].health <= 0){
         player.displayStats();
-        /// load boss 5 death gif here with timeout
+        
         setTimeout(
             function() 
             {
                 $enemyPicture.attr('src', './images/enemy5death.gif');
             }, 500);
-        // load celebratory player image with timeout//
-        // reset game button popsup 
-        console.log(`you have won!`);
-        
-            }else if(boss.enemy[currentEnemy].health <= 0 && currentEnemy == 3){
+            victory();
+
+        }else if(boss.enemy[currentEnemy].health <= 0 && currentEnemy == 3){
             // load boss 4 death gif here with settimout
             setTimeout(
                 function() 
@@ -774,14 +772,43 @@ let changeStage = function() {
     $body.css('background-image','url(./images/game_background_4.png)').css('width', '100%');
 }
 }
-stageCleared = function() {
+let img1 = document.createElement("img");
+img1.src = "../images/stageCleared.gif";
+let img2 = document.createElement("img");
+img2.src = "../images/victory.gif";
+let img3 = document.createElement("img");
+img3.src = "../images/gameover.gif";
+
+let stageCleared = function() {
     $('#myModal4').modal('show');
+    $('#modal-body4').append(img1);
+    img1.id = 'stageClearedImage';
     setTimeout(
         function() 
         {
             $('#myModal4').modal('hide');
         }, 5800);
-;
+        setTimeout(
+            function() 
+            {
+                $('#modal-body4').empty();
+            }, 5900);
 }
+let victory = function() {
+    $('#myModal5').modal('show');
+    $('#modal-body5').append(img2);
+    img2.id = 'victoryImage';
+    setTimeout(
+        function() 
+        {
+            $('#myModal5').modal('hide');
+        }, 5800);
+        setTimeout(
+            function() 
+            {
+                $('#modal-body5').empty();
+            }, 5900);
+}
+
 
 changeStage();

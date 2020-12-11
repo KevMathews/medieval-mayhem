@@ -274,3 +274,9 @@ width: 80px;
   transform: translateX(-50%);
   transform: translateY(20%);
 }
+#victoryImage {
+  width: 150%;
+  transform: translateX(0);
+  transform: translateY(10%);
+  margin-left: -150px;
+}
