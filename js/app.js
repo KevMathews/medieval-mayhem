@@ -23,11 +23,12 @@ $body = $('body');
 $victoryImage = $('#victoryImage');
 $stageClearedImage = $('#stageClearedImage');
 $defeatImage = $('#defeatImage');
+$storeModalText = $('#modal-footer');
 
 class Player {
     constructor(name){
         this.maxHealth = 200.00;
-        this.health = 200.00;
+        this.health = 1;
         this.healthPercent = 100;
         this.energy = 100;
         this.armor = 5;
@@ -556,6 +557,7 @@ let reportedEnemy = 1;
 let checkPlayerDead = function() {
     if (player.health <= 0){
         $playerPicture.attr('src', './images/player1death2.gif');
+        defeat();
     }
 }
 
@@ -708,7 +710,7 @@ $('#buyHealthUpgrade').on('click', () => {
             player.gold -= 10;
             player.displayStats();
         }else {
-        $storeMessage.text(`Sorry you don\'t have enough Gold to buy a Health upgrade`);
+            $storeModalText.text(`Sorry you don\'t have enough Gold to buy a Health upgrade`);
         }});
 
 $('#buyArmorUpgrade').on('click', () => {
@@ -809,6 +811,22 @@ let victory = function() {
                 $('#modal-body5').empty();
             }, 5900);
 }
+let defeat = function() {
+    $('#myModal6').modal('show');
+    $('#modal-body6').append(img3);
+    img3.id = 'defeatImage';
+    setTimeout(
+        function() 
+        {
+            $('#myModal6').modal('hide');
+        }, 5800);
+        setTimeout(
+            function() 
+            {
+                $('#modal-body6').empty();
+            }, 5900);
+}
+
 
 
 changeStage();

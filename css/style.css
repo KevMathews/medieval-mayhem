@@ -280,3 +280,9 @@ width: 80px;
   transform: translateY(10%);
   margin-left: -150px;
 }
+#defeatImage {
+  width: 150%;
+  transform: translateX(0);
+  transform: translateY(200px);
+  margin-left: -150px;
+}
