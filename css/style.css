@@ -1,13 +1,18 @@
-/* <style>
-@import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
-</style> */
+
 body {
-  /* font-family: 'Boogaloo', cursive; */
+  
     text-align: center;
     background-size: cover;
 }
+
+.modal-content{
+  height: 50%;
+  background-color: green;
+}
+
+
 .fancy {
-  height: 40px;
+  height: 32px;
 }
 #startbutton {
  visibility: hidden;
@@ -22,64 +27,8 @@ body {
   align-items: center;
   justify-content: center;
 }
-/* .modal-header {
-  height: 40vh;
-  width: 100vw;
-  background-color: orange;
-} */
-.modal-content {
-  background-color: red;
-  margin-top: 50px;
-  border: 0px;
-}
-.modal-body {
-  /* background-color: pink; */
-}
-.modal-dialog{
-  
-  height: 40vh;
-  width: 100vw;
-}
-.modal-footer{
-  
-  text-align: center;
-}
-/* .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 100; 
-    padding-top: 60vh; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.4); 
-  }
-  
-  /* Modal Content */
-  .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
-  
-  /* The Close Button */
-  .close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  } */
+
+
   #dualWield {
       display: none;
   }
@@ -155,7 +104,13 @@ body {
 #playerStats {
   grid-column: 2 / 3;
   grid-row: 2;
-  
+	color: white;
+	font-size: 20px;
+	text-shadow: -1px 1px 0 #000,
+				  1px 1px 0 #000,
+				 1px -1px 0 #000;
+				-1px -1px 0 #000;
+
   
   /* width: 14vw;
   height: 45vh; */
@@ -183,21 +138,13 @@ body {
 #enemyStats {
   grid-column: 5 / 6;
   grid-row: 2;
-  /* background-color: pink;
-  width: 14vw;
-  height: 45vh;
-  text-align: right;
-  padding-right: 10px; */
+  color: white;
+	font-size: 20px;
+	text-shadow: -1px 1px 0 #000,
+				  1px 1px 0 #000,
+				 1px -1px 0 #000;
+				-1px -1px 0 #000;
 }
-
-
-/* #gameVisualAction{
-grid-column: 2 / 3;
-grid-row: 2;
-display: grid;
-grid-template-columns: 10% 10% 30% 30% 10% 10%;
-grid-template-rows:20% 80%;
-} */
 #playerPictureDiv {
 grid-column: 3 / 4;
 grid-row: 2;
@@ -221,20 +168,7 @@ transform: translateY(-25%); */
   grid-row: 2;
   padding-top: 100px;
   transform: translateX(-150px);
-  /* padding-right: 100px; */
-/* position: relative; */
-/* width: 25vw;
-height: 35vh; */
-/* max-width: 100%; */
-/* top: -10%;
-transform: translateZ(-30%);
-/* transform: translateX(30%); */
-/* transform: translateX(-40px); */
- /* z-index: 200;  */
-/* margin-left: 150px;
-margin-top: 0px;
-z-index: 100;
-padding-top: -150px; */
+
 z-index: 100; */
 }
 

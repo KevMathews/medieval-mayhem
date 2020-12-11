@@ -38,20 +38,13 @@
 </head>
 <body>
 
-<!-- Modal -->
+<!-- Opening Screen Modal -->
 <div class="modal fade" id="myModal" role="dialog" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <!-- <div class="modal-content">
-      <div class="modal-header"> -->
-        
-        <img id='maintitleLogo' src="./images/logomain2.png"/>
-      </div> 
-      <div class="modal-body">
-        
-        
-          <form name="form1" method="post" id="newGame">
+    <img id='maintitleLogo' src="./images/logomain2.png"/>
+  </div> 
+  <div class="modal-body">
+    <form name="form1" method="post" id="newGame">
             <p id="userInput">
               <label>Player name:</label>
               <br />
@@ -61,13 +54,49 @@
               <!-- <input  id="submit" type="submit" value="New Game" data-dismiss="modal"/> -->
             </p>
           <img data-dismiss="modal" id="startbutton" type="submit" value="New Game" src="./images/start.gif"/>
-          <!-- <button data-dismiss="modal" id="startbutton" type="submit" value="New Game"></button>START GAME</button> -->
-        </form>
-       
+    </form>
+    </div>
+</div>
+   <!-- Store Modal -->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
       </div>
-      <!-- <div class="modal-footer"> -->
-       
-        
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+        <p>Purchase Upgrades!<br>
+          <button id='buyHealthUpgrade'>Buy 5 Point Health Upgrade for 10 gold</button>
+          <button id='buyArmorUpgrade'>Buy 2 point of extra Armor for 10 gold</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+     <!-- Rules Modal -->
+<!-- Modal -->
+<div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
 
@@ -75,36 +104,6 @@
 </div>
 
 
-<!-- Trigger/Open The Modal -->
-
-
-<!-- The Modal -->
-<!-- <div id="my2ndModal" class="modal"> -->
-
-  <!-- Modal content -->
-  <!-- <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Purchase Upgrades!<br>
-        <button id='buyHealthUpgrade'>Buy 5 Point Health Upgrade for 10 gold</button>
-        <button id='buyArmorUpgrade'>Buy 2 point of extra Armor for 10 gold</button>
-        <button id='buyDualWield'>For 30 gold learn the new skill Dual Wield where you are 1/3rd less accurate but attack twice per round</button>
-        Player Health: <span class='playerHealth'></span>
-        Gold: <span class='playerGold'></span>
-        Armor: <span class='playerArmor'></span>
-        Skill Dual wield: <span class='playerDualWield'>Not Purchased</span>
-        <div id=storeMessage></div>
-    </p>
-  </div>
-
-</div> -->
-<!-- <div id="myModal" class="modal fade">
-  <div id='modalTitle'></div>
-  <div id='modalClose'>
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-  </div>
-  <br><br>
-  <div id='modalInput'></div>
-</div> -->
 <section>
   <div id='playerNameDiv'><span class='playerName'></span></div>
   <div id='bossNameDiv'><span class='bossName'></span></div>
@@ -123,19 +122,20 @@
   </div>
   <div id='playerStats'>
     Player Stats
-    <!-- Health = <span class='playerHealth'>200</span><br>
+    Health = <span class='playerHealth'>200</span><br>
     Armor = <span class='playerArmor'>5</span><br>
     Accuracy = <span class='playerAccuracy'>.8</span><br>
     Gold = <span class='playerGold'>0</span><br>
-    Dual Wield = <span class='playerDualWield'>No</span><br>
-    DW Accuracy = <span class='playerDualWieldAccuracy'></span> -->
+
   </div>
 
   <div id='playerPictureDiv'>
     
     <img id='playerPicture' src='./images/player1idle.gif'/>
   </div>
-  
+  <div id='victoryImage'></div>
+  <div id='stageClearedImage'></div>
+  <div id='defeatImage'></div>
   <div id='enemyPictureDiv'>
 
     <img id='enemyPicture' src='./images/enemy1idle.gif'/>
@@ -143,10 +143,10 @@
 
   <div id='enemyStats'>
     Enemy Stats
-    <!-- Health = <span class='bossHealth'>30</span><br>
+    Health = <span class='bossHealth'>30</span><br>
     Armor = <span class='bossArmor'>2</span><br>
     Accuracy = <span class='bossAccuracy'>.5</span><br>
-    Skill = <span class='bossSkill'>Basic Attack</span> -->
+    Skill = <span class='bossSkill'>Basic Attack</span>
   </div>
 <!-- <div id='playerCombatText'>
 Player Combat Text
@@ -160,8 +160,8 @@ Player Combat Text
   <img src = ./images/blade1.png id = 'magicBladeButton' class ='gameButtons'></img>
   <img src = ./images/lightning1.png id = 'lightningButton' class ='gameButtons'></img>
   <img src = ./images/fireball1.png id = 'fireBallButton' class ='gameButtons'></img>
-  <img src = ./images/shop1.png id= 'shopButton' class ='gameButtons'></img>
-  <img src = ./images/rules1.png id= 'rulesButton' class ='gameButtons'></img>
+  <img src = ./images/shop1.png id= 'shopButton' class ='gameButtons' data-toggle="modal" data-target="#myModal2"></img>
+  <img src = ./images/rules1.png id= 'rulesButton' class ='gameButtons' data-toggle="modal" data-target="#myModal3"></img>
   </div>
 </section>
 
