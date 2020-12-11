@@ -51,7 +51,7 @@ class Player {
         setTimeout(function(){ $enemyDamageDiv.css('opacity', '0%'); }, 2500);
     }
     showPlayerMiss() {
-        setTimeout(function(){ $enemyDamageDiv.text(`Miss`).css('opacity', '100%'); }, 1000);
+        setTimeout(function(){ $enemyDamageDiv.text(`Miss`).css('opacity', '100%').css('color', 'black').css('font-style', 'normal'); }, 1000);
         
         setTimeout(function(){ $enemyDamageDiv.css('opacity', '0%'); }, 2500);
     }   
@@ -289,7 +289,7 @@ class Enemy {
         setTimeout(function(){ $playerDamageDiv.css('opacity', '0%'); }, 2500);
     }
     showEnemyMiss() {
-        setTimeout(function(){ $playerDamageDiv.text(`Miss`).css('opacity', '100%'); }, 1000);
+        setTimeout(function(){ $playerDamageDiv.text(`Miss`).css('opacity', '100%').css('color', 'black').css('font-style', 'normal'); }, 1000);
         
         setTimeout(function(){ $playerDamageDiv.css('opacity', '0%'); }, 2500);
     }   
@@ -300,6 +300,11 @@ class Enemy {
                 {
                     $enemyPicture.attr('src', './images/enemy5attack.gif');
                 }, 1000);
+                setTimeout(
+                    function() 
+                    {
+                        $enemyPicture.attr('src', './images/enemy5idle.gif');
+                    }, 2000);
             let damageDone = this.damage - player.armor;
             player.health -= damageDone;
             this.damageJustDone = damageDone;
@@ -316,6 +321,11 @@ class Enemy {
                     {
                         $enemyPicture.attr('src', './images/enemy5attack.gif');
                     }, 1000);
+                    setTimeout(
+                        function() 
+                        {
+                            $enemyPicture.attr('src', './images/enemy5idle.gif');
+                        }, 2000);
                     this.showEnemyMiss();
         }
     }
@@ -326,6 +336,11 @@ class Enemy {
                 {
                     $enemyPicture.attr('src', './images/enemy4attack.gif');
                 }, 1000);
+                setTimeout(
+                    function() 
+                    {
+                        $enemyPicture.attr('src', './images/enemy4idle.gif');
+                    }, 2000);
             let damageDone = this.damage - player.armor;
             player.health -= damageDone;
             this.damageJustDone = damageDone;
@@ -342,6 +357,11 @@ class Enemy {
                     {
                         $enemyPicture.attr('src', './images/enemy4attack.gif');
                     }, 1000);
+                    setTimeout(
+                        function() 
+                        {
+                            $enemyPicture.attr('src', './images/enemy4idle.gif');
+                        }, 2000);
                     this.showEnemyMiss();
                 player.displayStats();
         }
@@ -351,8 +371,13 @@ class Enemy {
             setTimeout(
                 function() 
                 {
-                    $enemyPicture.attr('src', './images/enemy3attack.gif');
+                    $enemyPicture.attr('src', './images/enemy3attack2.gif');
                 }, 900);
+                setTimeout(
+                    function() 
+                    {
+                        $enemyPicture.attr('src', './images/enemy3idle.gif');
+                    }, 2000);
             let damageDone = this.damage - player.armor;
             player.health -= damageDone;
             this.damageJustDone = damageDone;
@@ -366,8 +391,13 @@ class Enemy {
                 setTimeout(
                     function() 
                     {
-                        $enemyPicture.attr('src', './images/enemy3attack.gif');
+                        $enemyPicture.attr('src', './images/enemy3attack2.gif');
                     }, 900);
+                    setTimeout(
+                        function() 
+                        {
+                            $enemyPicture.attr('src', './images/enemy3idle.gif');
+                        }, 2000);
                     this.showEnemyMiss();
                 player.displayStats();
             }
@@ -379,6 +409,11 @@ class Enemy {
                 {
                     $enemyPicture.attr('src', './images/enemy2attack.gif');
                 }, 800);
+                setTimeout(
+                    function() 
+                    {
+                        $enemyPicture.attr('src', './images/enemy2idle.gif');
+                    }, 2000);
             let damageDone = this.damage - player.armor;
             player.health -= damageDone;
             this.damageJustDone = damageDone;
@@ -395,6 +430,11 @@ class Enemy {
                         {
                             $enemyPicture.attr('src', './images/enemy2attack.gif');
                         }, 800);
+                        setTimeout(
+                            function() 
+                            {
+                                $enemyPicture.attr('src', './images/enemy2idle.gif');
+                            }, 2000);
                         this.showEnemyMiss();
                 player.displayStats();
         }
