@@ -7,7 +7,7 @@ body {
 
 .modal-content{
   height: 50%;
-  background-color: green;
+  background-color: transparent;
 }
 
 
@@ -267,4 +267,10 @@ width: 80px;
 }
 #rulesButton:active {
   content: url('../images/rules3.png');
+}
+
+#stageClearedImage {
+  width: 80%;
+  transform: translateX(-50%);
+  transform: translateY(20%);
 }

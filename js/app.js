@@ -20,6 +20,9 @@ $playerPicture = $('#playerPicture');
 $playerDamageDiv = $('#playerDamageDiv');
 $enemyDamageDiv = $('#enemyDamageDiv');
 $body = $('body');
+$victoryImage = $('#victoryImage');
+$stageClearedImage = $('#stageClearedImage');
+$defeatImage = $('#defeatImage');
 
 class Player {
     constructor(name){
@@ -582,7 +585,7 @@ let checkIfDead = function(){
             player.gold += 20;
             console.log(player);
             player.displayStats();
-            // load boss 5 idle image here
+            stageCleared();
             setTimeout(
                 function() 
                 {
@@ -602,7 +605,7 @@ let checkIfDead = function(){
                 player.gold += 20;
                 console.log(player);
                 player.displayStats();
-                // load boss 4 idle image here
+                stageCleared();
                 setTimeout(
                     function() 
                     {
@@ -622,7 +625,7 @@ let checkIfDead = function(){
                 player.gold += 20;
                 console.log(player);
                 player.displayStats();
-                // load boss 3 idle image here
+                stageCleared();
                 setTimeout(
                     function() 
                     {
@@ -642,6 +645,7 @@ let checkIfDead = function(){
                 player.gold += 20;
                 console.log(player);
                 player.displayStats();
+                stageCleared();
                 // load boss 2 idle image here
                 setTimeout(
                     function() 
@@ -650,7 +654,7 @@ let checkIfDead = function(){
                     }, 5800);
                 
                 } else {
-                    // might need a settimeout here to delay from player to enemy attack animation and text
+                    
                     boss.enemy[currentEnemy].enemyHit();
                     console.log(boss.enemy[currentEnemy]);
     }
@@ -771,7 +775,13 @@ let changeStage = function() {
 }
 }
 stageCleared = function() {
-    
+    $('#myModal4').modal('show');
+    setTimeout(
+        function() 
+        {
+            $('#myModal4').modal('hide');
+        }, 5800);
+;
 }
 
 changeStage();
