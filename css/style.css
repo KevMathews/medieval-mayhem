@@ -4,6 +4,7 @@
 body {
   /* font-family: 'Boogaloo', cursive; */
     text-align: center;
+    background-size: cover;
 }
 .fancy {
   height: 40px;
@@ -107,8 +108,13 @@ body {
   z-index:1000;
   font-size: 36px;
   font-family: 'Boogaloo', cursive;
-  text-shadow: 1px 2px 3px #4d4d4d; 
-  color: #222;
+  
+  /* color: #222; */
+  background: -webkit-linear-gradient(rgb(255, 251, 10), rgb(247, 114, 5));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(3.2px 3.2px #333);
+  /* text-shadow: 1px 2px 3px #4d4d4d;  */
 }
 #bossNameDiv {
   grid-column: 6 / 7;
@@ -251,10 +257,11 @@ img {
   /* background-color: cyan; */
   grid-column: 1 / 7;
   grid-row: 5;
+  transform: translateY(-80px);
 
 }
 #titleLogo {
-  width: 70%; 
+  width: 75%; 
 }
 .playerNamePlate {
   width: 90%;
@@ -288,5 +295,42 @@ img {
 .emptyDot {
   opacity: 0%;
 }
-
-
+.gameButtons {
+width: 80px;
+}
+#attackButton:hover {
+  content: url('../images/attack2.png');
+}
+#attackButton:active {
+  content: url('../images/attack3.png');
+}
+#magicBladeButton:hover {
+  content: url('../images/blade2.png');
+}
+#magicBladeButton:active {
+  content: url('../images/blade3.png');
+}
+#lightningButton:hover {
+  content: url('../images/lightning2.png');
+}
+#lightningButton:active {
+  content: url('../images/lightning3.png');
+}
+#fireBallButton:hover {
+  content: url('../images/fireball2.png');
+}
+#fireBallButton:active {
+  content: url('../images/fireball3.png');
+}
+#shopButton:hover {
+  content: url('../images/shop2.png');
+}
+#shopButton:active {
+  content: url('../images/shop3.png');
+}
+#rulesButton:hover {
+  content: url('../images/rules2.png');
+}
+#rulesButton:active {
+  content: url('../images/rules3.png');
+}

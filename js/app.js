@@ -19,6 +19,7 @@ $enemyPicture = $('#enemyPicture');
 $playerPicture = $('#playerPicture');
 $playerDamageDiv = $('#playerDamageDiv');
 $enemyDamageDiv = $('#enemyDamageDiv');
+$body = $('body');
 
 class Player {
     constructor(name){
@@ -123,7 +124,7 @@ class Player {
                 }, 800);
         }else {
             $playerText.text(`${player.name} throws their Magic Blade at ${boss.enemy[currentEnemy].name} MISSING badly!`);
-            $playerPicture.attr('src', './images/player1attack2.gif');
+            $playerPicture.attr('src', './images/player1attack4.gif');
             
             setTimeout(
                 function() 
@@ -697,7 +698,7 @@ $('#buyDualWield').on('click', () => {
 //   }
 
   //  player attack
-$('#attack').on('click', ()=>{
+$('#attackButton').on('click', ()=>{
     player.attack()
 })
 
@@ -706,13 +707,27 @@ $('#dualWield').on('click', ()=>{
     player.dualWieldAttack();
 })
 
-$('#magicBlade').on('click', ()=>{
+$('#magicBladeButton').on('click', ()=>{
     player.magicBlade();
 })
 
-$('#lightningBolt').on('click', ()=>{
+$('#lightningButton').on('click', ()=>{
     player.lightningBolt();
 })
-$('#fireBall').on('click', ()=>{
+$('#fireBallButton').on('click', ()=>{
     player.fireBall();
 })
+
+let changeStage = function() {
+    let randStage = Math.random();
+    if (randStage < .25){
+        $body.css('background-image','url(./images/game_background_1.png)').css('width', '100%');
+}else if (randStage >= .25 &&  randStage < .5){
+        $body.css('background-image','url(./images/game_background_2.png)').css('width', '100%');
+}else if (randStage >= .5 &&  randStage < .75){
+    $body.css('background-image','url(./images/game_background_3.png)').css('width', '100%');
+}else if (randStage >= .75 &&  randStage <= 1){
+    $body.css('background-image','url(./images/game_background_4.png)').css('width', '100%');
+}
+}
+changeStage();
