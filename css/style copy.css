@@ -1,0 +1,230 @@
+/* <style>
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
+</style> */
+body {
+  /* font-family: 'Boogaloo', cursive; */
+    text-align: center;
+}
+.fancy {
+  height: 40px;
+}
+#startbutton {
+ visibility: hidden;
+ width: 20%;
+ margin-left: 0px;
+ margin-right: 0px;
+  
+}
+#myModal{
+  display:flex;
+  background-color:#f15a29;
+  align-items: center;
+  justify-content: center;
+}
+/* .modal-header {
+  height: 40vh;
+  width: 100vw;
+  background-color: orange;
+} */
+.modal-content {
+  background-color: red;
+  margin-top: 50px;
+  border: 0px;
+}
+.modal-body {
+  /* background-color: pink; */
+}
+.modal-dialog{
+  
+  height: 40vh;
+  width: 100vw;
+}
+.modal-footer{
+  
+  text-align: center;
+}
+/* .modal {
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    padding-top: 60vh; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  } */
+  #dualWield {
+      display: none;
+  }
+  .dualWieldAccuracy {
+      display: none;
+  }
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 5px;
+  }
+#playerName {
+    
+    width: 24vw;
+    height: 15vh;
+}
+#gameTitle {
+  
+  width: 50vw;
+  height: 15vh;
+}
+#enemyName {
+  
+  width: 24vw;
+  height: 15vh;
+}
+#playerStats {
+  text-align: left;
+  background-color: pink;
+  width: 14vw;
+  height: 45vh;
+  padding-left: 10px;
+}
+#playerPictureDiv {
+
+width: 25vw;
+height: 35vh;
+transform: translateX(25px);
+transform: translateY(-25%);
+}
+
+#enemyStats {
+  background-color: pink;
+  width: 14vw;
+  height: 45vh;
+  text-align: right;
+  padding-right: 10px;
+}
+#enemyPictureDiv {
+position: relative;
+/* width: 25vw;
+height: 35vh; */
+/* max-width: 100%; */
+top: -10%;
+transform: translateZ(-30%);
+transform: translateX(30%);
+transform: translateY(-80%);
+z-index: 200;
+margin-left: 150px;
+margin-top: 0px;
+z-index: 100;
+padding-top: -150px;
+
+}
+img {
+  /* width: 135%; */
+}
+#playerCombatText {
+  background-color: orange;
+  width: 49vw;
+  height: 20vh;
+}
+#enemyCombatText {
+  background-color: purple;
+  width: 49vw;
+  height: 20vh;
+}
+#gameActionButtons {
+  background-color: cyan;
+  width: 98vw;
+  height: 18vh;
+}
+#titleLogo {
+  width: 70%; 
+}
+.playerNamePlate {
+  width: 90%;
+  z-index:-1000;
+}
+#maintitleLogo {
+  width: 90%;
+}
+.playerName{
+  
+  transform: translateY(50%)
+}
+#playerNameDiv{
+  /* background-color: yellow; */
+  transform: translateY(-62px);
+  z-index:1000;
+  font-size: 36px;
+  font-family: 'Boogaloo', cursive;
+  text-shadow: 1px 2px 3px #4d4d4d; 
+	color: #222;
+	/* font: 28px 'LeagueGothicRegular'; */
+}
+#bossNameDiv {
+  transform: translateY(-62px);
+  z-index:1000;
+  font-size: 36px;
+  font-family: 'Boogaloo', cursive;
+  text-shadow: 1px 2px 3px #4d4d4d; 
+	color: #222;
+}
+#playerDamageDiv {
+  font-size: 36px;
+  font-family: 'Boogaloo', cursive;
+  transform: translateY(100px);
+  z-index: 1000;
+}
+#enemyDamageDiv {
+  position: relative;
+  top: -20%;
+  width: 3px;
+  height: 3px;
+  font-size: 36px;
+  font-family: 'Boogaloo', cursive;
+  /* transform: translateY(5px); */
+  /* transform: translateX(-250px); */
+  z-index: 10000;
+  /* padding-top: 250px; */
+  top: 50px;
+   left: 350px;  
+
+}
+.emptyDot {
+  opacity: 0%;
+}
+
+#fightingDivContainer {
+  position: relative;
+  background-color: green;
+  width: 60vw;
+  min-width: 500px;
+  /* max-width: 550px; */
+  height: 45vh;
+}

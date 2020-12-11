@@ -18,11 +18,12 @@ $progressBar = $('.progress-bar');
 $enemyPicture = $('#enemyPicture');
 $playerPicture = $('#playerPicture');
 $playerDamageDiv = $('#playerDamageDiv');
+$enemyDamageDiv = $('#enemyDamageDiv');
 
 class Player {
     constructor(name){
         this.maxHealth = 200.00;
-        this.health = 20.00;
+        this.health = 200.00;
         this.healthPercent = 100;
         this.energy = 100;
         this.armor = 5;
@@ -40,13 +41,27 @@ class Player {
         this.fireballDamage = 60;
         this.lightningBoltLearned = 'No';
         this.fireBallLearned = 'No';
+        this.damageJustDone = null;
     }
+    showDamageDone() {
+        
+        setTimeout(function(){ $enemyDamageDiv.text(`-${player.damageJustDone}!`).css('opacity', '100%').css('color', 'red').css('font-style', 'italic'); }, 1000);
+        
+        setTimeout(function(){ $enemyDamageDiv.css('opacity', '0%'); }, 2500);
+    }
+    showPlayerMiss() {
+        setTimeout(function(){ $enemyDamageDiv.text(`Miss`).css('opacity', '100%'); }, 1000);
+        
+        setTimeout(function(){ $enemyDamageDiv.css('opacity', '0%'); }, 2500);
+    }   
     fireBall(){
         let randomNumber = Math.random();
         if (randomNumber <= player.fireBallAccuracy){
             let damageDone = this.fireballDamage - boss.enemy[currentEnemy].armor;
             $playerText.text(`${player.name} hurl a FireBall at ${boss.enemy[currentEnemy].name} scorching them for ${damageDone} DAMAGE!!`);
             boss.enemy[currentEnemy].health -= damageDone;
+            this.damageJustDone = damageDone;
+            this.showDamageDone();
             $playerPicture.attr('src', './images/player1attack3.gif');
             
             
@@ -80,14 +95,18 @@ class Player {
                     $playerPicture.attr('src', './images/player1idle.gif');
                     
                 }, 800);
+                player.showPlayerMiss();
             }
     }
     lightningBolt(){
         let randomNumber = Math.random();
-        if (randomNumber <= player.lightningBoltAccuracy){
+        if (randomNumber <= player.accuracy){
             let damageDone = this.lightningBoltDamage - boss.enemy[currentEnemy].armor;
-            $playerText.text(`${player.name} summons a Bolt of Lightning from the ground striking ${boss.enemy[currentEnemy].name} for ${damageDone} DAMAGE!!`);
+            
+            $playerText.text(`${player.name} flings their Magic Blade at ${boss.enemy[currentEnemy].name} hitting them for ${damageDone} DAMAGE!!`);
             boss.enemy[currentEnemy].health -= damageDone;
+            this.damageJustDone = damageDone;
+            this.showDamageDone();
             $playerPicture.attr('src', './images/player1attack4.gif');
             
             setTimeout(
@@ -103,9 +122,8 @@ class Player {
                     
                 }, 800);
         }else {
-            $playerText.text(`${player.name} summons a Bolt of Lightning from the ground, but ${boss.enemy[currentEnemy].name} skillfully EVADES it!`);
-            $playerPicture.attr('src', './images/player1attack4.gif');
-            
+            $playerText.text(`${player.name} throws their Magic Blade at ${boss.enemy[currentEnemy].name} MISSING badly!`);
+            $playerPicture.attr('src', './images/player1attack2.gif');
             
             setTimeout(
                 function() 
@@ -118,14 +136,19 @@ class Player {
                 {
                     $playerPicture.attr('src', './images/player1idle.gif');
                     
-                }, 800);}
+                }, 800);
+                player.showPlayerMiss();
+        }
     }
     magicBlade(){
         let randomNumber = Math.random();
         if (randomNumber <= player.magicBladeAccuracy){
             let damageDone = this.magicBladeDamage - boss.enemy[currentEnemy].armor;
+            
             $playerText.text(`${player.name} flings their Magic Blade at ${boss.enemy[currentEnemy].name} hitting them for ${damageDone} DAMAGE!!`);
             boss.enemy[currentEnemy].health -= damageDone;
+            this.damageJustDone = damageDone;
+            this.showDamageDone();
             $playerPicture.attr('src', './images/player1attack2.gif');
             
             setTimeout(
@@ -156,6 +179,7 @@ class Player {
                     $playerPicture.attr('src', './images/player1idle.gif');
                     
                 }, 800);
+                player.showPlayerMiss();
         }
     }
     dualWieldAttack() {
@@ -178,6 +202,8 @@ class Player {
             let damageDone = this.damage - boss.enemy[currentEnemy].armor;
             $playerText.text(`${player.name} strikes ${boss.enemy[currentEnemy].name}  with their sword for ${damageDone} DAMAGE!`);
             boss.enemy[currentEnemy].health -= damageDone;
+            this.damageJustDone = damageDone;
+            player.showDamageDone();
             $playerPicture.attr('src', './images/player1attack.gif');
             
             setTimeout(
@@ -198,7 +224,7 @@ class Player {
                         player.displayStats();
                     }, 4600);
                 $playerText.text(`${player.name} swings at ${boss.enemy[currentEnemy].name} but MISSES!`);
-            
+                
             checkIfDead();
             setTimeout(
                 function() 
@@ -206,6 +232,7 @@ class Player {
                     $playerPicture.attr('src', './images/player1idle.gif');
                     
                 }, 1600);
+                player.showPlayerMiss();
         }
     }
     displayStats() {
@@ -243,9 +270,9 @@ class Enemy {
     constructor(){
         this.energy = 50;
         this.maxHealth = 30;
-        this.health = 3000;
+        this.health = 30;
         this.armor = 2;
-        this.accuracy = .8;
+        this.accuracy = .5;
         this.damage = 10;
         this.weapon1 = true;
         this.weapon2 = false;
@@ -255,8 +282,13 @@ class Enemy {
         this.damageJustDone = null;
     }
     showDamageDone() {
-        console.log(this.damageJustDone);
-        setTimeout(function(){ $playerDamageDiv.text(`-${boss.enemy[currentEnemy].damageJustDone}`).css('opacity', '100%').css('color', 'red'); }, 1000);
+        
+        setTimeout(function(){ $playerDamageDiv.text(`-${boss.enemy[currentEnemy].damageJustDone}!`).css('opacity', '100%').css('color', 'red').css('font-style', 'italic'); }, 1000);
+        
+        setTimeout(function(){ $playerDamageDiv.css('opacity', '0%'); }, 2500);
+    }
+    showEnemyMiss() {
+        setTimeout(function(){ $playerDamageDiv.text(`Miss`).css('opacity', '100%'); }, 1000);
         
         setTimeout(function(){ $playerDamageDiv.css('opacity', '0%'); }, 2500);
     }   
@@ -269,7 +301,9 @@ class Enemy {
                 }, 1000);
             let damageDone = this.damage - player.armor;
             player.health -= damageDone;
-            $playerDamageDiv.text(`-${damageDone}`).css('color', 'red');
+            this.damageJustDone = damageDone;
+            this.showDamageDone();
+            
             $enemyText.text(`${this.name} Belches a mighty Burst of Fire at ${player.name} and scorches them for ${damageDone} DAMAGE!`);
             checkPlayerDead();
             player.displayStats();
@@ -281,6 +315,7 @@ class Enemy {
                     {
                         $enemyPicture.attr('src', './images/enemy5attack.gif');
                     }, 1000);
+                    this.showEnemyMiss();
         }
     }
     enemy4Attack(){
@@ -292,8 +327,10 @@ class Enemy {
                 }, 1000);
             let damageDone = this.damage - player.armor;
             player.health -= damageDone;
-            // setTimeout(function(){ $playerDamageDiv.text(`-${damageDone}`).css('color', 'red'); }, 2500);
+            this.damageJustDone = damageDone;
             this.showDamageDone();
+
+            
             $enemyText.text(`${this.name} hurls a Kinetic Bolt at ${player.name} for ${damageDone} DAMAGE with his wand!`);
             checkPlayerDead();
             player.displayStats();
@@ -304,6 +341,7 @@ class Enemy {
                     {
                         $enemyPicture.attr('src', './images/enemy4attack.gif');
                     }, 1000);
+                    this.showEnemyMiss();
                 player.displayStats();
         }
     }
@@ -316,8 +354,10 @@ class Enemy {
                 }, 900);
             let damageDone = this.damage - player.armor;
             player.health -= damageDone;
-            // setTimeout(function(){ $playerDamageDiv.text(`-${damageDone}`).css('color', 'red'); }, 2500);
+            this.damageJustDone = damageDone;
             this.showDamageDone();
+
+            
             $enemyText.text(`${this.name} summons his trusty companion Fang who bites ${player.name} for ${damageDone} DAMAGE!`);
             checkPlayerDead();
             player.displayStats();
@@ -327,6 +367,7 @@ class Enemy {
                     {
                         $enemyPicture.attr('src', './images/enemy3attack.gif');
                     }, 900);
+                    this.showEnemyMiss();
                 player.displayStats();
             }
     }
@@ -339,8 +380,10 @@ class Enemy {
                 }, 800);
             let damageDone = this.damage - player.armor;
             player.health -= damageDone;
-            // setTimeout(function(){ $playerDamageDiv.text(`-${damageDone}`).css('color', 'red'); }, 2500);
+            this.damageJustDone = damageDone;
             this.showDamageDone();
+
+            
             $enemyText.text(`${this.name} lurch forward and pierce ${player.name} for ${damageDone} DAMAGE!!`);
             checkPlayerDead();
             player.displayStats();
@@ -351,28 +394,22 @@ class Enemy {
                         {
                             $enemyPicture.attr('src', './images/enemy2attack.gif');
                         }, 800);
+                        this.showEnemyMiss();
                 player.displayStats();
         }
     }
     enemy1Attack(){
         if ((Math.random() < this.accuracy)){
         
-        // $enemyPicture.attr('src', './images/enemy1idle.gif');
-        // setTimeout(
-        //     function() 
-        //     {
+        
                 $enemyPicture.attr('src', './images/enemy1attack.gif');
-            // }, 50);
+            
         let damageDone = this.damage - player.armor;
         player.health -= damageDone;
-        // setTimeout(function(){ $playerDamageDiv.text(`-${damageDone}`).css('color', 'red'); }, 2500);
+        
         this.damageJustDone = damageDone;
         this.showDamageDone();
-        // setTimeout(
-        //     function() 
-        //     {
-        //         $playerDamageDiv.text(`-${damageDone}`).css('color', 'red');
-        //     }, 800);
+       
         
         $enemyText.text(`${this.name} lets an arrow fly from his trusty bow and hits ${player.name} for ${damageDone} damage!`);
         checkPlayerDead();
@@ -385,6 +422,7 @@ class Enemy {
                 }, 2000);
             }else{
                 $enemyPicture.attr('src', './images/enemy1attack.gif');
+                this.showEnemyMiss();
                 setTimeout(
                     function() 
                     {
@@ -594,7 +632,7 @@ $(document).ready(function() {
 //  updates/sets stats on various bosses
 boss.enemy[0].name='Taz\'dingo';
 boss.enemy[1].weapon2 = true;
-boss.enemy[1].name = 'Pozzik and Sluggo';
+boss.enemy[1].name = 'Pozzik & Sluggo';
 boss.enemy[1].damage = 20;
 boss.enemy[1].health = 40;
 boss.enemy[1].armor = 5;
