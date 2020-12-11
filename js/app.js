@@ -5,6 +5,7 @@ $storeMessage = $('#storeMessage');
 $playerGold = $('.playerGold');
 $playerArmor = $('.playerArmor');
 $playerAccuracy = $('.playerAccuracy');
+$playerMagicAccuracy = $('.playerMagicAccuracy');
 $playerDualWield = $('.playerDualWield');
 $playerDualWieldAccuracy = $('.playerDualWieldAccuracy');
 $playerText = $('#playerCombatText');
@@ -27,13 +28,14 @@ $storeModalText = $('#modal-footer');
 
 class Player {
     constructor(name){
-        this.maxHealth = 200.00;
-        this.health = 1;
+        this.maxHealth = 200;
+        this.health = 200;
         this.healthPercent = 100;
         this.energy = 100;
         this.armor = 5;
         this.name = name;
-        this.accuracy = .8;
+        this.accuracy = 80;
+        this.magicAccuracy = 65;
         this.dualWieldAccuracy = .8;
         this.damage = 20;
         this.gold = 0;
@@ -44,8 +46,8 @@ class Player {
         this.lightningBoltDamage = 45;
         this.fireBallAccuracy = .65;
         this.fireballDamage = 60;
-        this.lightningBoltLearned = 'No';
-        this.fireBallLearned = 'No';
+        this.magicBladeLearned = false;
+        this.fireBallLearned = false;
         this.damageJustDone = null;
     }
     showDamageDone() {
@@ -60,8 +62,8 @@ class Player {
         setTimeout(function(){ $enemyDamageDiv.css('opacity', '0%'); }, 2500);
     }   
     fireBall(){
-        let randomNumber = Math.random();
-        if (randomNumber <= player.fireBallAccuracy){
+        let randomNumber = Math.floor(Math.random() * 101);
+        if (randomNumber <= player.magicAccuracy){
             let damageDone = this.fireballDamage - boss.enemy[currentEnemy].armor;
             $playerText.text(`${player.name} hurl a FireBall at ${boss.enemy[currentEnemy].name} scorching them for ${damageDone} DAMAGE!!`);
             boss.enemy[currentEnemy].health -= damageDone;
@@ -104,8 +106,8 @@ class Player {
             }
     }
     lightningBolt(){
-        let randomNumber = Math.random();
-        if (randomNumber <= player.accuracy){
+        let randomNumber = Math.floor(Math.random() * 101);
+        if (randomNumber <= player.magicAccuracy){
             let damageDone = this.lightningBoltDamage - boss.enemy[currentEnemy].armor;
             
             $playerText.text(`${player.name} flings their Magic Blade at ${boss.enemy[currentEnemy].name} hitting them for ${damageDone} DAMAGE!!`);
@@ -202,7 +204,7 @@ class Player {
     }
 
     attack(){
-        let randomNum = Math.random();
+        let randomNum = Math.floor(Math.random() * 101);
         if (randomNum < player.accuracy) {
             let damageDone = this.damage - boss.enemy[currentEnemy].armor;
             $playerText.text(`${player.name} strikes ${boss.enemy[currentEnemy].name}  with their sword for ${damageDone} DAMAGE!`);
@@ -253,6 +255,8 @@ class Player {
         $playerArmor.text(player.armor);
         $playerAccuracy.empty();
         $playerAccuracy.text(player.accuracy);
+        $playerMagicAccuracy.empty();
+        $playerMagicAccuracy.text(player.magicAccuracy);
         $playerDualWield.empty();
         $playerDualWield.text(player.dualWield);
         $playerDualWieldAccuracy.empty();
@@ -688,7 +692,7 @@ boss.enemy[2].health = 50;
 boss.enemy[2].armor = 8;
 boss.enemy[3].name='Djinn';
 boss.enemy[3].damage = 40;
-boss.enemy[3].health = 50;
+boss.enemy[3].health = 60;
 boss.enemy[3].weapon4 = true;
 boss.enemy[3].armor = 11;
 boss.enemy[4].name='Vaelastrasz';
@@ -699,28 +703,84 @@ boss.enemy[4].armor = 14;
 
 
 
-///  upgrade store modal
-$('#upgradeStore').on('click', () => {
-    document.getElementById("myModal").style.display = "block";
-})
+
 
 $('#buyHealthUpgrade').on('click', () => {
-    if (player.gold >= 10 ){
+    if (player.gold >= 10 && player.health >= 196){
+        $('#shopText').text(`${player.name} you are already at full health`);
+        player.displayStats();
+        }else if (player.gold >= 10 && player.health <= 196){
             player.health += 5;
             player.gold -= 10;
             player.displayStats();
+            $('#shopText').text(`${player.name} Has just regained 5 health!`);
+            }else {
+                $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold to buy a Health Potion`);
+                player.displayStats();
+            }});
+
+            $('#buyThrowingBladeUpgrade').on('click', () => {
+                if (player.gold >= 20 && player.magicBladeLearned == false){
+                     player.gold -= 20;
+                     player.magicBladeLearned = true;
+                     player.displayStats();
+                     $('#magicBladeButton').css('visibility', 'visible');
+                     $('#shopText').text(`${player.name} has just learned the skill Throwing Blade!`);
+                }else if(player.gold >= 20 && player.magicBladeLearned == true){
+                 $('#shopText').text(`${player.name}, you have already learned the Spell FireBall`);
+                 player.displayStats();
+                 }else {
+                         $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold to purchase learn the skill Throwing Blade`);
+                         player.displayStats();
+                         }}); 
+
+$('#buyFireBallUpgrade').on('click', () => {
+   if (player.gold >= 40 && player.fireBallLearned == false){
+        player.gold -= 40;
+        player.fireball = true;
+        player.displayStats();
+        $('#fireBallButton').css('visibility', 'visible');
+        $('#shopText').text(`${player.name} has just learned the spell Fireball!`);
+        }else if(player.gold >= 40 && player.fireBallLearned == true){
+            $('#shopText').text(`${player.name}, you have already learned the Spell FireBall`);
+            player.displayStats();
+            }else {
+                $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold to purchase the Spell FireBall`);
+                player.displayStats();
+            }});   
+
+$('#buyAccuracyUpgrade').on('click', () => {
+    if (player.gold >= 10 ){
+        player.accuracy += 2;
+        player.gold -= 10;
+        player.displayStats();
+        $('#shopText').text(`${player.name} has improved their Accuracy by 2 points!!`);
         }else {
-            $storeModalText.text(`Sorry you don\'t have enough Gold to buy a Health upgrade`);
-        }});
+            $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold for an Armor upgrade`);
+            player.displayStats();
+    }});               
 
 $('#buyArmorUpgrade').on('click', () => {
     if (player.gold >= 10 ){
         player.armor += 2;
         player.gold -= 10;
         player.displayStats();
+        $('#shopText').text(`${player.name} has just gained 2 armor!`);
             }else {
-                $storeMessage.text(`Sorry you don\'t have enough Gold to buy an Armor upgrade`);
-                }});        
+                $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold for an Armor upgrade`);
+                player.displayStats();
+                }});   
+                
+$('#buyMagicAccuracyUpgrade').on('click', () => {
+    if (player.gold >= 10 ){
+        player.magicAccuracy += 2;
+        player.gold -= 10;
+        player.displayStats();
+        $('#shopText').text(`${player.name} has improved their Magic Accuracy by 2 points!`);
+        }else {
+            $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold to train Magic Accuracy `);
+            player.displayStats();
+            }});  
 
 $('#buyDualWield').on('click', () => {
     if (player.gold >= 30 ){
@@ -783,6 +843,7 @@ img3.src = "../images/gameover.gif";
 
 let stageCleared = function() {
     $('#myModal4').modal('show');
+    $('.modal-content').css('background-color', 'transparent');
     $('#modal-body4').append(img1);
     img1.id = 'stageClearedImage';
     setTimeout(
@@ -793,11 +854,12 @@ let stageCleared = function() {
         setTimeout(
             function() 
             {
-                $('#modal-body4').empty();
+                $('.modal-content').css('background-color', 'white');
             }, 5900);
 }
 let victory = function() {
     $('#myModal5').modal('show');
+    $('.modal-content').css('background-color', 'transparent');
     $('#modal-body5').append(img2);
     img2.id = 'victoryImage';
     setTimeout(
@@ -808,11 +870,12 @@ let victory = function() {
         setTimeout(
             function() 
             {
-                $('#modal-body5').empty();
+                $('.modal-content').css('background-color', 'white');
             }, 5900);
 }
 let defeat = function() {
     $('#myModal6').modal('show');
+    $('.modal-content').css('background-color', 'transparent');
     $('#modal-body6').append(img3);
     img3.id = 'defeatImage';
     setTimeout(
@@ -823,10 +886,28 @@ let defeat = function() {
         setTimeout(
             function() 
             {
-                $('#modal-body6').empty();
+                $('.modal-content').css('background-color', 'white');
             }, 5900);
 }
 
+let resetGame = function() {
+    player.health = 200;
+    player.accuracy = 80;
+    player.armor = 5;
+    player.gold = 0;
+    player.magicAccuracy = 65;
+    player.magicBladeLearned = false;
+    player.fireBallLearned = false;
+    boss.enemy[0].health = 30;
+    boss.enemy[1].health = 40;
+    boss.enemy[2].health = 50;
+    boss.enemy[3].health = 60;
+    boss.enemy[4].health = 70;
+    currentEnemy = 0;
+    reportedEnemy = 1;
+    displayStats();
+    
 
+}
 
 changeStage();

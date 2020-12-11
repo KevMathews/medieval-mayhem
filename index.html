@@ -57,6 +57,47 @@
     </form>
     </div>
 </div>
+
+<!-- Shop Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img id ='modalShopImage' src=' ../images/shop1.png'><h4 class="modal-title">Upgrade Shop</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <button id='buyHealthUpgrade'>Buy 5 Point Health Upgrade for 10 gold</button>
+        <button id='buyArmorUpgrade'>Buy 2 point of extra Armor for 10 gold</button>
+        <button id='buyAccuracyUpgrade'>Buy 2 point of Accuracy Upgrade for 10 gold</button>
+        <button id='buyMagicAccuracyUpgrade'>Buy 2 point of Magic Accuracy for 10 gold</button>
+        <button id='buyThrowingBladeUpgrade'>Learn Throwing Blade Skill for 20 gold</button>
+        <button id='buyFireBallUpgrade'>Learn FireBall Spell for 40 gold</button>
+      </div>
+      <div id='shopText'></div>
+      <div class="modal-footer">
+        Health = <span class='playerHealth'>200</span>=
+        Armor = <span class='playerArmor'>5</span>=
+        Accuracy = <span class='playerAccuracy'>80</span>%=
+        Magic Accuracy = <span class='playerMagicAccuracy'>65</span>%
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
    <!-- Store Modal -->
 <div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -65,7 +106,7 @@
     <div class="modal-content2">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <img src=' ../images/shop1.png'><h4 class="modal-title">Upgrade Shop</h4>
       </div>
       <div class="modal-body">
         <p>Some text in the modal.</p>
@@ -156,10 +197,11 @@
   <div id='enemyDamageDiv'><span class='emptyDot'>.</span>
   </div>
   <div id='playerStats'>
-    Player Stats
+    
     Health = <span class='playerHealth'>200</span><br>
     Armor = <span class='playerArmor'>5</span><br>
-    Accuracy = <span class='playerAccuracy'>.8</span><br>
+    Accuracy = <span class='playerAccuracy'>80</span>%<br>
+    Magic Accuracy = <span class='playerMagicAccuracy'>65</span>%<br>
     Gold = <span class='playerGold'>0</span><br>
 
   </div>
@@ -177,11 +219,12 @@
   </div>
 
   <div id='enemyStats'>
-    Enemy Stats
+    <!-- Enemy Stats
+    <hr> -->
     Health = <span class='bossHealth'>30</span><br>
     Armor = <span class='bossArmor'>2</span><br>
     Accuracy = <span class='bossAccuracy'>.5</span><br>
-    Skill = <span class='bossSkill'>Basic Attack</span>
+    <!-- Skill = <span class='bossSkill'>Bow</span> -->
   </div>
 <!-- <div id='playerCombatText'>
 Player Combat Text
@@ -195,7 +238,7 @@ Player Combat Text
   <img src = ./images/blade1.png id = 'magicBladeButton' class ='gameButtons'></img>
   <img src = ./images/lightning1.png id = 'lightningButton' class ='gameButtons'></img>
   <img src = ./images/fireball1.png id = 'fireBallButton' class ='gameButtons'></img>
-  <img src = ./images/shop1.png id= 'shopButton' class ='gameButtons' data-toggle="modal" data-target="#myModal2"></img>
+  <img src = ./images/shop1.png id= 'shopButton' class ='gameButtons' data-toggle="modal" data-target="#exampleModal"></img>
   <img src = ./images/rules1.png id= 'rulesButton' class ='gameButtons' data-toggle="modal" data-target="#myModal3"></img>
   </div>
 </section>
