@@ -780,25 +780,33 @@ $('#fireBallButton').on('click', ()=>{
 let changeStage = function() {
     let randStage = Math.random();
     if (randStage < .25){
-        $body.css('background-image','url(./images/game_background_11.png)').css('width', '100%');
+        $body.css('background-image','url(./images/game_background_11.png)')
+            .css('width', '100%');
         }else if (randStage >= .25 &&  randStage < .5){
-            $body.css('background-image','url(./images/game_background_21.png)').css('width', '100%');
+            $body.css('background-image','url(./images/game_background_21.png)')
+                .css('width', '100%');
         }else if (randStage >= .5 &&  randStage < .75){
-            $body.css('background-image','url(./images/game_background_31.png)').css('width', '100%');
+            $body.css('background-image','url(./images/game_background_31.png)')
+                .css('width', '100%');
         }else if (randStage >= .75 &&  randStage <= 1){
-            $body.css('background-image','url(./images/game_background_41.png)').css('width', '100%');
+            $body.css('background-image','url(./images/game_background_41.png)')
+                .css('width', '100%');
         }
 }
 // stage clear modal that pops up after beating a boss
 let stageCleared = function() {
-    $('#myModal4').modal('show');
-    $('.modal-content').css('background-color', 'transparent');
-    $('#modal-body4').append(img1);
+    $('#myModal4')
+        .modal('show');
+    $('.modal-content')
+        .css('background-color', 'transparent');
+    $('#modal-body4')
+        .append(img1);
     img1.id = 'stageClearedImage';
     setTimeout(
         function() 
         {
-            $('#myModal4').modal('hide');
+            $('#myModal4')
+                .modal('hide');
         }, 5800);
         setTimeout(
             function() 
@@ -809,8 +817,10 @@ let stageCleared = function() {
 //  victory modal that pops up on game win
 let victory = function() {
     $('#myModal5').modal('show');
-    $('.modal-content').css('background-color', 'transparent');
-    $('#modal-body5').append(img2);
+    $('.modal-content')
+        .css('background-color', 'transparent');
+    $('#modal-body5')
+        .append(img2);
     img2.id = 'victoryImage';
     setTimeout(
         function() 
@@ -820,7 +830,8 @@ let victory = function() {
         setTimeout(
             function() 
             {
-                $('.modal-content').css('background-color', 'white');
+                $('.modal-content')
+                    .css('background-color', 'white');
             }, 5900);
 }
 // defeat modal that pops up on game loss
@@ -830,15 +841,13 @@ let defeat = function() {
     $('#modal-body6').append(img3);
     img3.id = 'defeatImage';
     setTimeout(
-        function() 
-        {
+        function() {
             $('#myModal6').modal('hide');
         }, 5800);
         setTimeout(
-            function() 
-            {
+            function() {
                 $('.modal-content').css('background-color', 'white');
-            }, 5900);
+                }, 5900);
 }
 // countdown modal that pops up on game restart
 let restartGame = function() {
