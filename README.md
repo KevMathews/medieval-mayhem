@@ -31,7 +31,8 @@ At the start of development I felt somewhat confident I could make this game if 
 
 #### Wireframe
 
-<img src="https://res.cloudinary.com/duprwuo4j/image/upload/v1601671860/DesignOne_uevwek.png" width="80%" >
+<img src="./images/wireframe1.jpeg" width="80%" >
+<img src="./images/wireframe2.jpeg" width="80%" >
 
 Color Pallet:
 
