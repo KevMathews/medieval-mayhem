@@ -7,7 +7,7 @@
 
 ## Concept:
 
-Medieval Mayhem is a 2d turn based fighting game.  You gain varying amounts of Gold after each round depending on the difficulty of the boss faced. At any time you have the ability to go the the store and purchase health potions, armor upgrades, train skills, or work on your weapon accuracy.  Each round the bosses get progressively tougher, and have different skills sets. Get through all of the bosses in one piece and you are victorious!
+Medieval Mayhem is a 2d turn based fighting game.  You gain varying amounts of Gold after each round depending on the difficulty of the boss faced. At any time you have the ability to go the the store and purchase health potions, armor upgrades, train skills, or work on your weapon or magical accuracy.  Each round the bosses get progressively tougher, and have different skills sets. Get through all of the bosses in one piece, and you be victorious!
 
 ## Technologies Used:
 
@@ -20,14 +20,13 @@ Medieval Mayhem is a 2d turn based fighting game.  You gain varying amounts of G
 
 ##### Credits:
 
-    Unsplash.com
-    craftpix.net
-    Slideshow Repo
+    Unsplash.com - Crystal clear images with very well organized and accurate search results
+    craftpix.net - MANY sprites for adventure/fantasy games that can be used to animate characters and events
 
 ## Approach:
 
 #### Overview
-At the start of development I felt somewhat confident I could make this game if it just ran in the browser. The challange to me would be bringing it to the DOM and making it visually appealing.   
+At the start of development I somewhat confident I could potentially make this game if it just ran in the console. The challange to me, would be bringing it to the DOM and making it visually appealing as well as intuitive.    
 
 #### Wireframe
 
@@ -49,13 +48,14 @@ Color Pallet:
 #### User stories
 
 As a user I expect to see a game that would be easy to traverse
-the layout based on games that previous have looked similar to me.
-I should already have a basic knowledge/expectation of how to play.
-Regardless of that there should be a rules button clearly in view 
+the layout based on games that previously have looked similar to me.
+I dont want to encounter any 'Norman Doors'! Instead I want the user
+to be able to see the game and quickly intuitively know how to play.
+Regardless of that, there should be a rules button clearly in view 
 that will explain how the game is played.  I also expect some sort 
 of visual feedback on my actions in the game based on what should 
-happen in similar games(IE push attack button see character attack
-and then see the results of it).
+happen in similar games(IE I push an attack button and I expect to
+see character attack and then see the results/feedback of it).
 
 #### Development Plan 
 
