@@ -14,10 +14,8 @@
 		$("#myModal").modal('show');
 	});
 </script>
-
 </head>
 <body>
-
 <!-- Opening Screen Modal -->
 <div class="modal fade" id="myModal" role="dialog" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog">
@@ -25,19 +23,15 @@
   </div> 
   <div class="modal-body">
     <form name="form1" method="post" id="newGame">
-            <p id="userInput">
-              <label>Player name:</label>
-              
-              <input type="text" name="p1" id="nameOne" value="" required />
-
-              <input class='fancy' id="submit" type="submit" value="Click to Enter Name" />
-
-            </p>
-          <img data-dismiss="modal" id="startbutton" type="submit" value="New Game" src="./images/start.gif"/>
+      <p id="userInput">
+        <label>Player name:</label>
+        <input type="text" name="p1" id="nameOne" value="" required />
+        <input class='fancy' id="submit" type="submit" value="Click to Enter Name" />
+      </p>
+      <img data-dismiss="modal" id="startbutton" type="submit" value="New Game" src="./images/start.gif"/>
     </form>
-    </div>
+  </div>
 </div>
-
 <!-- Shop Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -48,115 +42,140 @@
         <h4>For Info on spells, damage and accuracy please check the Rules Page</h4>
       </div>
       <div class="modal-body">
-       
         <img src='./images/heart3.png'/>10 Health for 10 Gold
-        <button id='buyHealthUpgrade'>Buy</button><hr>
+        <button id='buyHealthUpgrade'>Buy
+        </button>
+        <hr>
         <img src='./images/armor.png'/>5 point of extra Armor for 10 gold
-        <button id='buyArmorUpgrade'>Buy</button><hr>
+        <button id='buyArmorUpgrade'>Buy
+        </button>
+          <hr>
         <img src='./images/accuracy.png'/>2 point of Accuracy Upgrade for 10 gold
-        <button id='buyAccuracyUpgrade'>Buy</button><hr>
+        <button id='buyAccuracyUpgrade'>Buy
+        </button>
+        <hr>
         <img src='./images/magicaccuracy.png'/>2 point of Magic Accuracy for 10 gold
-        <button id='buyMagicAccuracyUpgrade'>Buy</button><hr>
+        <button id='buyMagicAccuracyUpgrade'>Buy
+        </button>
+        <hr>
         <img src='./images/bladeshop.png'/>Learn Throwing Blade Skill for 30 gold
-        <button id='buyThrowingBladeUpgrade'>Buy</button><hr>
+        <button id='buyThrowingBladeUpgrade'>Buy
+        </button>
+        <hr>
         <img src='./images/fireballshop.png'/>Learn FireBall Spell for 50 gold
-        <button id='buyFireBallUpgrade'>Buy</button>
+        <button id='buyFireBallUpgrade'>Buy
+        </button>
       </div>
       <div id='shopText'></div>
       <div class="modal-footer">
-       
-        <img src='./images/heart3.png'/><span class='playerHealth'>= 200</span>  
-        <img src='./images/armor.png'/> = <span class='playerArmor'>5</span>
-        <img src='./images/accuracy.png'/> = <span class='playerAccuracy'>80</span>%
-        <img src='./images/magicaccuracy.png'/> = <span class='playerMagicAccuracy'>65</span>%
-        <img src='./images/gold.png'/> = <span class='playerGold'>0</span>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
+        <img src='./images/heart3.png'/>
+        <span class='playerHealth'>= 200
+        </span>  
+        <img src='./images/armor.png'/> = 
+        <span class='playerArmor'>5
+        </span>
+        <img src='./images/accuracy.png'/> = 
+        <span class='playerAccuracy'>80
+        </span>%
+        <img src='./images/magicaccuracy.png'/> = 
+        <span class='playerMagicAccuracy'>65
+        </span>%
+        <img src='./images/gold.png'/> = 
+        <span class='playerGold'>0
+        </span>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+        </button>
       </div>
     </div>
   </div>
 </div>
-
-
-     <!-- Rules Modal -->
-<!-- Modal -->
+<!-- Rules Modal -->
 <div id="myModal3" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <img id ='modalShopImage' src=' ./images/rulesmodal.png'>
-        <h4 class="modal-title">Game Rules and Info</h4>
+        <h4 class="modal-title">Game Rules and Info
+        </h4>
       </div>
       <div class="modal-body">
-        <h5>Game Play</h5>
-        <h6><p>FOR BEST VIEWING!</p>
-        <p>For Screen up to 27" set browser Zoom to 100%.</p> 
-        <p>and set browser Zoom to 125% on screen Larger then 27"</p></h6>
+        <h5>Game Play
+        </h5>
+        <h6>
+          <p>FOR BEST VIEWING!
+          </p>
+          <p>Screen less then 16" might need to have browser zoom set to 90%
+          </p>
+          <p>For Screens up to 27" set browser Zoom to 100%.
+          </p> 
+          <p>and set browser Zoom to 125% on screen Larger then 27"
+          </p>
+        </h6>
         <hr>
         <p>The Player always goes first, and then the Computer Enemy.</p>
-        You start off with a basic attack along with a lightning Bolt spell.  As you advance through stages you earn gold and can purchase upgrades to Armor, Health Potions, Increase your Weapon and Magic Accuracy, as well as learn new Skills.</p>
+        You start off with a basic attack along with a lightning Bolt spell.  As you advance through stages you earn gold and can purchase upgrades to Armor, Health Potions, Increase your Weapon and Magic Accuracy, as well as learn new Skills.
+        </p>
         <hr>
-        <p><img src='./images/accuracy.png'>Shows the accuracy for your Basic Attack(20 Damage) and Throwing Blade(35 Damage 1 round cooldown).</p> <p>It's also used to show the Enemies attack accuracy</p><hr>
-          <p><img src='./images/magicaccuracy.png'>Shows the Accuracy of your LightingBolt(45 Damage 2 round cooldown) and FireBall Spell(65 Damage 3 rounds cooldown)</p>
-          <hr>
-          <p><img src='./images/armor.png'>Shows the armor you have.  For every point of Armor you have you block 1 point of incoming damage.</p>
-        
-        
+        <p><img src='./images/accuracy.png'>Shows the accuracy for your Basic Attack(20 Damage) and Throwing Blade(35 Damage 1 round cooldown).</p> 
+        <p>It's also used to show the Enemies attack accuracy</p>
+        <hr>
+        <p><img src='./images/magicaccuracy.png'>Shows the Accuracy of your LightingBolt(45 Damage 2 round cooldown) and FireBall Spell(65 Damage 3 rounds cooldown)
+        </p>
+        <hr>
+        <p><img src='./images/armor.png'>Shows the armor you have.  For every point of Armor you have you block 1 point of incoming damage.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close
+        </button>
       </div>
     </div>
-
   </div>
 </div>
-     <!-- Stage Cleared Modal -->
+<!-- Stage Cleared Modal -->
 <div id="myModal4" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-     </div>
-      <div id="modal-body4">
-      
-      </div>
+    </div>
+    <div id="modal-body4">
     </div>
   </div>
-
-       <!-- Victory Modal -->
+</div>
+<!-- Victory Modal -->
 <div id="myModal5" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-     </div>
+    </div>
       <div id="modal-body5">
-        
       </div>
     </div>
   </div>
-         <!-- Defeat Modal -->
+<!-- Defeat Modal -->
 <div id="myModal6" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-     </div>
-      <div id="modal-body6">
-  
-      </div>
+    </div>
+    <div id="modal-body6">
     </div>
   </div>
-           <!-- Restart Modal -->
+</div>
+<!-- Restart Modal -->
 <div id="myModal7" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-     </div>
-      <div id="modal-body7">
-
-      </div>
     </div>
+      <div id="modal-body7">
+      </div>
   </div>
-
+</div>
 <section>
-  <div id='playerNameDiv'><span class='playerName'></span></div>
-  <div id='bossNameDiv'><span class='bossName'></span></div>
+  <div id='playerNameDiv'>
+    <span class='playerName'>
+    </span>
+  </div>
+  <div id='bossNameDiv'>
+    <span class='bossName'>
+    </span>
+  </div>
   <div id='playerName'>
     <img class='playerNamePlate'src="./images/charactername.png"/>
   </div>
@@ -166,52 +185,66 @@
   <div id='enemyName'>
     <img class='playerNamePlate'src="./images/charactername.png"/>
   </div>
-  <div id='playerDamageDiv'><span class='emptyDot'>.</span>
+  <div id='playerDamageDiv'>
+    <span class='emptyDot'>.
+    </span>
   </div>
   <div id='enemyDamageDiv'><span class='emptyDot'>.</span>
   </div>
   <div id='playerStats'>
-    
-    <img src='./images/heart3.png'/> = <span class='playerHealth'>200</span><br>
-    <img src='./images/armor.png'/> = <span class='playerArmor'>5</span><br>
-    <img src='./images/accuracy.png'/> = <span class='playerAccuracy'>80</span>%<br>
-    <img src='./images/magicaccuracy.png'/> = <span class='playerMagicAccuracy'>65</span>%<br>
-    <img src='./images/gold.png'/> = <span class='playerGold'>0</span><br>
-
+    <img src='./images/heart3.png'/> = 
+      <span class='playerHealth'>200
+      </span>
+      <br>
+    <img src='./images/armor.png'/> = 
+      <span class='playerArmor'>5
+      </span>
+      <br>
+    <img src='./images/accuracy.png'/> = 
+      <span class='playerAccuracy'>80
+      </span>%
+      <br>
+    <img src='./images/magicaccuracy.png'/> = 
+      <span class='playerMagicAccuracy'>65
+      </span>%
+      <br>
+    <img src='./images/gold.png'/> = 
+      <span class='playerGold'>0
+      </span>
+      <br>
   </div>
-
   <div id='playerPictureDiv'>
-    
     <img id='playerPicture' src='./images/player1idle.gif'/>
   </div>
   <div id='victoryImage'></div>
   <div id='stageClearedImage'></div>
   <div id='defeatImage'></div>
   <div id='enemyPictureDiv'>
-
     <img id='enemyPicture' src='./images/enemy1idle.gif'/>
   </div>
-
   <div id='enemyStats'>
-
-    <img src='./images/heart3.png'/> = <span class='bossHealth'>30</span><br>
-    <img src='./images/armor.png'/> = <span class='bossArmor'>2</span><br>
-    <img src='./images/accuracy.png'/> = <span class='bossAccuracy'>50</span>%<br>
-
+    <img src='./images/heart3.png'/> = 
+    <span class='bossHealth'>30
+    </span>
+    <br>
+    <img src='./images/armor.png'/> = 
+    <span class='bossArmor'>2
+    </span>
+    <br>
+    <img src='./images/accuracy.png'/> = 
+    <span class='bossAccuracy'>50
+    </span>%
+    <br>
   </div>
-
-<div id='gameActionButtons'>
-  
-  <img src = ./images/attack1.png id = 'attackButton' class ='gameButtons'></img>
-  <img src = ./images/blade1.png id = 'magicBladeButton' class ='gameButtons'></img>
-  <img src = ./images/lightning1.png id = 'lightningButton' class ='gameButtons'></img>
-  <img src = ./images/fireball1.png id = 'fireBallButton' class ='gameButtons'></img>
-  <img src = ./images/shop1.png id= 'shopButton' class ='gameButtons' data-toggle="modal" data-target="#exampleModal"></img>
-  <img src = ./images/rules1.png id= 'rulesButton' class ='gameButtons' data-toggle="modal" data-target="#myModal3"></img>
-  <img src = ./images/restart1.png id = 'restartButton' class ='resetGameButton'></img>
-
+  <div id='gameActionButtons'>
+    <img src = ./images/attack1.png id = 'attackButton' class ='gameButtons'></img>
+    <img src = ./images/blade1.png id = 'magicBladeButton' class ='gameButtons'></img>
+    <img src = ./images/lightning1.png id = 'lightningButton' class ='gameButtons'></img>
+    <img src = ./images/fireball1.png id = 'fireBallButton' class ='gameButtons'></img>
+    <img src = ./images/shop1.png id= 'shopButton' class ='gameButtons' data-toggle="modal" data-target="#exampleModal"></img>
+    <img src = ./images/rules1.png id= 'rulesButton' class ='gameButtons' data-toggle="modal" data-target="#myModal3"></img>
+    <img src = ./images/restart1.png id = 'restartButton' class ='resetGameButton'></img>
 </section>
-
-    <script src="./js/app.js"></script>
+<script src="./js/app.js"></script>
 </body>
 </html>
