@@ -59,34 +59,30 @@ and then see the results of it).
 
 #### Development Plan 
 
-Originally started out as a 2d fighting game with v]basic DOM elements involved.  Since then I have worked to create animated sprites to equate to what action is actually happening under the hood.
+Originally start it as a 2d fighting game with basic DOM elements involved and alerts only nothing animated.
+I want to then create and animated sprites to equate to what action is actually happening under the hood, as 
+well as to greatly increase the numbers of skills players and enemies have and display visually into the DOM as well.
+I want an RPG feel to the game so that you can enhance the character various ways and make the character's attributes
+ your own design/creation.
 
-* Development Plan  ONE
-* Development Plan  Two
-* Development Plan  Three 
-* Development Plan  Four
-
-#### MVP
-
-* MVP ONE
-* MVP Two
-* MVP Three 
-* MVP Four
+* Development Plan part 1)  get a basic console.log version going
+* Development Plan part 2) expand it to include more skills and upgrades
+* Development Plan plan 3)  Incorporate visual elements into the DOM 
+* Development Plan plan 4)  Enhance visual elements and tweak logic of the game
 
 #### Stretch goals
 
-* Add soun effects
-* Add more skills/upgradess
+* Add sound effects!!! Much needed IMO
+* Add more skills/upgrades
 * Add more bosses and levels 
 * Skill and attribute balance, balance and balance some more..
 
 ## Challenges:
 
-Adding animated sprites to make the fight more dynamic.
+Adding animated sprites to make the fights look impressive and visually much more dynamic.
 Creating and adding various modals for some of the game events.
-
-
-
-
+Creating cooldowns for skills.
+Making sure intended damage from enemies and enhancements from the Shop append properly.
+Trying to make the code as DRY as possible.
 
 ### App Demo:  [Medieval Mayhem](https://kevmathews.github.io/medieval-mayhem/)
