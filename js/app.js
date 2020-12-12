@@ -715,9 +715,10 @@ $('#buyThrowingBladeUpgrade').on('click', () => {
 $('#buyFireBallUpgrade').on('click', () => {
     if (player.gold >= 50 && player.fireBallLearned == false){
         player.gold -= 50;
-        player.fireball = true;
+        player.fireBallLearned = true;
         player.displayStats();
         fireBallCounter = 3;
+        console.log(fireBallCounter);
         $('#shopText').text(`${player.name} has just learned the spell Fireball!`);
         }else if(player.gold >= 50 && player.fireBallLearned == true){
             $('#shopText').text(`${player.name}, you have already learned the Spell FireBall`);
@@ -806,13 +807,13 @@ let changeStage = function() {
 }
 }
 let img1 = document.createElement("img");
-img1.src = "../images/stageCleared.gif";
+img1.src = "./images/stageCleared.gif";
 let img2 = document.createElement("img");
-img2.src = "../images/victory.gif";
+img2.src = "./images/victory.gif";
 let img3 = document.createElement("img");
-img3.src = "../images/gameover.gif";
+img3.src = "./images/gameover.gif";
 let img4 = document.createElement("img");
-img4.src = "../images/reloadGame.gif";
+img4.src = "./images/reloadGame.gif";
 
 let stageCleared = function() {
     $('#myModal4').modal('show');
