@@ -47,11 +47,18 @@ Color Pallet:
 
 #### User stories
 
-As an user I expect to see a button bla bla bla bla
+As a user I expect to see a game that would be easy to traverse
+the layout based on games that previous have looked similar to me.
+I should already have a basic knowledge/expectation of how to play.
+Regardless of that there should be a rules button clearly in view 
+that will explain how the game is played.  I also expect some sort 
+of visual feedback on my actions in the game based on what should 
+happen in similar games(IE push attack button see character attack
+and then see the results of it).
 
 #### Development Plan 
 
-description of your development plan 
+Originally started out as a 2d fighting game with v]basic DOM elements involved.  Since then I have worked to create animated sprites to equate to what action is actually happening under the hood.
 
 * Development Plan  ONE
 * Development Plan  Two
@@ -67,14 +74,16 @@ description of your development plan
 
 #### Stretch goals
 
-* Stretch goals ONE
-* Stretch goals Two
-* Stretch goals Three 
-* Stretch goals Four
+* Add soun effects
+* Add more skills/upgradess
+* Add more bosses and levels 
+* Skill and attribute balance, balance and balance some more..
 
 ## Challenges:
 
-Small description of a challange you faced. 
+Adding animated sprites to make the fight more dynamic.
+Creating and adding various modals for some of the game events.
+
 
 
 
