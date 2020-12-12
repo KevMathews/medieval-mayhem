@@ -701,7 +701,7 @@ $('#buyThrowingBladeUpgrade').on('click', () => {
         player.gold -= 30;
         player.magicBladeLearned = true;
         player.displayStats();
-        bladeCounter = 0;
+        bladeCounter = 1;
         player.displayStats();
         $('#shopText').text(`${player.name} has just learned the skill Throwing Blade!`);
         }else if(player.gold >= 30 && player.magicBladeLearned == true){

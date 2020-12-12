@@ -289,8 +289,8 @@ box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ;
 }
 
 #stageClearedImage {
-  width: 80%;
-  transform: translateX(-50%);
+  width: 120%;
+  transform: translateX(-60%);
   transform: translateY(20%);
 }
 #victoryImage {
@@ -304,6 +304,9 @@ box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ;
   transform: translateX(0);
   transform: translateY(200px);
   margin-left: -150px;
+}
+#restartGameImage{
+  transform: translateX(-50%);
 }
 
 #modalShopImage {
