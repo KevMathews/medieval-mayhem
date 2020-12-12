@@ -20,8 +20,11 @@ Medieval Mayhem is a 2d turn based fighting game.  You gain varying amounts of G
 
 ##### Credits:
 
-    Unsplash.com - Crystal clear images with very well organized and accurate search results
-    craftpix.net - MANY sprites for adventure/fantasy games that can be used to animate characters and events
+    Unsplash.com - Crystal clear images with well  
+    organized and accurate search results
+    
+    craftpix.net - MANY sprites for adventure/fantasy  
+    games that can be used to animate characters  and events
 
 ## Approach:
 
