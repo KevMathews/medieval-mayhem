@@ -701,12 +701,14 @@ $('#buyFireBallUpgrade').on('click', () => {
 }});   
 //  Function to purchase an accuracy upgrade
 $('#buyAccuracyUpgrade').on('click', () => {
-    if (player.gold >= 10 ){
+    if (player.gold >= 10 && player.accuracy <= 98){
         player.accuracy += 2;
         player.gold -= 10;
         player.displayStats();
         $('#shopText')
             .text(`${player.name} has improved their Accuracy by 2 points!!`);
+        }else if(player.gold >= 10 && player.accuracy >= 100){
+            $('#shopText').text(`Sorry ${player.name}, but your Accuracy is already maxed!`);
         }else {
             $('#shopText')
                 .text(`Sorry ${player.name}, but you don\'t have enough Gold to train your Accuracy`);
@@ -730,19 +732,19 @@ $('#buyArmorUpgrade').on('click', () => {
 }});   
 //  Function to purchase Magic Accuracy upgrades                
 $('#buyMagicAccuracyUpgrade').on('click', () => {
-    if (player.gold >= 10 ){
+    if (player.gold >= 10 && player.magicAccuracy <= 98){
         player.magicAccuracy += 2;
         player.gold -= 10;
         player
             .displayStats();
         $('#shopText')
             .text(`${player.name} has improved their Magic Accuracy by 2 points!`);
+        }else if(player.gold >= 10 && player.magicAccuracy >= 100) {
+            $('#shopText').text(`Sorry ${player.name} but your Magic Accuracy is already maxed!`)
         }else {
             $('#shopText')
-                .text(`Sorry ${player.name}, but you don\'t have enough Gold to train Magic Accuracy `);
-            player
-                .displayStats();
-            }});  
+                .text(`Sorry ${player.name}, but you don\'t have enough Gold to train Magic Accuracy `);player.displayStats();
+}});  
 //  Function to purchase a yet to be implemented dual wield skill
 $('#buyDualWield').on('click', () => {
     if (player.gold >= 30 ){
@@ -822,17 +824,14 @@ let victory = function() {
     $('#modal-body5')
         .append(img2);
     img2.id = 'victoryImage';
-    setTimeout(
-        function() 
-        {
-            $('#myModal5').modal('hide');
+    setTimeout(function() {
+        $('#myModal5')
+        .modal('hide');
         }, 5800);
-        setTimeout(
-            function() 
-            {
-                $('.modal-content')
-                    .css('background-color', 'white');
-            }, 5900);
+        setTimeout(function() {
+            $('.modal-content')
+                .css('background-color', 'white');
+                }, 5900);
 }
 // defeat modal that pops up on game loss
 let defeat = function() {
@@ -840,14 +839,14 @@ let defeat = function() {
     $('.modal-content').css('background-color', 'transparent');
     $('#modal-body6').append(img3);
     img3.id = 'defeatImage';
-    setTimeout(
-        function() {
-            $('#myModal6').modal('hide');
+    setTimeout(function() {
+        $('#myModal6')
+            .modal('hide');
         }, 5800);
-        setTimeout(
-            function() {
-                $('.modal-content').css('background-color', 'white');
-                }, 5900);
+        setTimeout(function() {
+        $('.modal-content')
+        .css('background-color', 'white');
+        }, 5900);
 }
 // countdown modal that pops up on game restart
 let restartGame = function() {
@@ -855,16 +854,13 @@ let restartGame = function() {
     $('.modal-content').css('background-color', 'transparent');
     $('#modal-body7').append(img4);
     img4.id = 'restartGameImage';
-    setTimeout(
-        function() 
-        {
-            $('#myModal7').modal('hide');
-        }, 5800);
-        setTimeout(
-            function() 
-            {
-                $('.modal-content').css('background-color', 'white');
-            }, 5900);
+    setTimeout(function() {
+        $('#myModal7').modal('hide');
+    }, 5800);
+    setTimeout(function() {
+        $('.modal-content')
+            .css('background-color', 'white');
+        }, 5900);
 }
 //  function to reset game to original state
 let resetGame = function() {
@@ -892,13 +888,10 @@ let resetGame = function() {
 // function to give countdown time and then restart game
 $('.resetGameButton').on('click', () => {
     restartGame();
-    setTimeout(
-        function() 
-        {
-            resetGame();
-            
-        }, 5900);
-    });   
+    setTimeout(function(){
+        resetGame();
+    }, 5900);
+});   
 // function to apply cooldown timer to Throwing Blade
 let bladeCounterFunction = function () {
     if(bladeCounter >= 1 && player.magicBladeLearned == true){
