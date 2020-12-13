@@ -167,9 +167,8 @@ class Player {
 //  Method to throw Magic Blade    
     magicBlade(){
         let randomNumber = Math.floor(Math.random() * 101);
-        if (randomNumber <= player.magicBladeAccuracy){
+        if (randomNumber <= player.accuracy){
             let damageDone = this.magicBladeDamage - boss.enemy[currentEnemy].armor;
-            $playerText.text(`${player.name} flings their Magic Blade at ${boss.enemy[currentEnemy].name} hitting them for ${damageDone} DAMAGE!!`);
             boss.enemy[currentEnemy].health -= damageDone;
             this.damageJustDone = damageDone;
             this.showDamageDone();
