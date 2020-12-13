@@ -41,6 +41,9 @@ $victoryImage = $('#victoryImage');
 $stageClearedImage = $('#stageClearedImage');
 $defeatImage = $('#defeatImage');
 $storeModalText = $('#modal-footer');
+$lightningButton = $('#lightningButton');
+$fireBallButton = $('#fireBallButton');
+$magicBladeButton = $('#magicBladeButton');
 // Define the Player Class
 class Player {
     constructor(name){
@@ -663,8 +666,8 @@ $('#buyThrowingBladeUpgrade').on('click', () => {
         player
             .displayStats();
         bladeCounter = 1;
-        player
-            .displayStats();
+        player.displayStats();
+        $magicBladeButton.css('visibility', 'visible');
         $('#shopText')
             .text(`${player.name} has just learned the skill Throwing Blade!`);
         }else if(player.gold >= 30 && player.magicBladeLearned == true){
@@ -682,9 +685,9 @@ $('#buyFireBallUpgrade').on('click', () => {
     if (player.gold >= 50 && player.fireBallLearned == false){
         player.gold -= 50;
         player.fireBallLearned = true;
-        player
-            .displayStats();
+        player.displayStats();
         fireBallCounter = 3;
+        $fireBallButton.css('visibility','visible');
         console.log(fireBallCounter);
         $('#shopText')
             .text(`${player.name} has just learned the spell Fireball!`);
@@ -804,15 +807,11 @@ let stageCleared = function() {
         .append(img1);
     img1.id = 'stageClearedImage';
     setTimeout(
-        function() 
-        {
-            $('#myModal4')
-                .modal('hide');
+        function() {
+            $('#myModal4').modal('hide');
         }, 5800);
-        setTimeout(
-            function() 
-            {
-                $('.modal-content').css('background-color', 'white');
+        setTimeout(function() {
+            $('.modal-content').css('background-color', 'white');
             }, 5900);
 }
 //  victory modal that pops up on game win
@@ -870,6 +869,9 @@ let resetGame = function() {
     player.magicAccuracy = 65;
     player.magicBladeLearned = false;
     player.fireBallLearned = false;
+    fireBallCounter = 0;
+    lightningBoltCounter = 3;
+    bladeCounter = 0;
     boss.enemy[0].health = 75;
     boss.enemy[1].health = 100;
     boss.enemy[2].health = 125;
@@ -880,9 +882,6 @@ let resetGame = function() {
     player.displayStats();
     $playerPicture.attr('src', './images/player1idle.gif');
     $enemyPicture.attr('src', './images/enemy1idle.gif');
-    fireBallCounter = 0;
-    lightningBoltCounter = 3;
-    bladeCounter = 0;
 }
 // function to give countdown time and then restart game
 $('.resetGameButton').on('click', () => {
@@ -894,25 +893,37 @@ $('.resetGameButton').on('click', () => {
 // function to apply cooldown timer to Throwing Blade
 let bladeCounterFunction = function () {
     if(bladeCounter >= 1 && player.magicBladeLearned == true){
-        $('#magicBladeButton').css('visibility', 'visible')
+        $magicBladeButton.attr('src', './images/blade11.png')
+                        .css('pointer-events', 'auto');
     }else{
-        $('#magicBladeButton').css('visibility','hidden')
+        $magicBladeButton.attr('src', './images/bladecool11.png')
+                        .css( 'pointer-events', 'none' );
     }
 }
-// function to apply cooldown timer to Ligntning Bolt
+// function to apply cooldown timer to Lightning Bolt
 let lightningBoltCounterFunction = function () {
     if(lightningBoltCounter >= 2){
-        $('#lightningButton').css('visibility', 'visible')
-    }else{
-        $('#lightningButton').css('visibility','hidden')
-    }
-}
+        $lightningButton.attr('src', './images/lightning11.png')
+                        .css('pointer-events', 'auto');
+    }else if (lightningBoltCounter == 1){
+        $lightningButton.attr('src', './images/lightningcool11.png');
+        }else{ $lightningButton.attr('src', './images/lightningcool22.png')
+                                .css( 'pointer-events', 'none' );
+    };
+};
 //  function to apply cooldown timer to FireBall
 let fireBallCounterFunction = function () {
     if(fireBallCounter >= 3 && player.fireBallLearned == true){
-        $('#fireBallButton').css('visibility', 'visible')
-    }else{
-        $('#fireBallButton').css('visibility','hidden')
+        $fireBallButton.attr('src', './images/fireball11.png')
+                        .css('pointer-events', 'auto');
+        } else if (fireBallCounter == 2) {
+            $fireBallButton.attr('src', './images/fireballcool11.png');
+            } else if (fireBallCounter == 1) {
+                $fireBallButton.attr('src', './images/fireballcool22.png');
+                } else {
+                    $fireBallButton.attr('src', './images/fireballcool33.png')
+                                    .css('pointer-events', 'none');
     }
 }
+
 changeStage();

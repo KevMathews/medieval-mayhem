@@ -186,7 +186,7 @@ transform: translateX(-50px);
   opacity: 0%;
 }
 .gameButtons{
-width: 105px;
+width: 100px;
 border-radius: 50%;
 background: #F8F8F8; 
 border: solid #BDBDBD 1px; 
@@ -195,7 +195,7 @@ box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ;
 -moz-box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
 }
 .resetGameButton{
-  width: 105px;
+  width: 100px;
   border-radius: 50%;
   background: #F8F8F8; 
   border: solid #BDBDBD 1px; 
@@ -204,46 +204,46 @@ box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ;
   -moz-box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
   }
 #attackButton:hover {
-  content: url('../images/attack2.png');
+  content: url('../images/attack22.png');
 }
 #attackButton:active {
-  content: url('../images/attack3.png');
+  content: url('../images/attack33.png');
 }
 #magicBladeButton:hover {
-  content: url('../images/blade2.png');
+  content: url('../images/blade22.png');
 }
 #magicBladeButton:active {
-  content: url('../images/blade3.png');
+  content: url('../images/blade33.png');
 }
 #lightningButton:hover {
-  content: url('../images/lightning2.png');
+  content: url('../images/lightning22.png');
 }
 #lightningButton:active {
-  content: url('../images/lightning3.png');
+  content: url('../images/lightning33.png');
 }
 #fireBallButton:hover {
-  content: url('../images/fireball2.png');
+  content: url('../images/fireball22.png');
 }
 #fireBallButton:active {
-  content: url('../images/fireball3.png');
+  content: url('../images/fireball33.png');
 }
 #shopButton:hover {
-  content: url('../images/shop2.png');
+  content: url('../images/shop22.png');
 }
 #shopButton:active {
-  content: url('../images/shop3.png');
+  content: url('../images/shop33.png');
 }
 #rulesButton:hover {
-  content: url('../images/rules2.png');
+  content: url('../images/rules22.png');
 }
 #rulesButton:active {
-  content: url('../images/rules3.png');
+  content: url('../images/rules33.png');
 }
 #restartButton:hover {
-  content: url('../images/restart2.png');
+  content: url('../images/restart22.png');
 } 
 #restartButton:active {
-  content: url('../images/restart3.png');
+  content: url('../images/restart33.png');
 }
 #stageClearedImage {
   width: 120%;
@@ -270,6 +270,7 @@ box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ;
 }
 #fireBallButton {
   visibility: hidden;
+  
 }
 #magicBladeButton {
   visibility: hidden;
