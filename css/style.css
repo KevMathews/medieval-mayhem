@@ -95,6 +95,8 @@ section {
   transform: translateY(-25px);
   transform: translateX(15px);
   z-index: 1000;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
 }
 #enemyDamageDiv {
   grid-column: 4 / 5;
@@ -112,6 +114,9 @@ section {
   font-size: 52px;
   font-family: 'Boogaloo', cursive;
   z-index: 10000;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+  
 }
 #enemyStats {
   grid-column: 5 / 6;
