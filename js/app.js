@@ -872,6 +872,8 @@ let resetGame = function() {
     fireBallCounter = 0;
     lightningBoltCounter = 3;
     bladeCounter = 0;
+    $fireBallButton.css('visibility','hidden');
+    $magicBladeButton.css('visibility', 'hidden');
     boss.enemy[0].health = 75;
     boss.enemy[1].health = 100;
     boss.enemy[2].health = 125;
