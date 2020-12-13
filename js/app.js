@@ -677,7 +677,7 @@ $('#buyThrowingBladeUpgrade').on('click', () => {
                 .displayStats();
             }else {
                 $('#shopText')
-                    .text(`Sorry ${player.name}, but you don\'t have enough Gold to purchase learn the skill Throwing Blade`);
+                    .text(`Sorry ${player.name}, but you don\'t have enough Gold to train the skill Throwing Blade`);
                 player.displayStats();
 }}); 
 //  function to purchase FireBall upgrade
