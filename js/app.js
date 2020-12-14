@@ -713,10 +713,10 @@ $('#buyAccuracyUpgrade').on('click', () => {
 //  Function to purchase Armor upgrades
 $('#buyArmorUpgrade').on('click', () => {
     if (player.gold >= 10 ){
-        player.armor += 5;
+        player.armor += 3;
         player.gold -= 10;
         player.displayStats();
-        $('#shopText').text(`${player.name} has just gained 5 armor!`);
+        $('#shopText').text(`${player.name} has just gained 3 armor!`);
             }else {
                 $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold for an Armor upgrade`);
                 player.displayStats();
