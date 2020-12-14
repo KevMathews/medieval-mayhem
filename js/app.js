@@ -7,13 +7,16 @@ let bladeCounter = 0;
 let lightningBoltCounter = 2;
 let fireBallCounter = 0;
 let img1 = document.createElement("img");
-img1.src = "./images/stageCleared.gif";
+img1.src = "./images/stageCleared.gif"+"?a="+Math.random();
 let img2 = document.createElement("img");
 img2.src = "./images/victory.gif";
 let img3 = document.createElement("img");
 img3.src = "./images/gameover.gif";
 let img4 = document.createElement("img");
 img4.src = "./images/reloadGame.gif";
+let img5 = document.createElement("img");
+img5.src = "./images/1x1.png";
+
 
 $playerHealth = $('.playerHealth');
 $storeMessage = $('#storeMessage');
@@ -221,7 +224,6 @@ class Player {
         let randomNum = Math.floor(Math.random() * 101);
         if (randomNum < player.accuracy) {
             let damageDone = this.damage - boss.enemy[currentEnemy].armor;
-            $playerText.text(`${player.name} strikes ${boss.enemy[currentEnemy].name}  with their sword for ${damageDone} DAMAGE!`);
             boss.enemy[currentEnemy].health -= damageDone;
             this.damageJustDone = damageDone;
             player.showDamageDone();
@@ -229,27 +231,20 @@ class Player {
             bladeCounter += 1;
             lightningBoltCounter += 1;
             fireBallCounter += 1;
-            setTimeout(function() {
-                $playerPicture.attr('src', './images/player1idle.gif');
-                }, 1500);
+            player.displayStats();
+            checkIfDead();
+            }else{
+                $playerPicture.attr('src', './images/player1attack.gif');
+                bladeCounter += 1;
+                lightningBoltCounter += 1;
+                fireBallCounter =+ 1;
+                // setTimeout(function() {
+                //     player.displayStats();
+                // }, 4600);
                 player.displayStats();
                 checkIfDead();
-                }else{
-                    $playerPicture.attr('src', './images/player1attack.gif');
-                    bladeCounter += 1;
-                    lightningBoltCounter += 1;
-                    fireBallCounter =+ 1;
-                    setTimeout(function() {
-                        player.displayStats();
-                        }, 4600);
-                        $playerText.text(`${player.name} swings at ${boss.enemy[currentEnemy].name} but MISSES!`);
-                    checkIfDead();
-                    setTimeout(
-                    function() {
-                        $playerPicture.attr('src', './images/player1idle.gif');
-                        }, 1600);
-                        player.showPlayerMiss();
-                }
+                player.showPlayerMiss();
+            }
     }
 //  Method to refresh shown stats and also to check on Weapon Cooldowns    
     displayStats() {
@@ -309,8 +304,7 @@ class Enemy {
                 .css('font-style', 'italic'); 
             }, 1000);
         setTimeout(function(){ 
-            $playerDamageDiv
-                .css('opacity', '0%'); 
+            $playerDamageDiv.css('opacity', '0%'); 
             }, 2500);
     }
 //  Method to show floating combat text Miss messages over player's head   
@@ -338,11 +332,9 @@ class Enemy {
             player.health -= damageDone;
             this.damageJustDone = damageDone;
             this.showDamageDone();
-            $enemyText.text(`${this.name} Belches a mighty Burst of Fire at ${player.name} and scorches them for ${damageDone} DAMAGE!`);
-            checkPlayerDead();
             player.displayStats();
+            checkPlayerDead();
                 }else {
-                    $enemyText.text(`${this.name} Unleashes a mighty Burst of Fire, but ${player.name} skillfully DODGES away!`);
                     player.displayStats();
                     setTimeout(function() {
                         $enemyPicture.attr('src', './images/enemy5attack.gif');
@@ -351,6 +343,7 @@ class Enemy {
                         $enemyPicture.attr('src', './images/enemy5idle.gif');
                         }, 2000);
                     this.showEnemyMiss();
+                    checkPlayerDead();
                 }
     }
 //  Method Boss 4 uses for it's attack    
@@ -366,22 +359,21 @@ class Enemy {
             player.health -= damageDone;
             this.damageJustDone = damageDone;
             this.showDamageDone();
-            $enemyText.text(`${this.name} hurls a Kinetic Bolt at ${player.name} for ${damageDone} DAMAGE with his wand!`);
-            checkPlayerDead();
             player.displayStats();
+            checkPlayerDead();
                 }else {
-                    $enemyText.text(`${this.name} Hurls a bolt of Energy from his Wand towards ${player.name} but MISSES!`);
                     setTimeout(function() {
                         $enemyPicture.attr('src', './images/enemy4attack.gif');
-                        }, 1000);
+                    }, 1000);
                     setTimeout(function() {
                         $enemyPicture.attr('src', './images/enemy4idle.gif');
-                        }, 2000);
+                    }, 2000);
                     this.showEnemyMiss();
                     player.displayStats();
+                    checkPlayerDead();
                 }
     }
-//  Method Boss 4 uses for it's attack    
+//  Method Boss 3 uses for it's attack    
     enemy3Attack(){
         if (Math.floor(Math.random() * 101) < this.accuracy){
             setTimeout(function() {
@@ -394,48 +386,49 @@ class Enemy {
             player.health -= damageDone;
             this.damageJustDone = damageDone;
             this.showDamageDone();
-            $enemyText.text(`${this.name} summons his trusty companion Fang who bites ${player.name} for ${damageDone} DAMAGE!`);
-            checkPlayerDead();
             player.displayStats();
-                }else {$enemyText.text(`${this.name} calls his companion Fang who bites at ${player.name} but MISSES!!`);
-                setTimeout(function(){
+            checkPlayerDead();
+                }else { 
+                    setTimeout(function(){
                     $enemyPicture.attr('src', './images/enemy3attack2.gif');
-                }, 600);
-                setTimeout(function() {
+                    }, 600);
+                    setTimeout(function() {
                     $enemyPicture.attr('src', './images/enemy3idle.gif');
-                }, 2500);
-                this.showEnemyMiss();
-                player.displayStats();
-                }
-    }
-//  Method Boss 2 uses to attack    
-    enemy2Attack(){
-        if (Math.floor(Math.random() * 101) < this.accuracy){
-            setTimeout(function() {
-                $enemyPicture.attr('src', './images/enemy2attack.gif');
-            }, 800);
-            setTimeout(function() {
-                $enemyPicture.attr('src', './images/enemy2idle.gif');
-            }, 2000);
-            let damageDone = this.damage - player.armor;
-            player.health -= damageDone;
-            this.damageJustDone = damageDone;
-            this.showDamageDone();
-            $enemyText.text(`${this.name} lurch forward and pierce ${player.name} for ${damageDone} DAMAGE!!`);
-            checkPlayerDead();
-            player.displayStats();
-                }else{
-                    $enemyText.text(`${this.name} inches forth towards ${player.name} on but MISSES the attack!`);
-                    setTimeout(function() {
-                        $enemyPicture.attr('src', './images/enemy2attack.gif');
-                    }, 800);
-                    setTimeout(function() {
-                        $enemyPicture.attr('src', './images/enemy2idle.gif');
-                    }, 2000);
-                        this.showEnemyMiss();
+                    }, 2500);
+                    this.showEnemyMiss();
                     player.displayStats();
+                    checkPlayerDead();
                 }
     }
+
+//  Method Boss 2 uses to attack    
+enemy2Attack(){
+    if (Math.floor(Math.random() * 101) < this.accuracy){
+        setTimeout(function() {
+            $enemyPicture.attr('src', './images/enemy2attack.gif');
+        }, 800);
+        setTimeout(function() {
+            $enemyPicture.attr('src', './images/enemy2idle.gif');
+        }, 2000);
+        let damageDone = this.damage - player.armor;
+        player.health -= damageDone;
+        this.damageJustDone = damageDone;
+        this.showDamageDone();
+        checkPlayerDead();
+        player.displayStats();
+            }else{
+                setTimeout(function() {
+                    $enemyPicture.attr('src', './images/enemy2attack.gif');
+                }, 800);
+                setTimeout(function() {
+                    $enemyPicture.attr('src', './images/enemy2idle.gif');
+                }, 2000);
+                this.showEnemyMiss();
+                checkPlayerDead();
+                player.displayStats();
+            }
+}
+
 //  Method Boss 1 uses to attack    
     enemy1Attack(){
         if (Math.floor(Math.random() * 101) < this.accuracy){
@@ -443,20 +436,21 @@ class Enemy {
         let damageDone = this.damage - player.armor;
         player.health -= damageDone;
         this.damageJustDone = damageDone;
-        this.showDamageDone();
-        $enemyText.text(`${this.name} lets an arrow fly from his trusty bow and hits ${player.name} for ${damageDone} damage!`);
+        
         checkPlayerDead();
-        player.displayStats();
         setTimeout(function() {
             $enemyPicture.attr('src', './images/enemy1idle.gif');
         }, 2000);
+        this.showDamageDone();
+        player.displayStats();
             }else{
                 $enemyPicture.attr('src', './images/enemy1attack.gif');
-                this.showEnemyMiss();
+                
                 setTimeout(function() {
                     $enemyPicture.attr('src', './images/enemy1idle.gif');
                     }, 2000);
-                $enemyText.text(`${this.name} shoots an arrow at ${player.name} and MISSES!`);
+                checkPlayerDead();
+                this.showEnemyMiss();
                 player.displayStats();
     }};
 //  Method to determine what boss you are on and then use appropriate method for attack   
@@ -534,6 +528,10 @@ let checkPlayerDead = function() {
             function() {
                 resetGame();
             }, 5900);
+    } else {
+        setTimeout(function() {
+            $playerPicture.attr('src', './images/player1idle.gif');
+            }, 1300);
     }
 }
 //  function to see if the various bosses have been killed
@@ -542,13 +540,15 @@ let checkIfDead = function(){
         player.displayStats();
         setTimeout(function() {
             $enemyPicture.attr('src', './images/enemy5death.gif');
-        }, 500);
-        victory();
+        }, 100);
+        setTimeout(function() {
+            victory();
+        }, 1500);
+        
         }else if(boss.enemy[currentEnemy].health <= 0 && currentEnemy == 3){
             setTimeout(function() {
                 $enemyPicture.attr('src', './images/enemy4death.gif');
             }, 500);
-            $enemyText.text(`${boss.enemy[currentEnemy].name} has been defeated by ${player.name}! But look out because ${boss.enemy[reportedEnemy].name} is approaching!`);
             currentEnemy ++;
             reportedEnemy ++;
             player.gold += 50;
@@ -563,7 +563,6 @@ let checkIfDead = function(){
                     function() {
                         $enemyPicture.attr('src', './images/enemy3death.gif');
                     }, 500);
-                    $enemyText.text(`${boss.enemy[currentEnemy].name} has been defeated by ${player.name}! But look out because ${boss.enemy[reportedEnemy].name} is approaching!`);
                     currentEnemy ++;
                     reportedEnemy ++;
                     player.gold += 40;
@@ -577,7 +576,6 @@ let checkIfDead = function(){
                             setTimeout(
                             function(){
                             $enemyPicture.attr('src', './images/enemy2death.gif');}, 500);
-                            $enemyText.text(`${boss.enemy[currentEnemy].name} has been defeated by ${player.name}! But look out because ${boss.enemy[reportedEnemy].name} is approaching!`);
                             currentEnemy ++;
                             reportedEnemy ++;
                             player.gold += 30;
@@ -590,7 +588,6 @@ let checkIfDead = function(){
                             }else if(boss.enemy[0].health <= 0 && currentEnemy == 0){
                                 setTimeout(function(){
                                 $enemyPicture.attr('src', './images/enemy1dead.gif');}, 500);
-                                $enemyText.text(`${boss.enemy[currentEnemy].name} has been defeated by ${player.name}! But look out because ${boss.enemy[reportedEnemy].name} is approaching!`);
                                 currentEnemy ++;
                                 reportedEnemy ++;
                                 player.gold += 20;
@@ -685,10 +682,9 @@ $('#buyFireBallUpgrade').on('click', () => {
     if (player.gold >= 50 && player.fireBallLearned == false){
         player.gold -= 50;
         player.fireBallLearned = true;
-        player.displayStats();
         fireBallCounter = 3;
         $fireBallButton.css('visibility','visible');
-        console.log(fireBallCounter);
+        player.displayStats();
         $('#shopText')
             .text(`${player.name} has just learned the spell Fireball!`);
         }else if(player.gold >= 50 && player.fireBallLearned == true){
@@ -707,30 +703,23 @@ $('#buyAccuracyUpgrade').on('click', () => {
         player.accuracy += 2;
         player.gold -= 10;
         player.displayStats();
-        $('#shopText')
-            .text(`${player.name} has improved their Accuracy by 2 points!!`);
+        $('#shopText').text(`${player.name} has improved their Accuracy by 2 points!!`);
         }else if(player.gold >= 10 && player.accuracy >= 100){
             $('#shopText').text(`Sorry ${player.name}, but your Accuracy is already maxed!`);
         }else {
-            $('#shopText')
-                .text(`Sorry ${player.name}, but you don\'t have enough Gold to train your Accuracy`);
-            player
-                .displayStats();
+            $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold to train your Accuracy`);
+            player.displayStats();
 }});               
 //  Function to purchase Armor upgrades
 $('#buyArmorUpgrade').on('click', () => {
     if (player.gold >= 10 ){
         player.armor += 5;
         player.gold -= 10;
-        player
-            .displayStats();
-        $('#shopText')
-            .text(`${player.name} has just gained 5 armor!`);
+        player.displayStats();
+        $('#shopText').text(`${player.name} has just gained 5 armor!`);
             }else {
-                $('#shopText')
-                    .text(`Sorry ${player.name}, but you don\'t have enough Gold for an Armor upgrade`);
-                player
-                    .displayStats();
+                $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold for an Armor upgrade`);
+                player.displayStats();
 }});   
 //  Function to purchase Magic Accuracy upgrades                
 $('#buyMagicAccuracyUpgrade').on('click', () => {
@@ -753,10 +742,8 @@ $('#buyDualWield').on('click', () => {
         player.gold -= 30;
         player.dualWield = 'Learned';
         player.dualWieldAccuracy = (player.accuracy / 2);
-        $('.dualWieldAccuracy')
-            .css('display', 'inline-block');
-        player
-            .displayStats();
+        $('.dualWieldAccuracy').css('display', 'inline-block');
+        player.displayStats();
         }else {
             $storeMessage.text(`Sorry you don\'t have enough Gold to buy the Dual Wield skill`);
 }});        
@@ -799,12 +786,9 @@ let changeStage = function() {
 }
 // stage clear modal that pops up after beating a boss
 let stageCleared = function() {
-    $('#myModal4')
-        .modal('show');
-    $('.modal-content')
-        .css('background-color', 'transparent');
-    $('#modal-body4')
-        .append(img1);
+    $('#myModal4').modal('show');
+    $('.modal-content').css('background-color', 'transparent');
+    $('#modal-body4').append(img1);
     img1.id = 'stageClearedImage';
     setTimeout(
         function() {
@@ -812,23 +796,20 @@ let stageCleared = function() {
         }, 5800);
         setTimeout(function() {
             $('.modal-content').css('background-color', 'white');
-            }, 5900);
+            }, 5900);  
 }
 //  victory modal that pops up on game win
 let victory = function() {
     $('#myModal5').modal('show');
     $('.modal-content')
         .css('background-color', 'transparent');
-    $('#modal-body5')
-        .append(img2);
+    $('#modal-body5').append(img2);
     img2.id = 'victoryImage';
     setTimeout(function() {
-        $('#myModal5')
-        .modal('hide');
+        $('#myModal5').modal('hide');
         }, 5800);
         setTimeout(function() {
-            $('.modal-content')
-                .css('background-color', 'white');
+            $('.modal-content').css('background-color', 'white');
                 }, 5900);
 }
 // defeat modal that pops up on game loss
@@ -838,13 +819,11 @@ let defeat = function() {
     $('#modal-body6').append(img3);
     img3.id = 'defeatImage';
     setTimeout(function() {
-        $('#myModal6')
-            .modal('hide');
+        $('#myModal6').modal('hide');  
         }, 5800);
         setTimeout(function() {
-        $('.modal-content')
-        .css('background-color', 'white');
-        }, 5900);
+        $('.modal-content').css('background-color', 'white');
+        }, 5850);
 }
 // countdown modal that pops up on game restart
 let restartGame = function() {
@@ -856,8 +835,7 @@ let restartGame = function() {
         $('#myModal7').modal('hide');
     }, 5800);
     setTimeout(function() {
-        $('.modal-content')
-            .css('background-color', 'white');
+        $('.modal-content').css('background-color', 'white');
         }, 5900);
 }
 //  function to reset game to original state
@@ -927,5 +905,4 @@ let fireBallCounterFunction = function () {
                                     .css('pointer-events', 'none');
     }
 }
-
 changeStage();
