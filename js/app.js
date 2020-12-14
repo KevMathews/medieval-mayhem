@@ -22,6 +22,7 @@ $playerHealth = $('.playerHealth');
 $storeMessage = $('#storeMessage');
 $playerGold = $('.playerGold');
 $playerArmor = $('.playerArmor');
+$playerAttack = $('.playerAttack');
 $playerAccuracy = $('.playerAccuracy');
 $playerMagicAccuracy = $('.playerMagicAccuracy');
 $playerDualWield = $('.playerDualWield');
@@ -31,6 +32,7 @@ $playerName = $('.playerName');
 $enemyText = $('#enemyCombatText');
 $bossName = $('.bossName');
 $bossHealth = $('.bossHealth');
+$bossAttack = $('.bossAttack');
 $bossArmor = $('.bossArmor');
 $bossAccuracy = $('.bossAccuracy');
 $dualWield = $('#dualWield');
@@ -258,6 +260,8 @@ class Player {
         $playerGold.text(player.gold);
         $playerArmor.empty();
         $playerArmor.text(player.armor);
+        $playerAttack.empty();
+        $playerAttack.text(player.damage);
         $playerAccuracy.empty();
         $playerAccuracy.text(player.accuracy);
         $playerMagicAccuracy.empty();
@@ -268,6 +272,8 @@ class Player {
         $playerDualWieldAccuracy.text(player.dualWieldAccuracy);
         $bossHealth.empty();
         $bossHealth.text(boss.enemy[currentEnemy].health);
+        $bossAttack.empty();
+        $bossAttack.text(boss.enemy[currentEnemy].damage);
         $bossArmor.empty();
         $bossArmor.text(boss.enemy[currentEnemy].armor);
         $bossAccuracy.empty();
@@ -719,6 +725,17 @@ $('#buyArmorUpgrade').on('click', () => {
         $('#shopText').text(`${player.name} has just gained 3 armor!`);
             }else {
                 $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold for an Armor upgrade`);
+                player.displayStats();
+}});   
+//  Function to purchase Attack upgrades
+$('#buyAttackUpgrade').on('click', () => {
+    if (player.gold >= 10 ){
+        player.damage += 3;
+        player.gold -= 10;
+        player.displayStats();
+        $('#shopText').text(`${player.name} has just trained their attack skill gaining 3 points!`);
+            }else {
+                $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold to train your Attack skill`);
                 player.displayStats();
 }});   
 //  Function to purchase Magic Accuracy upgrades                
