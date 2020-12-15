@@ -294,6 +294,7 @@ class Enemy {
         this.armor = 2;
         this.accuracy = 50;
         this.damage = 15;
+        this.gold = 20;
         this.weapon1 = true;
         this.weapon2 = false;
         this.weapon3 = false;

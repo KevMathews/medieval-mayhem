@@ -4,6 +4,9 @@ body {
     background-size: auto;
     background-size: cover;
 }
+#preLoadImages {
+  display: none;
+}
 .modal-dialog{
   text-align: center;
 }
