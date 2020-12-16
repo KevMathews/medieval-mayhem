@@ -53,7 +53,7 @@ $magicBladeButton = $('#magicBladeButton');
 class Player {
     constructor(name){
         this.maxHealth = 500;
-        this.health = 500;
+        this.health = 5000;
         this.healthPercent = 100;
         this.energy = 100;
         this.armor = 5;
@@ -331,7 +331,7 @@ class Enemy {
         if (Math.floor(Math.random() * 101) < this.accuracy){
             setTimeout(function() {
                 $enemyPicture.attr('src', './images/enemy5attack.gif');
-                }, 1000);
+                }, 400);
                 setTimeout(function(){
                     $enemyPicture.attr('src', './images/enemy5idle.gif');
                 }, 2000);
@@ -345,7 +345,7 @@ class Enemy {
                     player.displayStats();
                     setTimeout(function() {
                         $enemyPicture.attr('src', './images/enemy5attack.gif');
-                        }, 1000);
+                        }, 400);
                     setTimeout(function() {
                         $enemyPicture.attr('src', './images/enemy5idle.gif');
                         }, 2000);
@@ -881,7 +881,7 @@ let resetGame = function() {
     $playerPicture.attr('src', './images/player1idle.gif');
     $enemyPicture.attr('src', './images/enemy1idle.gif');
 }
-// function to give countdown time and then restart game
+// function to show countdown timer and then restart game
 $('.resetGameButton').on('click', () => {
     restartGame();
     setTimeout(function(){
