@@ -53,7 +53,7 @@ $magicBladeButton = $('#magicBladeButton');
 class Player {
     constructor(name){
         this.maxHealth = 500;
-        this.health = 5000;
+        this.health = 500;
         this.healthPercent = 100;
         this.energy = 100;
         this.armor = 5;
