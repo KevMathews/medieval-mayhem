@@ -1,8 +1,6 @@
-// Before this class at General Assembly I basically never did anything in javascript, so I'm VERY happy with what I was able to do in just a week of working on this.  With Covid raging I'm unfortunately out of work now as a bartender/server, so fortunately/unfortunately I was able to spend probably 60+ hours on this during the week.  
-
-// I plan to eventually add at least 5 more levels and do further tweaking of damage, health, accuracy, armor etc etc for game balance purposes.  I have some experience with photoshop and illustrator prior so that made some things easier, but at the same time that knowledge drove me to try to be more creative.  Unfortunately the animation of the sprites takes a lot of time, otherwise I would have been able to get at least 10 Boss levels created.  
-
-// As a further stretch goal I want to add more attacks to the Bosses, and eventually allow them to be selectable as playable characters. Also, an expanded upgrade store would be nice as well, with more skills purchasable and of course lots of further tweaks to game balances.
+////////////////////////////////////
+///  kevinmathews.cs@gmail.com   ///
+////////////////////////////////////
 let bladeCounter = 0;
 let lightningBoltCounter = 2;
 let fireBallCounter = 0;
