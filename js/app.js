@@ -1,6 +1,8 @@
 ////////////////////////////////////
 ///  kevinmathews.cs@gmail.com   ///
 ////////////////////////////////////
+let currentEnemy = 0;
+let reportedEnemy = 1;
 let bladeCounter = 0;
 let lightningBoltCounter = 2;
 let fireBallCounter = 0;
@@ -405,7 +407,6 @@ class Enemy {
                     checkPlayerDead();
                 }
     }
-
 //  Method Boss 2 uses to attack    
 enemy2Attack(){
     if (Math.floor(Math.random() * 101) < this.accuracy){
@@ -433,7 +434,6 @@ enemy2Attack(){
                 player.displayStats();
             }
 }
-
 //  Method Boss 1 uses to attack    
     enemy1Attack(){
         if (Math.floor(Math.random() * 101) < this.accuracy){
@@ -522,8 +522,6 @@ boss.createEnemies(3);
 boss.createEnemies(4);
 boss.createEnemies(5);
 
-let currentEnemy = 0;
-let reportedEnemy = 1;
 //  function to see if player has been killed
 let checkPlayerDead = function() {
     if (player.health <= 0){
