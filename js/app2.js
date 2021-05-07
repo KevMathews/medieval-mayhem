@@ -1,19 +1,27 @@
-// ////////////////////////////////////
-// ///  kevinmathews.cs@gmail.com   ///
-// ////////////////////////////////////
+$(() => {
+////////////////////////////////////
+///  kevinmathews.cs@gmail.com   ///
+// mirror code for version 2
+////////////////////////////////////
+
+
+let currentEnemy = 0;
+let reportedEnemy = 1;
 let bladeCounter = 0;
 let lightningBoltCounter = 2;
 let fireBallCounter = 0;
-let img1 = document.createElement("img");
-img1.src = "./images/stageCleared.gif"+"?a="+Math.random();
-let img2 = document.createElement("img");
-img2.src = "./images/victory.gif";
-let img3 = document.createElement("img");
-img3.src = "./images/gameover.gif";
-let img4 = document.createElement("img");
-img4.src = "./images/reloadGame.gif";
-let img5 = document.createElement("img");
-img5.src = "./images/1x1.png";
+// let img1 = document.createElement("img");
+// img1.src = "./images/stageCleared.gif"+"?a="+Math.random();
+// let img2 = document.createElement("img");
+// img2.src = "./images/victory.gif";
+// let img3 = document.createElement("img");
+// img3.src = "./images/gameover.gif";
+// let img4 = document.createElement("img");
+// img4.src = "./images/reloadGame.gif";
+// let img5 = document.createElement("img");
+// img5.src = "./images/1x1.png";
+
+
 $playerHealth = $('.playerHealth');
 $storeMessage = $('#storeMessage');
 $playerGold = $('.playerGold');
@@ -45,6 +53,17 @@ $storeModalText = $('#modal-footer');
 $lightningButton = $('#lightningButton');
 $fireBallButton = $('#fireBallButton');
 $magicBladeButton = $('#magicBladeButton');
+// Define Game object
+let Game = {
+    constructor(name, character){
+        this.name = name;
+        this.character = character;
+    }
+}
+
+
+
+
 // Define the Player Class
 class Player {
     constructor(name){
@@ -57,56 +76,25 @@ class Player {
         this.accuracy = 80;
         this.magicAccuracy = 65;
         this.dualWieldAccuracy = .8;
+        this.deathImage = './images/player1death2.gif';
+        this.idleImage = './images/player1idle.gif';
+        this.basicAttackImage = './images/player1attack.gif';
         this.damage = 20;
         this.gold = 0;
         this.dualWield = 'Not Learned';
+        this.magicBladeImage = './images/player1attack2.gif';
         this.magicBladeAccuracy = .65;
         this.magicBladeDamage = 35;
+        this.lightningBoltImage = './images/player1attack4.gif';
         this.lightningBoltAccuracy = .65;
         this.lightningBoltDamage = 45;
+        this.fireBallImage = './images/player1attack3.gif';
         this.fireBallAccuracy = .65;
         this.fireballDamage = 65;
         this.magicBladeLearned = false;
         this.fireBallLearned = false;
         this.damageJustDone = null;
-        this.round = 0;
-        this.purchased = [
-            {
-                'purchasedHealth': 0,
-                'purchasedArmor': 0,
-                'purchasedAccuracy': 0,
-                'purchasedMagic': 0,
-                'learnedBlade': false,
-                'learnedFireball': false,
-
-            },
-            {
-                'purchasedHealth': 0,
-                'purchasedArmor': 0,
-                'purchasedAccuracy': 0,
-                'purchasedMagic': 0,
-                'learnedBlade': false,
-                'learnedFireball': false,
-            },
-            {
-                'purchasedHealth': 0,
-                'purchasedArmor': 0,
-                'purchasedAccuracy': 0,
-                'purchasedMagic': 0,
-                'learnedBlade': false,
-                'learnedFireball': false,
-            },
-            {
-                'purchasedHealth': 0,
-                'purchasedArmor': 0,
-                'purchasedAccuracy': 0,
-                'purchasedMagic': 0,
-                'learnedBlade': false,
-                'learnedFireball': false,
-            },
-        ]
-    };
-    
+    }
 //  method to display floating combat text of damage player does over boss    
     showDamageDone() {
         setTimeout(function(){ 
@@ -321,21 +309,50 @@ class Player {
 
 // Define Enemy Class
 class Enemy {
-    constructor(){
-        this.energy = 75;
-        this.maxHealth = 75;
-        this.health = 75;
-        this.armor = 2;
-        this.accuracy = 50;
-        this.damage = 15;
-        this.gold = 20;
-        this.weapon1 = true;
-        this.weapon2 = false;
-        this.weapon3 = false;
-        this.weapon4 = false;
-        this.weapon5 = false;
-        this.damageJustDone = null;
+    constructor(name, health, armor, attack, mana, endurance, weaponType, idleImage, attackImage, deathImage, hitImage, sounds){
+        this.name = name;
+        this.health = health;
+        this.armor = armor;
+        this.attack = attack;
+        this.mana = mana;
+        this.endurance = endurance;
+        this.weaponType = weaponType;
+        this.idleImage = idleImage;
+        this.attackImage = attackImage;
+        this.deathImage = deathImage;
+        this.hitImage = hitImage;
+        this.sounds = sounds;
+        this.damageIn = 0;
+        this.damageJustDone = 0;
     }
+    attack(){
+        let damageDone = this.attack - player.armor;
+        player.health -= damageDone;
+        console.log(`${this.name} hit ${player.name} for ${damageDone} damage!`);
+        if (Math.floor(Math.random() * 101) < this.accuracy){
+            $enemyPicture.attr('src', this.attackImage);
+            let damageDone = this.damage - player.armor;
+            player.health -= damageDone;
+            this.damageJustDone = damageDone;
+            
+            checkPlayerDead();
+            setTimeout(function() {
+                $enemyPicture.attr('src', this.idleImage);
+            }, 2000);
+            this.showDamageDone();
+            player.displayStats();
+                }else{
+                    $enemyPicture.attr('src', this.attackImage);
+                    
+                    setTimeout(function() {
+                        $enemyPicture.attr('src', this.idleImage);
+                        }, 2000);
+                    checkPlayerDead();
+                    this.showEnemyMiss();
+                    player.displayStats();
+        }
+    }
+   
 //  Method to show floating combat text of damage the Enemy does over the Player    
     showDamageDone() {
         setTimeout(function(){ 
@@ -543,20 +560,31 @@ class EnemyBoss {
     }
     createEnemies(i){
         const newEnemy = new Enemy(i);
+        // this.name = name;
         this.enemy.push(newEnemy);
     }
 }
 //  create player
 const player = new Player();
 // create bosses
-const boss = new EnemyBoss();
-boss.createEnemies(1);
-boss.createEnemies(2);
-boss.createEnemies(3);
-boss.createEnemies(4);
-boss.createEnemies(5);
-let currentEnemy = 0;
-let reportedEnemy = 1;
+const boss = [];
+// boss.createEnemies(1);
+// boss.createEnemies(2);
+// boss.createEnemies(3);
+// boss.createEnemies(4);
+// boss.createEnemies(5);
+
+const tazdingo = new Enemy('Tazdingo', 75, 2, 15, 50, 50, 'weapon1', './images/enemy1idle.gif', './images/enemy1attack.gif', './images/enemy1dead.gif', 'soundsURLS');
+
+const tazdingo2 = new Enemy('Tazdingo', 75, 2, 15, 50, 50, 'weapon1', './images/enemy1idle.gif', './images/enemy1attack.gif', './images/enemy1dead.gif', 'soundsURLS');
+
+const tazdingo3 = new Enemy('Tazdingo', 75, 2, 15, 50, 50, 'weapon1', './images/enemy1idle.gif', './images/enemy1attack.gif', './images/enemy1dead.gif', 'soundsURLS');
+
+const tazdingo4 = new Enemy('Tazdingo', 75, 2, 15, 50, 50, 'weapon1', './images/enemy1idle.gif', './images/enemy1attack.gif', './images/enemy1dead.gif', 'soundsURLS');
+
+const tazdingo5 = new Enemy('Tazdingo', 75, 2, 15, 50, 50, 'weapon1', './images/enemy1idle.gif', './images/enemy1attack.gif', './images/enemy1dead.gif', 'soundsURLS');
+boss.push(tazdingo, tazdingo2, tazdingo3, tazdingo4, tazdingo5);
+console.log(boss);
 //  function to see if player has been killed
 let checkPlayerDead = function() {
     if (player.health <= 0){
@@ -589,8 +617,6 @@ let checkIfDead = function(){
             }, 500);
             currentEnemy ++;
             reportedEnemy ++;
-            player.round ++;
-            console.log(player.round);
             player.gold += 50;
             player.displayStats();
             stageCleared();
@@ -605,7 +631,6 @@ let checkIfDead = function(){
                     }, 500);
                     currentEnemy ++;
                     reportedEnemy ++;
-                    player.round ++;
                     player.gold += 40;
                     player.displayStats();
                     stageCleared();
@@ -619,7 +644,6 @@ let checkIfDead = function(){
                             $enemyPicture.attr('src', './images/enemy2death.gif');}, 500);
                             currentEnemy ++;
                             reportedEnemy ++;
-                            player.round ++;
                             player.gold += 30;
                             player.displayStats();
                             stageCleared();
@@ -632,7 +656,6 @@ let checkIfDead = function(){
                                 $enemyPicture.attr('src', './images/enemy1dead.gif');}, 500);
                                 currentEnemy ++;
                                 reportedEnemy ++;
-                                player.round ++;
                                 player.gold += 20;
                                 player.displayStats();
                                 stageCleared();
@@ -643,7 +666,7 @@ let checkIfDead = function(){
                                 }
     }
 //  function to set Player Name    
-$(document).ready(function() {
+$('#startbutton').on('click', () => {
         $("#newGame").submit(function(e) {
         e.preventDefault();
         let player_One = $('#nameOne').val();
@@ -656,33 +679,33 @@ $('.fancy').click(function(){
     $('#startbutton').css('visibility', 'visible');
 })
 //  updates stats on the bosses
-boss.enemy[0].name='Taz\'dingo';
-boss.enemy[1].weapon2 = true;
-boss.enemy[1].name = 'Pozzik & Sluggo';
-boss.enemy[1].damage = 30;
-boss.enemy[1].health = 100;
-boss.enemy[1].armor = 5;
-boss.enemy[1].accuracy = 55;
-boss.enemy[2].weapon3 = true;
-boss.enemy[2].name = 'Goldrinn';
-boss.enemy[2].damage = 35;
-boss.enemy[2].health = 125;
-boss.enemy[2].armor = 8;
-boss.enemy[2].accuracy = 60;
-boss.enemy[3].name='Djinn';
-boss.enemy[3].damage = 45;
-boss.enemy[3].health = 150;
-boss.enemy[3].weapon4 = true;
-boss.enemy[3].armor = 11;
-boss.enemy[3].accuracy = 65;
-boss.enemy[4].name='Vaelastrasz';
-boss.enemy[4].damage = 75;
-boss.enemy[4].health = 200;
-boss.enemy[4].weapon5 = true;
-boss.enemy[4].armor = 15;
-boss.enemy[4].accuracy = 65;
+// boss.enemy[0].name='Taz\'dingo';
+// boss.enemy[1].weapon2 = true;
+// boss.enemy[1].name = 'Pozzik & Sluggo';
+// boss.enemy[1].damage = 30;
+// boss.enemy[1].health = 100;
+// boss.enemy[1].armor = 5;
+// boss.enemy[1].accuracy = 55;
+// boss.enemy[2].weapon3 = true;
+// boss.enemy[2].name = 'Goldrinn';
+// boss.enemy[2].damage = 35;
+// boss.enemy[2].health = 125;
+// boss.enemy[2].armor = 8;
+// boss.enemy[2].accuracy = 60;
+// boss.enemy[3].name='Djinn';
+// boss.enemy[3].damage = 45;
+// boss.enemy[3].health = 150;
+// boss.enemy[3].weapon4 = true;
+// boss.enemy[3].armor = 11;
+// boss.enemy[3].accuracy = 65;
+// boss.enemy[4].name='Vaelastrasz';
+// boss.enemy[4].damage = 75;
+// boss.enemy[4].health = 200;
+// boss.enemy[4].weapon5 = true;
+// boss.enemy[4].armor = 15;
+// boss.enemy[4].accuracy = 65;
 //  function to purchase health upgrades
-$('#buyHealthUpgrade').on('click', () => {
+$('#buyHealthUpgrade').on('click',() => {
     if (player.gold >= 10 && player.health >= 491){
         $('#shopText')
             .text(`${player.name} you are already at full health`);
@@ -924,7 +947,7 @@ $('.resetGameButton').on('click', () => {
         resetGame();
     }, 5900);
 });   
-// function to apply cooldown timer to Throwing Blade
+// function to apply cooldown timer to Throwing Blade useage
 let bladeCounterFunction = function () {
     if(bladeCounter >= 1 && player.magicBladeLearned == true){
         $magicBladeButton.attr('src', './images/blade11.png')
@@ -934,7 +957,7 @@ let bladeCounterFunction = function () {
                         .css( 'pointer-events', 'none' );
     }
 }
-// function to apply cooldown timer to Lightning Bolt
+// function to apply cooldown timer to Lightning Bolt useage
 let lightningBoltCounterFunction = function () {
     if(lightningBoltCounter >= 2){
         $lightningButton.attr('src', './images/lightning11.png')
@@ -945,7 +968,7 @@ let lightningBoltCounterFunction = function () {
                                 .css( 'pointer-events', 'none' );
     };
 };
-//  function to apply cooldown timer to FireBall
+//  function to apply cooldown timer to FireBall useage
 let fireBallCounterFunction = function () {
     if(fireBallCounter >= 3 && player.fireBallLearned == true){
         $fireBallButton.attr('src', './images/fireball11.png')
@@ -959,5 +982,5 @@ let fireBallCounterFunction = function () {
                                     .css('pointer-events', 'none');
     }
 }
-// console.log(player.purchased[1].learnedBlade)
 changeStage();
+});
