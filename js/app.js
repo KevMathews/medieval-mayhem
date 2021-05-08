@@ -73,6 +73,7 @@ class Player {
         this.purchased = [
             {
                 'purchasedHealth': 0,
+                'purchasedAttack': 0,
                 'purchasedArmor': 0,
                 'purchasedAccuracy': 0,
                 'purchasedMagic': 0,
@@ -82,6 +83,7 @@ class Player {
             },
             {
                 'purchasedHealth': 0,
+                'purchasedAttack': 0,
                 'purchasedArmor': 0,
                 'purchasedAccuracy': 0,
                 'purchasedMagic': 0,
@@ -90,6 +92,7 @@ class Player {
             },
             {
                 'purchasedHealth': 0,
+                'purchasedAttack': 0,
                 'purchasedArmor': 0,
                 'purchasedAccuracy': 0,
                 'purchasedMagic': 0,
@@ -98,6 +101,7 @@ class Player {
             },
             {
                 'purchasedHealth': 0,
+                'purchasedAttack': 0,
                 'purchasedArmor': 0,
                 'purchasedAccuracy': 0,
                 'purchasedMagic': 0,
@@ -475,7 +479,6 @@ enemy2Attack(){
         let damageDone = this.damage - player.armor;
         player.health -= damageDone;
         this.damageJustDone = damageDone;
-        
         checkPlayerDead();
         setTimeout(function() {
             $enemyPicture.attr('src', './images/enemy1idle.gif');
@@ -691,6 +694,8 @@ $('#buyHealthUpgrade').on('click', () => {
             player.health += 10;
             player.gold -= 10;
             player.displayStats();
+            healthPurchaseHistory();
+            console.log(player.purchased);
             $('#shopText')
                 .text(`${player.name} Has just regained 10 health!`);
             }else {
@@ -703,10 +708,10 @@ $('#buyThrowingBladeUpgrade').on('click', () => {
     if (player.gold >= 30 && player.magicBladeLearned == false){
         player.gold -= 30;
         player.magicBladeLearned = true;
-        player
-            .displayStats();
-        bladeCounter = 1;
         player.displayStats();
+        bladePurchaseHistory();
+        console.log(player.purchased)
+        bladeCounter = 1;
         $magicBladeButton.css('visibility', 'visible');
         $('#shopText')
             .text(`${player.name} has just learned the skill Throwing Blade!`);
@@ -728,6 +733,8 @@ $('#buyFireBallUpgrade').on('click', () => {
         fireBallCounter = 3;
         $fireBallButton.css('visibility','visible');
         player.displayStats();
+        fireballPurchaseHistory();
+        console.log(player.purchased);
         $('#shopText')
             .text(`${player.name} has just learned the spell Fireball!`);
         }else if(player.gold >= 50 && player.fireBallLearned == true){
@@ -746,6 +753,8 @@ $('#buyAccuracyUpgrade').on('click', () => {
         player.accuracy += 2;
         player.gold -= 10;
         player.displayStats();
+        accuracyPurchaseHistory();
+        console.log(player.purchased);
         $('#shopText').text(`${player.name} has improved their Accuracy by 2 points!!`);
         }else if(player.gold >= 10 && player.accuracy >= 100){
             $('#shopText').text(`Sorry ${player.name}, but your Accuracy is already maxed!`);
@@ -759,6 +768,8 @@ $('#buyArmorUpgrade').on('click', () => {
         player.armor += 3;
         player.gold -= 10;
         player.displayStats();
+        armorPurchaseHistory();
+        console.log(player.purchased);
         $('#shopText').text(`${player.name} has just gained 3 armor!`);
             }else {
                 $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold for an Armor upgrade`);
@@ -770,6 +781,8 @@ $('#buyAttackUpgrade').on('click', () => {
         player.damage += 3;
         player.gold -= 10;
         player.displayStats();
+        attackPurchaseHistory();
+        console.log(player.purchased);
         $('#shopText').text(`${player.name} has just trained their attack skill gaining 3 points!`);
             }else {
                 $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold to train your Attack skill`);
@@ -780,8 +793,9 @@ $('#buyMagicAccuracyUpgrade').on('click', () => {
     if (player.gold >= 10 && player.magicAccuracy <= 98){
         player.magicAccuracy += 2;
         player.gold -= 10;
-        player
-            .displayStats();
+        player.displayStats();
+        magicPurchaseHistory();
+        console.log(play.purchased);
         $('#shopText')
             .text(`${player.name} has improved their Magic Accuracy by 2 points!`);
         }else if(player.gold >= 10 && player.magicAccuracy >= 100) {
@@ -800,7 +814,14 @@ $('#buyDualWield').on('click', () => {
         player.displayStats();
         }else {
             $storeMessage.text(`Sorry you don\'t have enough Gold to buy the Dual Wield skill`);
-}});        
+}});
+//  Function to record what round items were purchased in
+
+
+
+
+///////////////////////////////////////
+
 //  starts basic player attack
 $('#attackButton').on('click', ()=>{
     player.attack()
@@ -901,6 +922,46 @@ let resetGame = function() {
     player.magicAccuracy = 65;
     player.magicBladeLearned = false;
     player.fireBallLearned = false;
+    player.round = 0;
+    player.purchased = [
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': false,
+            'learnedFireball': false,
+
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': false,
+            'learnedFireball': false,
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': false,
+            'learnedFireball': false,
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': false,
+            'learnedFireball': false,
+        },
+    ]
     fireBallCounter = 0;
     lightningBoltCounter = 3;
     bladeCounter = 0;
@@ -959,5 +1020,83 @@ let fireBallCounterFunction = function () {
                                     .css('pointer-events', 'none');
     }
 }
-// console.log(player.purchased[1].learnedBlade)
+//  functions to track round purchases were made
+let healthPurchaseHistory = () => {
+if (player.round === 1) {
+    player.purchased[0].purchasedHealth ++ ;
+}   else if (player.round === 2 ) {
+    player.purchased[1].purchasedHealth ++ ;
+} else if (player.round === 3) {
+    player.purchased[2].purchasedHealth ++ ;
+} else if (player.round === 4) {    
+    player.purchased[3].purchasedHealth ++ ;
+} else {
+}};
+let attackPurchaseHistory = () => {
+    if (player.round === 1) {
+        player.purchased[0].purchasedAttack ++ ;
+    }   else if (player.round === 2 ) {
+        player.purchased[1].purchasedAttack ++ ;
+    } else if (player.round === 3) {
+        player.purchased[2].purchasedAttack ++ ;
+    } else if (player.round === 4) {    
+        player.purchased[3].purchasedAttack ++ ;
+    } else {
+    }};
+let armorPurchaseHistory = () => {
+    if (player.round === 1) {
+        player.purchased[0].purchasedArmor ++ ;
+    }   else if (player.round === 2 ) {
+        player.purchased[1].purchasedArmor ++ ;
+    } else if (player.round === 3) {
+        player.purchased[2].purchasedArmor ++ ;
+    } else if (player.round === 4) {    
+        player.purchased[3].purchasedArmor ++ ;
+    } else {
+    }};
+let accuracyPurchaseHistory = () => {
+    if (player.round === 1) {
+        player.purchased[0].purchasedAccuracy ++ ;
+    }   else if (player.round === 2 ) {
+        player.purchased[1].purchasedAccuracy ++ ;
+    } else if (player.round === 3) {
+        player.purchased[2].purchasedAccuracy ++ ;
+    } else if (player.round === 4) {    
+        player.purchased[3].purchasedAccuracy ++ ;
+    } else {
+    }};
+let magicPurchaseHistory = () => {
+    if (player.round === 1) {
+        player.purchased[0].purchasedMagic ++ ;
+    }   else if (player.round === 2 ) {
+        player.purchased[1].purchasedMagic ++ ;
+    } else if (player.round === 3) {
+        player.purchased[2].purchasedMagic ++ ;
+    } else if (player.round === 4) {    
+        player.purchased[3].purchasedMagic ++ ;
+    } else {
+    }};
+let fireballPurchaseHistory = () => {
+    if (player.round === 1) {
+        player.purchased[0].learnedFireball = true;
+    }   else if (player.round === 2 ) {
+        player.purchased[1].learnedFireball = true;
+    } else if (player.round === 3) {
+        player.purchased[2].learnedFireball = true;
+    } else if (player.round === 4) {    
+        player.purchased[3].learnedFireball = true;
+    } else {
+    }};
+let bladePurchaseHistory = () => {
+    if (player.round === 1) {
+        player.purchased[0].learnedBlade = true;
+    }   else if (player.round === 2 ) {
+        player.purchased[1].learnedBlade = true;
+    } else if (player.round === 3) {
+        player.purchased[2].learnedBlade = true;
+    } else if (player.round === 4) {    
+        player.purchased[3].learnedBlade = true;
+    } else {
+    }};
+    
 changeStage();
