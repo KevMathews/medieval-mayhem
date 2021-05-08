@@ -13,6 +13,31 @@ img3.src = "./images/gameover.gif";
 let img4 = document.createElement("img");
 img4.src = "./images/reloadGame.gif";
 let img5 = document.createElement("img");
+let leaderOne = {
+    name = Kevin,
+    health = '25',
+    attack = '',
+    armor = '',
+    accuracy = '',
+    magic = '',
+    fireball = '',
+    blade = '',
+    round1 = '',
+    round2 = '',
+    round3 = '',
+    round4 = '',
+    bossHealth = '',
+
+};
+let leaderTwo = {};
+let leaderThree = {};
+let leaderFour = {};
+let leaderFive = {};
+let leaderSix = {};
+let leaderSeven = {};
+let leaderEight = {};
+let leaderNine = {};
+let leaderTen = {};
 img5.src = "./images/1x1.png";
 $playerHealth = $('.playerHealth');
 $storeMessage = $('#storeMessage');
@@ -45,6 +70,9 @@ $storeModalText = $('#modal-footer');
 $lightningButton = $('#lightningButton');
 $fireBallButton = $('#fireBallButton');
 $magicBladeButton = $('#magicBladeButton');
+$purchasedRound1Health = $('.purchasedRound1Health');
+$purchasedRound2Health = $('.purchasedRound2Health');
+$purchaseAfterBoss1 = $('.purchaseAfterBoss1');
 // Define the Player Class
 class Player {
     constructor(name){
@@ -77,8 +105,8 @@ class Player {
                 'purchasedArmor': 0,
                 'purchasedAccuracy': 0,
                 'purchasedMagic': 0,
-                'learnedBlade': false,
-                'learnedFireball': false,
+                'learnedBlade': 0,
+                'learnedFireball': 0,
 
             },
             {
@@ -87,8 +115,8 @@ class Player {
                 'purchasedArmor': 0,
                 'purchasedAccuracy': 0,
                 'purchasedMagic': 0,
-                'learnedBlade': false,
-                'learnedFireball': false,
+                'learnedBlade': 0,
+                'learnedFireball': 0,
             },
             {
                 'purchasedHealth': 0,
@@ -96,8 +124,8 @@ class Player {
                 'purchasedArmor': 0,
                 'purchasedAccuracy': 0,
                 'purchasedMagic': 0,
-                'learnedBlade': false,
-                'learnedFireball': false,
+                'learnedBlade': 0,
+                'learnedFireball': 0,
             },
             {
                 'purchasedHealth': 0,
@@ -105,8 +133,8 @@ class Player {
                 'purchasedArmor': 0,
                 'purchasedAccuracy': 0,
                 'purchasedMagic': 0,
-                'learnedBlade': false,
-                'learnedFireball': false,
+                'learnedBlade': 0,
+                'learnedFireball': 0,
             },
         ]
     };
@@ -317,6 +345,10 @@ class Player {
         $bossAccuracy.text(boss.enemy[currentEnemy].accuracy);
         $bossName.empty();
         $bossName.text(boss.enemy[currentEnemy].name);
+        $purchasedRound1Health.empty();
+        $purchasedRound1Health.text(player.purchased[0].purchasedHealth);
+        $purchasedRound2Health.empty();
+        $purchasedRound2Health.text(player.purchased[1].purchasedHealth);
         bladeCounterFunction();
         lightningBoltCounterFunction();
         fireBallCounterFunction();
@@ -560,15 +592,20 @@ boss.createEnemies(4);
 boss.createEnemies(5);
 let currentEnemy = 0;
 let reportedEnemy = 1;
+
 //  function to see if player has been killed
 let checkPlayerDead = function() {
     if (player.health <= 0){
         $playerPicture.attr('src', './images/player1death2.gif');
         defeat();
+        conditionalLeaderBoardCategories();
+        player.displayStats();
         setTimeout(
             function() {
-                resetGame();
+                $("#leaderModal").modal('show');
+                // resetGame();
             }, 5900);
+            
     } else {
         setTimeout(function() {
             $playerPicture.attr('src', './images/player1idle.gif');
@@ -579,12 +616,18 @@ let checkPlayerDead = function() {
 let checkIfDead = function(){
     if (boss.enemy[4].health <= 0){
         player.displayStats();
+        conditionalLeaderBoardCategories();
         setTimeout(function() {
             $enemyPicture.attr('src', './images/enemy5death.gif');
         }, 100);
         setTimeout(function() {
             victory();
         }, 1500);
+        setTimeout(
+            function() {
+                $("#leaderModal").modal('show');
+                // resetGame();
+            }, 5900);
         
         }else if(boss.enemy[currentEnemy].health <= 0 && currentEnemy == 3){
             setTimeout(function() {
@@ -985,6 +1028,9 @@ $('.resetGameButton').on('click', () => {
         resetGame();
     }, 5900);
 });   
+
+
+// $("#myModal").modal('show');
 // function to apply cooldown timer to Throwing Blade
 let bladeCounterFunction = function () {
     if(bladeCounter >= 1 && player.magicBladeLearned == true){
@@ -1078,25 +1124,226 @@ let magicPurchaseHistory = () => {
     }};
 let fireballPurchaseHistory = () => {
     if (player.round === 1) {
-        player.purchased[0].learnedFireball = true;
+        player.purchased[0].learnedFireball ++;
     }   else if (player.round === 2 ) {
-        player.purchased[1].learnedFireball = true;
+        player.purchased[1].learnedFireball ++;
     } else if (player.round === 3) {
-        player.purchased[2].learnedFireball = true;
+        player.purchased[2].learnedFireball ++;
     } else if (player.round === 4) {    
-        player.purchased[3].learnedFireball = true;
+        player.purchased[3].learnedFireball ++;
     } else {
     }};
 let bladePurchaseHistory = () => {
     if (player.round === 1) {
-        player.purchased[0].learnedBlade = true;
+        player.purchased[0].learnedBlade ++;
     }   else if (player.round === 2 ) {
-        player.purchased[1].learnedBlade = true;
+        player.purchased[1].learnedBlade ++;
     } else if (player.round === 3) {
-        player.purchased[2].learnedBlade = true;
+        player.purchased[2].learnedBlade ++;
     } else if (player.round === 4) {    
-        player.purchased[3].learnedBlade = true;
+        player.purchased[3].learnedBlade ++;
     } else {
     }};
-    
+    console.log(player.purchased[0].purchasedHealth);
+
+
+
+let conditionalLeaderBoardCategories = () => {
+    round1HealthBought();
+    round2HealthBought();
+    round3HealthBought();
+    round4HealthBought();
+    round1AttackBought();
+    round2AttackBought();
+    round3AttackBought();
+    round4AttackBought();
+    round1ArmorBought();
+    round2ArmorBought();
+    round3ArmorBought();
+    round4ArmorBought();
+    round1AccuracyBought();
+    round2AccuracyBought();
+    round3AccuracyBought();
+    round4AccuracyBought();
+    round1MagicBought();
+    round2MagicBought();
+    round3MagicBought();
+    round4MagicBought();
+    round2FireballBought();
+    round3FireballBought();
+    round4FireballBought();
+    round2BladeBought();
+    round3BladeBought();
+    round4BladeBought();
+    bossesKilled();
+}
+let round1HealthBought = () => {
+    if (player.purchased[0].purchasedHealth > 0){
+        $('.purchaseAfterBoss1').append(`<img src='./images/heart3.png' />` + 'x' + player.purchased[0].purchasedHealth + '<br />');
+    }
+}
+let round2HealthBought = () => {
+    if (player.purchased[1].purchasedHealth > 0){
+        $('.purchaseAfterBoss2').append(`<img src='./images/heart3.png' />` + 'x' + player.purchased[1].purchasedHealth + '<br />');
+    }
+}
+let round3HealthBought = () => {
+    if (player.purchased[2].purchasedHealth > 0){
+        $('.purchaseAfterBoss3').append(`<img src='./images/heart3.png' />` + 'x' + player.purchased[2].purchasedHealth + '<br />');
+    }
+}
+let round4HealthBought = () => {
+    if (player.purchased[3].purchasedHealth > 0){
+        $('.purchaseAfterBoss4').append(`<img src='./images/heart3.png' />` + 'x' + player.purchased[3].purchasedHealth + '<br />');
+    }
+}
+let round1AttackBought = () => {
+    if (player.purchased[0].purchasedAttack > 0){
+        $('.purchaseAfterBoss1').append(`<img src='./images/attackicon.png' />` + 'x' + player.purchased[0].purchasedAttack + '<br />');
+    }
+}
+let round2AttackBought = () => {
+    if (player.purchased[1].purchasedAttack > 0){
+        $('.purchaseAfterBoss2').append(`<img src='./images/attackicon.png' />` + 'x' + player.purchased[1].purchasedAttack + '<br />');
+    }
+}
+let round3AttackBought = () => {
+    if (player.purchased[2].purchasedAttack > 0){
+        $('.purchaseAfterBoss3').append(`<img src='./images/attackicon.png' />` + 'x' + player.purchased[2].purchasedAttack + '<br />');
+    }
+}
+let round4AttackBought = () => {
+    if (player.purchased[3].purchasedAttack > 0){
+        $('.purchaseAfterBoss4').append(`<img src='./images/attackicon.png' />` + 'x' + player.purchased[3].purchasedAttack + '<br />');
+    }
+}
+let round1ArmorBought = () => {
+    if (player.purchased[0].purchasedArmor > 0){
+        $('.purchaseAfterBoss1').append(`<img src='./images/armor.png' />` + 'x' + player.purchased[0].purchasedArmor + '<br />');
+    }
+}
+let round2ArmorBought = () => {
+    if (player.purchased[1].purchasedArmor > 0){
+        $('.purchaseAfterBoss2').append(`<img src='./images/armor.png' />` + 'x' + player.purchased[1].purchasedArmor + '<br />');
+    }
+}
+let round3ArmorBought = () => {
+    if (player.purchased[2].purchasedArmor > 0){
+        $('.purchaseAfterBoss3').append(`<img src='./images/armor.png' />` + 'x' + player.purchased[2].purchasedArmor + '<br />');
+    }
+}
+let round4ArmorBought = () => {
+    if (player.purchased[3].purchasedArmor > 0){
+        $('.purchaseAfterBoss4').append(`<img src='./images/armor.png' />` + 'x' + player.purchased[3].purchasedArmor + '<br />');
+    }
+}
+let round1AccuracyBought = () => {
+    if (player.purchased[0].purchasedAccuracy > 0){
+        $('.purchaseAfterBoss1').append(`<img src='./images/accuracy.png' />` + 'x' + player.purchased[0].purchasedAccuracy + '<br />');
+    }
+}
+let round2AccuracyBought = () => {
+    if (player.purchased[1].purchasedAccuracy > 0){
+        $('.purchaseAfterBoss2').append(`<img src='./images/accuracy.png' />` + 'x' + player.purchased[1].purchasedAccuracy + '<br />');
+    }
+}
+let round3AccuracyBought = () => {
+    if (player.purchased[2].purchasedAccuracy > 0){
+        $('.purchaseAfterBoss3').append(`<img src='./images/accuracy.png' />` + 'x' + player.purchased[2].purchasedAccuracy + '<br />');
+    }
+}
+let round4AccuracyBought = () => {
+    if (player.purchased[3].purchasedAccuracy > 0){
+        $('.purchaseAfterBoss4').append(`<img src='./images/accuracy.png' />` + 'x' + player.purchased[3].purchasedAccuracy + '<br />');
+    }
+}
+let round1MagicBought = () => {
+    if (player.purchased[0].purchasedMagic > 0){
+        $('.purchaseAfterBoss1').append(`<img src='./images/magicaccuracy.png' />` + 'x' + player.purchased[0].purchasedMagic + '<br />');
+    }
+}
+let round2MagicBought = () => {
+    if (player.purchased[1].purchasedMagic > 0){
+        $('.purchaseAfterBoss2').append(`<img src='./images/magicaccuracy.png' />` + 'x' + player.purchased[1].purchasedMagic + '<br />');
+    }
+}
+let round3MagicBought = () => {
+    if (player.purchased[2].purchasedMagic > 0){
+        $('.purchaseAfterBoss3').append(`<img src='./images/magicaccuracy.png' />` + 'x' + player.purchased[2].purchasedMagic + '<br />');
+    }
+}
+let round4MagicBought = () => {
+    if (player.purchased[3].purchasedMagic > 0){
+        $('.purchaseAfterBoss4').append(`<img src='./images/magicaccuracy.png' />` + 'x' + player.purchased[3].purchasedMagic + '<br />');
+    }
+}
+let round2FireballBought = () => {
+    if (player.purchased[1].learnedFireball > 0){
+        $('.purchaseAfterBoss2').append(`<img src='./images/fireball.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round3FireballBought = () => {
+    if (player.purchased[2].learnedFireball > 0){
+        $('.purchaseAfterBoss3').append(`<img src='./images/fireball.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round4FireballBought = () => {
+    if (player.purchased[3].learnedFireball > 0){
+        $('.purchaseAfterBoss4').append(`<img src='./images/fireball.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round2BladeBought = () => {
+    if (player.purchased[1].learnedBlade > 0){
+        $('.purchaseAfterBoss2').append(`<img src='./images/blade.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round3BladeBought = () => {
+    if (player.purchased[2].learnedBlade > 0){
+        $('.purchaseAfterBoss3').append(`<img src='./images/blade.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round4BladeBought = () => {
+    if (player.purchased[3].learnedBlade > 0){
+        $('.purchaseAfterBoss4').append(`<img src='./images/blade.png' />`  + '<br />');
+    }
+}
+let bossesKilled = () => {
+    if (player.round === 4 && boss.enemy[4].health <= 0) {
+        $('.boss5name').removeClass().addClass('boss1NameDead');
+        $('.boss4name').removeClass().addClass('boss1NameDead');
+        $('.boss3name').removeClass().addClass('boss1NameDead');
+        $('.boss2name').removeClass().addClass('boss1NameDead');
+        $('.boss1name').removeClass().addClass('boss1NameDead');
+        $('.purchasedAfterBoss5').append(player.health + ` player health left`);
+        console.log(player.health);
+        console.log(boss.enemy[4].health);
+    } else if (player.round === 4) {
+        $('.boss4name').removeClass().addClass('boss1NameDead');
+        $('.boss3name').removeClass().addClass('boss1NameDead');
+        $('.boss2name').removeClass().addClass('boss1NameDead');
+        $('.boss1name').removeClass().addClass('boss1NameDead');
+        $('.purchaseAfterBoss5').append(boss.enemy[4].health + ` health left`);
+    } else if (player.round === 3) {
+        $('.boss3name').removeClass().addClass('boss1NameDead');
+        $('.boss2name').removeClass().addClass('boss1NameDead');
+        $('.boss1name').removeClass().addClass('boss1NameDead');
+        $('.purchaseAfterBoss4').append(boss.enemy[3].health + ` health left`);
+    } else if (player.round === 2) {
+        $('.boss2name').removeClass().addClass('boss1NameDead');
+        $('.boss1name').removeClass().addClass('boss1NameDead');
+        $('.purchaseAfterBoss3').append(boss.enemy[2].health + ` health left`);
+        console.log(boss.enemy[1].health);
+        console.log(player.round);
+    } else if (player.round === 1) {
+        $('.boss1name').removeClass().addClass('boss1NameDead');
+        $('.purchaseAfterBoss2').append(boss.enemy[1].health + ` health left`);
+        console.log(boss.enemy[1].health);
+        console.log(player.round);
+    }
+}
+
+//  loop every time it loop through it looks for if had a + in any of those columns or a true it denotes it denotes it.
+
+//  basically if you want to loop over the player purchased and display only the pertinant data( ie in round 2 they bought health and armor, round 3 bought blade and armour, round 4 bought fireball ) how would you record and display just that?  my way involves like 1k lines of code with massive if else if statements abound
+
 changeStage();

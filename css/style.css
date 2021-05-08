@@ -309,3 +309,9 @@ body {
   .leader1Name {
     font-size: 40px;
   }
+  .boss1NameDead {
+    color: black;
+    text-decoration: line-through;
+    -webkit-text-decoration-color: red;
+    text-decoration-color: red;
+  }
