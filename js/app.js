@@ -13,23 +13,60 @@ img3.src = "./images/gameover.gif";
 let img4 = document.createElement("img");
 img4.src = "./images/reloadGame.gif";
 let img5 = document.createElement("img");
-let leaderOne = {
-    name = Kevin,
-    health = '25',
-    attack = '',
-    armor = '',
-    accuracy = '',
-    magic = '',
-    fireball = '',
-    blade = '',
-    round1 = '',
-    round2 = '',
-    round3 = '',
-    round4 = '',
-    bossHealth = '',
 
+let leaderOne = {
+    name: '',
+    health: -200,
+    attack: '',
+    armor: '',
+    accuracy: '',
+    magic: '',
+    round: 0,
+    bossHealth4: '',
+    bossHealth5: '',
+    purchased : [
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+        },
+    ]
 };
-let leaderTwo = {};
+let leaderTwo = {
+    name: '',
+};
 let leaderThree = {};
 let leaderFour = {};
 let leaderFive = {};
@@ -38,6 +75,19 @@ let leaderSeven = {};
 let leaderEight = {};
 let leaderNine = {};
 let leaderTen = {};
+
+let leaderBoard = [
+    leaderOne, 
+    leaderTwo, 
+    leaderThree, 
+    leaderFour, 
+    leaderFive, 
+    leaderSix, 
+    leaderSeven, 
+    leaderEight, 
+    leaderNine, 
+    leaderTen
+]
 img5.src = "./images/1x1.png";
 $playerHealth = $('.playerHealth');
 $storeMessage = $('#storeMessage');
@@ -77,7 +127,7 @@ $purchaseAfterBoss1 = $('.purchaseAfterBoss1');
 class Player {
     constructor(name){
         this.maxHealth = 500;
-        this.health = 500;
+        this.health = 50;
         this.healthPercent = 100;
         this.energy = 100;
         this.armor = 5;
@@ -1176,6 +1226,9 @@ let conditionalLeaderBoardCategories = () => {
     round3BladeBought();
     round4BladeBought();
     bossesKilled();
+    checkVsLeaderBoard();
+    console.log(leaderBoard);
+    
 }
 let round1HealthBought = () => {
     if (player.purchased[0].purchasedHealth > 0){
@@ -1342,8 +1395,76 @@ let bossesKilled = () => {
     }
 }
 
+let checkVsLeaderBoard = () => {
+    if (player.health > leaderBoard[0].health && player.round >= leaderBoard[0].round){
+        saveToLeaderBoardTop();
+    } else if (player.health > leaderBoard[1].health && player.round >= leaderBoard[1].round) {
+        saveToLeaderBoardSecond();
+    } else if (player.health > leaderBoard[2].health && player.round >= leaderBoard[2].round) {
+        saveToLeaderBoardThird();
+    } else if (player.health > leaderBoard[3].health && player.round >= leaderBoard[3].round) {
+        saveToLeaderBoardFourth();
+    } else if (player.health > leaderBoard[4].health && player.round >= leaderBoard[4].round) {
+        saveToLeaderBoardFive();
+    } else if (player.health > leaderBoard[5].health && player.round >= leaderBoard[5].round) {
+        saveToLeaderBoardSix();
+    } else if (player.health > leaderBoard[6].health && player.round >= leaderBoard[6].round) {
+        saveToLeaderBoardSeven();
+    } else if (player.health > leaderBoard[7].health && player.round >= leaderBoard[7].round) {
+        saveToLeaderBoardEight();
+    } else if (player.health > leaderBoard[8].health && player.round >= leaderBoard[8].round) {
+        saveToLeaderBoardNine();
+    } else if (player.health > leaderBoard[9].health && player.round >= leaderBoard[9].round) {
+        saveToLeaderBoardTen(); 
+    } else {
+
+    }
+}
+
+let saveToLeaderBoardTop = () => {
+    leaderBoard[0].name = player.name;
+    leaderBoard[0].health = player.health;
+    leaderBoard[0].health = player.health;
+    leaderBoard[0].attack = player.damage;
+    leaderBoard[0].armor = player.armor;
+    leaderBoard[0].accuracy = player.accuracy;
+    leaderBoard[0].magic = player.magicAccuracy;
+    leaderBoard[0].round = player.round;
+    leaderBoard[0].purchased = player.purchased;
+    leaderBoard[0].bossHealth4 = boss.enemy[3].health;
+    leaderBoard[0].bossHealth5 = boss.enemy[4].health;   
+}
+
+let saveToLeaderBoardSecond = () => {
+    leaderBoard[1].name = player.name;
+    leaderBoard[1].health = player.health;
+    leaderBoard[1].health = player.health;
+    leaderBoard[1].attack = player.damage;
+    leaderBoard[1].armor = player.armor;
+    leaderBoard[1].accuracy = player.accuracy;
+    leaderBoard[1].magic = player.magicAccuracy;
+    leaderBoard[1].round = player.round;
+    leaderBoard[1].purchased = player.purchased;
+    leaderBoard[1].bossHealth4 = boss.enemy[3].health;
+    leaderBoard[1].bossHealth5 = boss.enemy[4].health;   
+}
+
+let saveToLeaderBoardThird = () => {
+    leaderBoard[2].name = player.name;
+    leaderBoard[2].health = player.health;
+    leaderBoard[2].health = player.health;
+    leaderBoard[2].attack = player.damage;
+    leaderBoard[2].armor = player.armor;
+    leaderBoard[2].accuracy = player.accuracy;
+    leaderBoard[2].magic = player.magicAccuracy;
+    leaderBoard[2].round = player.round;
+    leaderBoard[2].purchased = player.purchased;
+    leaderBoard[2].bossHealth4 = boss.enemy[3].health;
+    leaderBoard[2].bossHealth5 = boss.enemy[4].health;   
+}
+
 //  loop every time it loop through it looks for if had a + in any of those columns or a true it denotes it denotes it.
 
 //  basically if you want to loop over the player purchased and display only the pertinant data( ie in round 2 they bought health and armor, round 3 bought blade and armour, round 4 bought fireball ) how would you record and display just that?  my way involves like 1k lines of code with massive if else if statements abound
-
+console.log(leaderBoard)
 changeStage();
