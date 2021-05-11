@@ -6,7 +6,7 @@
 ---
 ## Please adjust Zoom on your browser!
 
-### The game is ideally played in the Chrome Browser with zoom set to 100% maybe 125 if you have a large screen.  Zooming in or out can greatly alter the animations so try to adjust zoom so the characters and screen are roughly spaced out like the screen below
+### The game is ideally played in the <b>Chrome Browser</b> with zoom set to 100% maybe 125 if you have a large screen.  Zooming in or out can greatly alter the animations so try to adjust zoom so the characters and screen are roughly spaced out like the screen below
 <img src="./images/screen2.jpg" width="80%" >
 
 ## Recent Updates:
