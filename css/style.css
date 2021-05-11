@@ -315,3 +315,14 @@ body {
     -webkit-text-decoration-color: black;
     text-decoration-color: black;
   }
+  .leaderClose {
+    color: black;
+    background-color: white;    
+    box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
+    -webkit-box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
+    -moz-box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
+  }
+  .leaderClose:hover {
+    background-color: gray;
+    color: white;
+  }
