@@ -1,11 +1,10 @@
-////////////////////////////////////
-///  kevinmathews.cs@gmail.com   ///
-////////////////////////////////////
-let currentEnemy = 0;
-let reportedEnemy = 1;
+// ////////////////////////////////////
+// ///  kevinmathews.cs@gmail.com   ///
+// ////////////////////////////////////
 let bladeCounter = 0;
 let lightningBoltCounter = 2;
 let fireBallCounter = 0;
+let newEntry = '';
 let img1 = document.createElement("img");
 img1.src = "./images/stageCleared.gif"+"?a="+Math.random();
 let img2 = document.createElement("img");
@@ -13,11 +12,249 @@ img2.src = "./images/victory.gif";
 let img3 = document.createElement("img");
 img3.src = "./images/gameover.gif";
 let img4 = document.createElement("img");
-img4.src = "./images/reloadGame.gif";
+img4.src = "./images/reloadGame.gif"+"?a="+Math.random();
 let img5 = document.createElement("img");
+
+
+// create initial static leader board
+let leaderOne = {
+    name: 'Kevin',
+    health: 60,
+    attack: '26',
+    armor: '2',
+    accuracy: '80',
+    magic: '65',
+    round: 4,
+    bossHealth1: 0,
+    bossHealth2: 0,
+    bossHealth3: 0,
+    bossHealth4: 0,
+    bossHealth5: 0,
+    currentBossHealth: 0,
+    purchased : [
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 2,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 1,
+            'learnedFireball': 0,
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 4,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 1,
+        },
+    ]
+};
+let leaderTwo = {
+    name: 'Timmeh',
+    health: 0,
+    attack: '20',
+    armor: '2',
+    accuracy: '80',
+    magic: '65',
+    round: 4,
+    bossHealth1: 0,
+    bossHealth2: 0,
+    bossHealth3: 0,
+    bossHealth4: 0,
+    bossHealth5: 30,
+    currentBossHealth: 30,
+    purchased : [
+        {
+            'purchasedHealth': 2,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+
+        },
+        {
+            'purchasedHealth': 3,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+        },
+        {
+            'purchasedHealth': 4,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 5,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+        },
+    ]
+};
+let leaderThree = {
+    name: 'Susan',
+    health: 0,
+    attack: '20',
+    armor: '2',
+    accuracy: '80',
+    magic: '65',
+    round: 3,
+    bossHealth1: 0,
+    bossHealth2: 0,
+    bossHealth3: 0,
+    bossHealth4: 50,
+    bossHealth5: 200,
+    currentBossHealth: 50,
+    purchased : [
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 1,
+            'purchasedArmor': 1,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 1,
+            'purchasedArmor': 2,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 1,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 1,
+            'learnedFireball': 0,
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': 0,
+            'learnedFireball': 0,
+        },
+    ]
+};
+let leaderFour = {
+    name: 'johnny',
+    round: 1,
+    bossHealth1: -10,
+    bossHealth2: 86,
+    currentBossHealth: 86,
+};
+let leaderFive = {
+    name: 'Jennifer',
+    round: 1,
+    bossHealth1: -10,
+    bossHealth2: 87,
+    currentBossHealth: 87,
+};
+let leaderSix = {
+    name: 'Timmeh',
+    round: 1,
+    bossHealth1: -10,
+    bossHealth2: 88,
+    currentBossHealth: 88,
+};
+let leaderSeven = {
+    name: 'Luke',
+    round: 1,
+    bossHealth1: -10,
+    bossHealth2: 89,
+    currentBossHealth: 89,
+};
+let leaderEight = {
+    name: 'Sky',
+    round: 1,
+    bossHealth1: -10,
+    bossHealth2: 90,
+    currentBossHealth: 90,
+};
+let leaderNine = {
+    name: 'Tony',
+    round: 1,
+    bossHealth1: -10,
+    bossHealth2: 91,
+    currentBossHealth: 91,
+};
+let leaderTen = {
+    name: 'Lawrence',
+    round: 1,
+    bossHealth1: -10,
+    bossHealth2: 92,
+    currentBossHealth: 92,
+};
+
+let leaderBoard = [
+    leaderOne, 
+    leaderTwo, 
+    leaderThree, 
+    leaderFour, 
+    leaderFive, 
+    leaderSix, 
+    leaderSeven, 
+    leaderEight, 
+    leaderNine, 
+    leaderTen,
+];
+
+//  Check if localStorage for leader board exists if not creates one
+if (localStorage.getItem(leaderBoard) === null) {
+    localStorage.setItem(leaderBoard, JSON.stringify(leaderBoard));
+    let retrievedObject = localStorage.getItem(leaderBoard);
+    leaderBoard = JSON.parse(retrievedObject);
+console.log('made it')
+} else {
+    let retrievedObject = localStorage.getItem(leaderBoard);
+    leaderBoard = JSON.parse(retrievedObject);
+    console.log('got it')
+}
+
 img5.src = "./images/1x1.png";
-
-
 $playerHealth = $('.playerHealth');
 $storeMessage = $('#storeMessage');
 $playerGold = $('.playerGold');
@@ -49,6 +286,9 @@ $storeModalText = $('#modal-footer');
 $lightningButton = $('#lightningButton');
 $fireBallButton = $('#fireBallButton');
 $magicBladeButton = $('#magicBladeButton');
+$purchasedRound1Health = $('.purchasedRound1Health');
+$purchasedRound2Health = $('.purchasedRound2Health');
+$purchaseAfterBoss1 = $('.purchaseAfterBoss1');
 // Define the Player Class
 class Player {
     constructor(name){
@@ -73,7 +313,54 @@ class Player {
         this.magicBladeLearned = false;
         this.fireBallLearned = false;
         this.damageJustDone = null;
-    }
+        this.round = 0;
+        this.bossHealth1= 75,
+        this.bossHealth2= 100,
+        this.bossHealth3= 125,
+        this.bossHealth4= 150,
+        this.bossHealth5= 200,
+        this.currentBossHealth = 75,
+        this.purchased = [
+            {
+                'purchasedHealth': 0,
+                'purchasedAttack': 0,
+                'purchasedArmor': 0,
+                'purchasedAccuracy': 0,
+                'purchasedMagic': 0,
+                'learnedBlade': 0,
+                'learnedFireball': 0,
+
+            },
+            {
+                'purchasedHealth': 0,
+                'purchasedAttack': 0,
+                'purchasedArmor': 0,
+                'purchasedAccuracy': 0,
+                'purchasedMagic': 0,
+                'learnedBlade': 0,
+                'learnedFireball': 0,
+            },
+            {
+                'purchasedHealth': 0,
+                'purchasedAttack': 0,
+                'purchasedArmor': 0,
+                'purchasedAccuracy': 0,
+                'purchasedMagic': 0,
+                'learnedBlade': 0,
+                'learnedFireball': 0,
+            },
+            {
+                'purchasedHealth': 0,
+                'purchasedAttack': 0,
+                'purchasedArmor': 0,
+                'purchasedAccuracy': 0,
+                'purchasedMagic': 0,
+                'learnedBlade': 0,
+                'learnedFireball': 0,
+            },
+        ]
+    };
+    
 //  method to display floating combat text of damage player does over boss    
     showDamageDone() {
         setTimeout(function(){ 
@@ -280,11 +567,16 @@ class Player {
         $bossAccuracy.text(boss.enemy[currentEnemy].accuracy);
         $bossName.empty();
         $bossName.text(boss.enemy[currentEnemy].name);
+        $purchasedRound1Health.empty();
+        $purchasedRound1Health.text(player.purchased[0].purchasedHealth);
+        $purchasedRound2Health.empty();
+        $purchasedRound2Health.text(player.purchased[1].purchasedHealth);
         bladeCounterFunction();
         lightningBoltCounterFunction();
         fireBallCounterFunction();
         }
     }
+
 // Define Enemy Class
 class Enemy {
     constructor(){
@@ -441,7 +733,6 @@ enemy2Attack(){
         let damageDone = this.damage - player.armor;
         player.health -= damageDone;
         this.damageJustDone = damageDone;
-        
         checkPlayerDead();
         setTimeout(function() {
             $enemyPicture.attr('src', './images/enemy1idle.gif');
@@ -521,16 +812,30 @@ boss.createEnemies(2);
 boss.createEnemies(3);
 boss.createEnemies(4);
 boss.createEnemies(5);
+let currentEnemy = 0;
+let reportedEnemy = 1;
 
 //  function to see if player has been killed
 let checkPlayerDead = function() {
     if (player.health <= 0){
         $playerPicture.attr('src', './images/player1death2.gif');
+        player.bossHealth1 = boss.enemy[0].health;
+        player.bossHealth2 = boss.enemy[1].health;
+        player.bossHealth3 = boss.enemy[2].health;
+        player.bossHealth4 = boss.enemy[3].health;
+        player.bossHealth5 = boss.enemy[4].health;
+        player.currentBossHealth = boss.enemy[currentEnemy].health;
+        leaderBoardOneDisplay();
         defeat();
+
+        
+        player.displayStats();
         setTimeout(
             function() {
-                resetGame();
+                $("#leaderModal").modal('show');
+                // resetGame();
             }, 5900);
+            
     } else {
         setTimeout(function() {
             $playerPicture.attr('src', './images/player1idle.gif');
@@ -547,6 +852,11 @@ let checkIfDead = function(){
         setTimeout(function() {
             victory();
         }, 1500);
+        setTimeout(
+            function() {
+                $("#leaderModal").modal('show');
+                // resetGame();
+            }, 5900);
         
         }else if(boss.enemy[currentEnemy].health <= 0 && currentEnemy == 3){
             setTimeout(function() {
@@ -554,6 +864,7 @@ let checkIfDead = function(){
             }, 500);
             currentEnemy ++;
             reportedEnemy ++;
+            player.round ++;
             player.gold += 50;
             player.displayStats();
             stageCleared();
@@ -568,6 +879,7 @@ let checkIfDead = function(){
                     }, 500);
                     currentEnemy ++;
                     reportedEnemy ++;
+                    player.round ++;
                     player.gold += 40;
                     player.displayStats();
                     stageCleared();
@@ -581,6 +893,7 @@ let checkIfDead = function(){
                             $enemyPicture.attr('src', './images/enemy2death.gif');}, 500);
                             currentEnemy ++;
                             reportedEnemy ++;
+                            player.round ++;
                             player.gold += 30;
                             player.displayStats();
                             stageCleared();
@@ -593,6 +906,7 @@ let checkIfDead = function(){
                                 $enemyPicture.attr('src', './images/enemy1dead.gif');}, 500);
                                 currentEnemy ++;
                                 reportedEnemy ++;
+                                player.round ++;
                                 player.gold += 20;
                                 player.displayStats();
                                 stageCleared();
@@ -651,6 +965,7 @@ $('#buyHealthUpgrade').on('click', () => {
             player.health += 10;
             player.gold -= 10;
             player.displayStats();
+            healthPurchaseHistory();
             $('#shopText')
                 .text(`${player.name} Has just regained 10 health!`);
             }else {
@@ -663,10 +978,9 @@ $('#buyThrowingBladeUpgrade').on('click', () => {
     if (player.gold >= 30 && player.magicBladeLearned == false){
         player.gold -= 30;
         player.magicBladeLearned = true;
-        player
-            .displayStats();
-        bladeCounter = 1;
         player.displayStats();
+        bladePurchaseHistory();
+        bladeCounter = 1;
         $magicBladeButton.css('visibility', 'visible');
         $('#shopText')
             .text(`${player.name} has just learned the skill Throwing Blade!`);
@@ -688,6 +1002,7 @@ $('#buyFireBallUpgrade').on('click', () => {
         fireBallCounter = 3;
         $fireBallButton.css('visibility','visible');
         player.displayStats();
+        fireballPurchaseHistory();
         $('#shopText')
             .text(`${player.name} has just learned the spell Fireball!`);
         }else if(player.gold >= 50 && player.fireBallLearned == true){
@@ -706,6 +1021,7 @@ $('#buyAccuracyUpgrade').on('click', () => {
         player.accuracy += 2;
         player.gold -= 10;
         player.displayStats();
+        accuracyPurchaseHistory();
         $('#shopText').text(`${player.name} has improved their Accuracy by 2 points!!`);
         }else if(player.gold >= 10 && player.accuracy >= 100){
             $('#shopText').text(`Sorry ${player.name}, but your Accuracy is already maxed!`);
@@ -719,6 +1035,7 @@ $('#buyArmorUpgrade').on('click', () => {
         player.armor += 3;
         player.gold -= 10;
         player.displayStats();
+        armorPurchaseHistory();
         $('#shopText').text(`${player.name} has just gained 3 armor!`);
             }else {
                 $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold for an Armor upgrade`);
@@ -730,6 +1047,7 @@ $('#buyAttackUpgrade').on('click', () => {
         player.damage += 3;
         player.gold -= 10;
         player.displayStats();
+        attackPurchaseHistory();
         $('#shopText').text(`${player.name} has just trained their attack skill gaining 3 points!`);
             }else {
                 $('#shopText').text(`Sorry ${player.name}, but you don\'t have enough Gold to train your Attack skill`);
@@ -740,8 +1058,8 @@ $('#buyMagicAccuracyUpgrade').on('click', () => {
     if (player.gold >= 10 && player.magicAccuracy <= 98){
         player.magicAccuracy += 2;
         player.gold -= 10;
-        player
-            .displayStats();
+        player.displayStats();
+        magicPurchaseHistory();
         $('#shopText')
             .text(`${player.name} has improved their Magic Accuracy by 2 points!`);
         }else if(player.gold >= 10 && player.magicAccuracy >= 100) {
@@ -760,7 +1078,14 @@ $('#buyDualWield').on('click', () => {
         player.displayStats();
         }else {
             $storeMessage.text(`Sorry you don\'t have enough Gold to buy the Dual Wield skill`);
-}});        
+}});
+//  Function to record what round items were purchased in
+
+
+
+
+///////////////////////////////////////
+
 //  starts basic player attack
 $('#attackButton').on('click', ()=>{
     player.attack()
@@ -814,6 +1139,12 @@ let stageCleared = function() {
 }
 //  victory modal that pops up on game win
 let victory = function() {
+    player.bossHealth1 = boss.enemy[0].health;
+    player.bossHealth2 = boss.enemy[1].health;
+    player.bossHealth3 = boss.enemy[2].health;
+    player.bossHealth4 = boss.enemy[3].health;
+    player.bossHealth5 = boss.enemy[4].health;
+    leaderBoardOneDisplay();
     $('#myModal5').modal('show');
     $('.modal-content')
         .css('background-color', 'transparent');
@@ -828,6 +1159,7 @@ let victory = function() {
 }
 // defeat modal that pops up on game loss
 let defeat = function() {
+
     $('#myModal6').modal('show');
     $('.modal-content').css('background-color', 'transparent');
     $('#modal-body6').append(img3);
@@ -857,10 +1189,57 @@ let resetGame = function() {
     player.health = 500;
     player.accuracy = 80;
     player.armor = 5;
+    player.damage = 20;
     player.gold = 0;
     player.magicAccuracy = 65;
     player.magicBladeLearned = false;
     player.fireBallLearned = false;
+    player.round = 0;
+    player.bossHealth1= 75,
+    player.bossHealth2= 100,
+    player.bossHealth3= 125,
+    player.bossHealth4= 150,
+    player.bossHealth5= 200,
+    player.currentBossHealth = 75,
+    player.purchased = [
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': false,
+            'learnedFireball': false,
+
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': false,
+            'learnedFireball': false,
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': false,
+            'learnedFireball': false,
+        },
+        {
+            'purchasedHealth': 0,
+            'purchasedAttack': 0,
+            'purchasedArmor': 0,
+            'purchasedAccuracy': 0,
+            'purchasedMagic': 0,
+            'learnedBlade': false,
+            'learnedFireball': false,
+        },
+    ]
     fireBallCounter = 0;
     lightningBoltCounter = 3;
     bladeCounter = 0;
@@ -884,6 +1263,9 @@ $('.resetGameButton').on('click', () => {
         resetGame();
     }, 5900);
 });   
+
+
+// $("#myModal").modal('show');
 // function to apply cooldown timer to Throwing Blade
 let bladeCounterFunction = function () {
     if(bladeCounter >= 1 && player.magicBladeLearned == true){
@@ -919,4 +1301,804 @@ let fireBallCounterFunction = function () {
                                     .css('pointer-events', 'none');
     }
 }
+//  functions to track round purchases were made
+let healthPurchaseHistory = () => {
+if (player.round === 1) {
+    player.purchased[0].purchasedHealth ++ ;
+}   else if (player.round === 2 ) {
+    player.purchased[1].purchasedHealth ++ ;
+} else if (player.round === 3) {
+    player.purchased[2].purchasedHealth ++ ;
+} else if (player.round === 4) {    
+    player.purchased[3].purchasedHealth ++ ;
+} else {
+}};
+let attackPurchaseHistory = () => {
+    if (player.round === 1) {
+        player.purchased[0].purchasedAttack ++ ;
+    }   else if (player.round === 2 ) {
+        player.purchased[1].purchasedAttack ++ ;
+    } else if (player.round === 3) {
+        player.purchased[2].purchasedAttack ++ ;
+    } else if (player.round === 4) {    
+        player.purchased[3].purchasedAttack ++ ;
+    } else {
+    }};
+let armorPurchaseHistory = () => {
+    if (player.round === 1) {
+        player.purchased[0].purchasedArmor ++ ;
+    }   else if (player.round === 2 ) {
+        player.purchased[1].purchasedArmor ++ ;
+    } else if (player.round === 3) {
+        player.purchased[2].purchasedArmor ++ ;
+    } else if (player.round === 4) {    
+        player.purchased[3].purchasedArmor ++ ;
+    } else {
+    }};
+let accuracyPurchaseHistory = () => {
+    if (player.round === 1) {
+        player.purchased[0].purchasedAccuracy ++ ;
+    }   else if (player.round === 2 ) {
+        player.purchased[1].purchasedAccuracy ++ ;
+    } else if (player.round === 3) {
+        player.purchased[2].purchasedAccuracy ++ ;
+    } else if (player.round === 4) {    
+        player.purchased[3].purchasedAccuracy ++ ;
+    } else {
+    }};
+let magicPurchaseHistory = () => {
+    if (player.round === 1) {
+        player.purchased[0].purchasedMagic ++ ;
+    }   else if (player.round === 2 ) {
+        player.purchased[1].purchasedMagic ++ ;
+    } else if (player.round === 3) {
+        player.purchased[2].purchasedMagic ++ ;
+    } else if (player.round === 4) {    
+        player.purchased[3].purchasedMagic ++ ;
+    } else {
+    }};
+let fireballPurchaseHistory = () => {
+    if (player.round === 1) {
+        player.purchased[0].learnedFireball ++;
+    }   else if (player.round === 2 ) {
+        player.purchased[1].learnedFireball ++;
+    } else if (player.round === 3) {
+        player.purchased[2].learnedFireball ++;
+    } else if (player.round === 4) {    
+        player.purchased[3].learnedFireball ++;
+    } else {
+    }};
+let bladePurchaseHistory = () => {
+    if (player.round === 1) {
+        player.purchased[0].learnedBlade ++;
+    }   else if (player.round === 2 ) {
+        player.purchased[1].learnedBlade ++;
+    } else if (player.round === 3) {
+        player.purchased[2].learnedBlade ++;
+    } else if (player.round === 4) {    
+        player.purchased[3].learnedBlade ++;
+    } else {
+    }};
+
+    //  Functions to set leader board spot 1 name and items purchased each round
+let firstPositionName = ()=> {
+    $('.firstPositionName').append(leaderBoard[0].name);
+}
+let round1HealthBought = () => {
+    if (leaderBoard[0].purchased[0].purchasedHealth > 0){
+    $('.leaderOnePurchaseAfterBoss1').append(`<img src='./images/heart3.png' />` + 'x' + leaderBoard[0].purchased[0].purchasedHealth + '<br />');
+    }
+}
+let round2HealthBought = () => {
+    if (leaderBoard[0].purchased[1].purchasedHealth > 0){
+    $('.leaderOnePurchaseAfterBoss2').append(`<img src='./images/heart3.png' />` + 'x' + leaderBoard[0].purchased[1].purchasedHealth + '<br />');
+    }
+}
+let round3HealthBought = () => {
+    if (leaderBoard[0].purchased[2].purchasedHealth > 0){
+        $('.leaderOnePurchaseAfterBoss3').append(`<img src='./images/heart3.png' />` + 'x' + leaderBoard[0].purchased[2].purchasedHealth + '<br />');
+    }
+}
+let round4HealthBought = () => {
+    if (leaderBoard[0].purchased[3].purchasedHealth > 0){
+        $('.leaderOnePurchaseAfterBoss4').append(`<img src='./images/heart3.png' />` + 'x' + leaderBoard[0].purchased[3].purchasedHealth + '<br />');
+    }
+}
+let round1AttackBought = () => {
+    if (leaderBoard[0].purchased[0].purchasedAttack > 0){
+        $('.leaderOnePurchaseAfterBoss1').append(`<img src='./images/attackicon.png' />` + 'x' + leaderBoard[0].purchased[0].purchasedAttack + '<br />');
+    }
+}
+let round2AttackBought = () => {
+    if (leaderBoard[0].purchased[1].purchasedAttack > 0){
+        $('.leaderOnePurchaseAfterBoss2').append(`<img src='./images/attackicon.png' />` + 'x' + leaderBoard[0].purchased[1].purchasedAttack + '<br />');
+    }
+}
+let round3AttackBought = () => {
+    if (leaderBoard[0].purchased[2].purchasedAttack > 0){
+        $('.leaderOnePurchaseAfterBoss3').append(`<img src='./images/attackicon.png' />` + 'x' + leaderBoard[0].purchased[2].purchasedAttack + '<br />');
+    }
+}
+let round4AttackBought = () => {
+    if (leaderBoard[0].purchased[3].purchasedAttack > 0){
+        $('.leaderOnePurchaseAfterBoss4').append(`<img src='./images/attackicon.png' />` + 'x' + leaderBoard[0].purchased[3].purchasedAttack + '<br />');
+    }
+}
+let round1ArmorBought = () => {
+    if (leaderBoard[0].purchased[0].purchasedArmor > 0){
+        $('.leaderOnePurchaseAfterBoss1').append(`<img src='./images/armor.png' />` + 'x' + leaderBoard[0].purchased[0].purchasedArmor + '<br />');
+    }
+}
+let round2ArmorBought = () => {
+    if (leaderBoard[0].purchased[1].purchasedArmor > 0){
+        $('.leaderOnePurchaseAfterBoss2').append(`<img src='./images/armor.png' />` + 'x' + leaderBoard[0].purchased[1].purchasedArmor + '<br />');
+    }
+}
+let round3ArmorBought = () => {
+    if (leaderBoard[0].purchased[2].purchasedArmor > 0){
+        $('.leaderOnePurchaseAfterBoss3').append(`<img src='./images/armor.png' />` + 'x' + leaderBoard[0].purchased[2].purchasedArmor + '<br />');
+    }
+}
+let round4ArmorBought = () => {
+    if (leaderBoard[0].purchased[3].purchasedArmor > 0){
+        $('.leaderOnePurchaseAfterBoss4').append(`<img src='./images/armor.png' />` + 'x' + leaderBoard[0].purchased[3].purchasedArmor + '<br />');
+    }
+}
+let round1AccuracyBought = () => {
+    if (leaderBoard[0].purchased[0].purchasedAccuracy > 0){
+        $('.leaderOnePurchaseAfterBoss1').append(`<img src='./images/accuracy.png' />` + 'x' + leaderBoard[0].purchased[0].purchasedAccuracy + '<br />');
+    }
+}
+let round2AccuracyBought = () => {
+    if (leaderBoard[0].purchased[1].purchasedAccuracy > 0){
+        $('.leaderOnePurchaseAfterBoss2').append(`<img src='./images/accuracy.png' />` + 'x' + leaderBoard[0].purchased[1].purchasedAccuracy + '<br />');
+    }
+}
+let round3AccuracyBought = () => {
+    if (leaderBoard[0].purchased[2].purchasedAccuracy > 0){
+        $('.leaderOnePurchaseAfterBoss3').append(`<img src='./images/accuracy.png' />` + 'x' + leaderBoard[0].purchased[2].purchasedAccuracy + '<br />');
+    }
+}
+let round4AccuracyBought = () => {
+    if (leaderBoard[0].purchased[3].purchasedAccuracy > 0){
+        $('.leaderOnePurchaseAfterBoss4').append(`<img src='./images/accuracy.png' />` + 'x' + leaderBoard[0].purchased[3].purchasedAccuracy + '<br />');
+    }
+}
+let round1MagicBought = () => {
+    if (leaderBoard[0].purchased[0].purchasedMagic > 0){
+        $('.leaderOnePurchaseAfterBoss1').append(`<img src='./images/magicaccuracy.png' />` + 'x' + leaderBoard[0].purchased[0].purchasedMagic + '<br />');
+    }
+}
+let round2MagicBought = () => {
+    if (leaderBoard[0].purchased[1].purchasedMagic > 0){
+        $('.leaderOnePurchaseAfterBoss2').append(`<img src='./images/magicaccuracy.png' />` + 'x' + leaderBoard[0].purchased[1].purchasedMagic + '<br />');
+    }
+}
+let round3MagicBought = () => {
+    if (leaderBoard[0].purchased[2].purchasedMagic > 0){
+        $('.leaderOnePurchaseAfterBoss3').append(`<img src='./images/magicaccuracy.png' />` + 'x' + leaderBoard[0].purchased[2].purchasedMagic + '<br />');
+    }
+}
+let round4MagicBought = () => {
+    if (leaderBoard[0].purchased[3].purchasedMagic > 0){
+        $('.leaderOnePurchaseAfterBoss4').append(`<img src='./images/magicaccuracy.png' />` + 'x' + leaderBoard[0].purchased[3].purchasedMagic + '<br />');
+    }
+}
+let round2FireballBought = () => {
+    if (leaderBoard[0].purchased[1].learnedFireball > 0){
+        $('.leaderOnePurchaseAfterBoss2').append(`<img src='./images/fireball.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round3FireballBought = () => {
+    if (leaderBoard[0].purchased[2].learnedFireball > 0){
+        $('.leaderOnePurchaseAfterBoss2').append(`<img src='./images/fireball.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round4FireballBought = () => {
+    if (leaderBoard[0].purchased[3].learnedFireball > 0){
+        $('.leaderOnePurchaseAfterBoss4').append(`<img src='./images/fireball.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round2BladeBought = () => {
+    if (leaderBoard[0].purchased[1].learnedBlade > 0){
+        $('.leaderOnePurchaseAfterBoss2').append(`<img src='./images/blade.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round3BladeBought = () => {
+    if (leaderBoard[0].purchased[2].learnedBlade > 0){
+        $('.leaderOnePurchaseAfterBoss3').append(`<img src='./images/blade.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round4BladeBought = () => {
+    if (leaderBoard[0].purchased[3].learnedBlade > 0){
+        $('.leaderOnePurchaseAfterBoss4').append(`<img src='./images/blade.png' />`  + '<br />');
+    }
+}
+//  leader board second place position stats displayed
+let secondPositionName = ()=> {
+    $('.secondPositionName').append(leaderBoard[1].name);
+}
+let round1HealthBought2 = () => {
+    if (leaderBoard[1].purchased[0].purchasedHealth > 0){
+    $('.leaderTwoPurchaseAfterBoss1').append(`<img src='./images/heart3.png' />` + 'x' + leaderBoard[1].purchased[0].purchasedHealth + '<br />');
+    }
+}
+let round2HealthBought2 = () => {
+    if (leaderBoard[1].purchased[1].purchasedHealth > 0){
+    $('.leaderTwoPurchaseAfterBoss2').append(`<img src='./images/heart3.png' />` + 'x' + leaderBoard[1].purchased[1].purchasedHealth + '<br />');
+    }
+}
+let round3HealthBought2 = () => {
+    if (leaderBoard[1].purchased[2].purchasedHealth > 0){
+        $('.leaderTwoPurchaseAfterBoss3').append(`<img src='./images/heart3.png' />` + 'x' + leaderBoard[1].purchased[2].purchasedHealth + '<br />');
+    }
+}
+let round4HealthBought2 = () => {
+    if (leaderBoard[1].purchased[3].purchasedHealth > 0){
+        $('.leaderTwoPurchaseAfterBoss4').append(`<img src='./images/heart3.png' />` + 'x' + leaderBoard[1].purchased[3].purchasedHealth + '<br />');
+    }
+}
+let round1AttackBought2 = () => {
+    if (leaderBoard[1].purchased[0].purchasedAttack > 0){
+        $('.leaderTwoPurchaseAfterBoss1').append(`<img src='./images/attackicon.png' />` + 'x' + leaderBoard[1].purchased[0].purchasedAttack + '<br />');
+    }
+}
+let round2AttackBought2 = () => {
+    if (leaderBoard[1].purchased[1].purchasedAttack > 0){
+        $('.leaderTwoPurchaseAfterBoss2').append(`<img src='./images/attackicon.png' />` + 'x' + leaderBoard[1].purchased[1].purchasedAttack + '<br />');
+    }
+}
+let round3AttackBought2 = () => {
+    if (leaderBoard[1].purchased[2].purchasedAttack > 0){
+        $('.leaderTwoPurchaseAfterBoss3').append(`<img src='./images/attackicon.png' />` + 'x' + leaderBoard[1].purchased[2].purchasedAttack + '<br />');
+    }
+}
+let round4AttackBought2 = () => {
+    if (leaderBoard[1].purchased[3].purchasedAttack > 0){
+        $('.leaderTwoPurchaseAfterBoss4').append(`<img src='./images/attackicon.png' />` + 'x' + leaderBoard[1].purchased[3].purchasedAttack + '<br />');
+    }
+}
+let round1ArmorBought2 = () => {
+    if (leaderBoard[1].purchased[0].purchasedArmor > 0){
+        $('.leaderTwoPurchaseAfterBoss1').append(`<img src='./images/armor.png' />` + 'x' + leaderBoard[1].purchased[0].purchasedArmor + '<br />');
+    }
+}
+let round2ArmorBought2 = () => {
+    if (leaderBoard[1].purchased[1].purchasedArmor > 0){
+        $('.leaderTwoPurchaseAfterBoss2').append(`<img src='./images/armor.png' />` + 'x' + leaderBoard[1].purchased[1].purchasedArmor + '<br />');
+    }
+}
+let round3ArmorBought2 = () => {
+    if (leaderBoard[1].purchased[2].purchasedArmor > 0){
+        $('.leaderTwoPurchaseAfterBoss3').append(`<img src='./images/armor.png' />` + 'x' + leaderBoard[1].purchased[2].purchasedArmor + '<br />');
+    }
+}
+let round4ArmorBought2 = () => {
+    if (leaderBoard[1].purchased[3].purchasedArmor > 0){
+        $('.leaderTwoPurchaseAfterBoss4').append(`<img src='./images/armor.png' />` + 'x' + leaderBoard[1].purchased[3].purchasedArmor + '<br />');
+    }
+}
+let round1AccuracyBought2 = () => {
+    if (leaderBoard[1].purchased[0].purchasedAccuracy > 0){
+        $('.leaderTwoPurchaseAfterBoss1').append(`<img src='./images/accuracy.png' />` + 'x' + leaderBoard[1].purchased[0].purchasedAccuracy + '<br />');
+    }
+}
+let round2AccuracyBought2 = () => {
+    if (leaderBoard[1].purchased[1].purchasedAccuracy > 0){
+        $('.leaderTwoPurchaseAfterBoss2').append(`<img src='./images/accuracy.png' />` + 'x' + leaderBoard[1].purchased[1].purchasedAccuracy + '<br />');
+    }
+}
+let round3AccuracyBought2 = () => {
+    if (leaderBoard[1].purchased[2].purchasedAccuracy > 0){
+        $('.leaderTwoPurchaseAfterBoss3').append(`<img src='./images/accuracy.png' />` + 'x' + leaderBoard[1].purchased[2].purchasedAccuracy + '<br />');
+    }
+}
+let round4AccuracyBought2 = () => {
+    if (leaderBoard[1].purchased[3].purchasedAccuracy > 0){
+        $('.leaderTwoPurchaseAfterBoss4').append(`<img src='./images/accuracy.png' />` + 'x' + leaderBoard[1].purchased[3].purchasedAccuracy + '<br />');
+    }
+}
+let round1MagicBought2 = () => {
+    if (leaderBoard[1].purchased[0].purchasedMagic > 0){
+        $('.leaderTwoPurchaseAfterBoss1').append(`<img src='./images/magicaccuracy.png' />` + 'x' + leaderBoard[1].purchased[0].purchasedMagic + '<br />');
+    }
+}
+let round2MagicBought2 = () => {
+    if (leaderBoard[1].purchased[1].purchasedMagic > 0){
+        $('.leaderTwoPurchaseAfterBoss2').append(`<img src='./images/magicaccuracy.png' />` + 'x' + leaderBoard[1].purchased[1].purchasedMagic + '<br />');
+    }
+}
+let round3MagicBought2 = () => {
+    if (leaderBoard[1].purchased[2].purchasedMagic > 0){
+        $('.leaderTwoPurchaseAfterBoss3').append(`<img src='./images/magicaccuracy.png' />` + 'x' + leaderBoard[1].purchased[2].purchasedMagic + '<br />');
+    }
+}
+let round4MagicBought2 = () => {
+    if (leaderBoard[1].purchased[3].purchasedMagic > 0){
+        $('.leaderTwoPurchaseAfterBoss4').append(`<img src='./images/magicaccuracy.png' />` + 'x' + leaderBoard[1].purchased[3].purchasedMagic + '<br />');
+    }
+}
+let round2FireballBought2 = () => {
+    if (leaderBoard[1].purchased[1].learnedFireball > 0){
+        $('.leaderTwoPurchaseAfterBoss2').append(`<img src='./images/fireball.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round3FireballBought2 = () => {
+    if (leaderBoard[1].purchased[2].learnedFireball > 0){
+        $('.leaderTwoPurchaseAfterBoss2').append(`<img src='./images/fireball.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round4FireballBought2 = () => {
+    if (leaderBoard[1].purchased[3].learnedFireball > 0){
+        $('.leaderTwoPurchaseAfterBoss4').append(`<img src='./images/fireball.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round2BladeBought2 = () => {
+    if (leaderBoard[1].purchased[1].learnedBlade > 0){
+        $('.leaderTwoPurchaseAfterBoss2').append(`<img src='./images/blade.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round3BladeBought2 = () => {
+    if (leaderBoard[1].purchased[2].learnedBlade > 0){
+        $('.leaderTwoPurchaseAfterBoss3').append(`<img src='./images/blade.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round4BladeBought2 = () => {
+    if (leaderBoard[1].purchased[3].learnedBlade > 0){
+        $('.leaderTwoPurchaseAfterBoss4').append(`<img src='./images/blade.png' />`  + '<br />');
+    }
+}
+
+//  third leader board position's stats displayed
+let thirdPositionName = ()=> {
+    $('.thirdPositionName').append(leaderBoard[2].name);
+}
+let round1HealthBought3 = () => {
+    if (leaderBoard[2].purchased[0].purchasedHealth > 0){
+    $('.leaderThreePurchaseAfterBoss1').append(`<img src='./images/heart3.png' />` + 'x' + leaderBoard[2].purchased[0].purchasedHealth + '<br />');
+    }
+}
+let round2HealthBought3 = () => {
+    if (leaderBoard[2].purchased[1].purchasedHealth > 0){
+    $('.leaderThreePurchaseAfterBoss2').append(`<img src='./images/heart3.png' />` + 'x' + leaderBoard[2].purchased[1].purchasedHealth + '<br />');
+    }
+}
+let round3HealthBought3 = () => {
+    if (leaderBoard[2].purchased[2].purchasedHealth > 0){
+        $('.leaderThreePurchaseAfterBoss3').append(`<img src='./images/heart3.png' />` + 'x' + leaderBoard[2].purchased[2].purchasedHealth + '<br />');
+    }
+}
+let round4HealthBought3 = () => {
+    if (leaderBoard[2].purchased[3].purchasedHealth > 0){
+        $('.leaderThreePurchaseAfterBoss4').append(`<img src='./images/heart3.png' />` + 'x' + leaderBoard[2].purchased[3].purchasedHealth + '<br />');
+    }
+}
+let round1AttackBought3 = () => {
+    if (leaderBoard[2].purchased[0].purchasedAttack > 0){
+        $('.leaderThreePurchaseAfterBoss1').append(`<img src='./images/attackicon.png' />` + 'x' + leaderBoard[2].purchased[0].purchasedAttack + '<br />');
+    }
+}
+let round2AttackBought3 = () => {
+    if (leaderBoard[2].purchased[1].purchasedAttack > 0){
+        $('.leaderThreePurchaseAfterBoss2').append(`<img src='./images/attackicon.png' />` + 'x' + leaderBoard[2].purchased[1].purchasedAttack + '<br />');
+    }
+}
+let round3AttackBought3 = () => {
+    if (leaderBoard[2].purchased[2].purchasedAttack > 0){
+        $('.leaderThreePurchaseAfterBoss3').append(`<img src='./images/attackicon.png' />` + 'x' + leaderBoard[2].purchased[2].purchasedAttack + '<br />');
+    }
+}
+let round4AttackBought3 = () => {
+    if (leaderBoard[2].purchased[3].purchasedAttack > 0){
+        $('.leaderThreePurchaseAfterBoss4').append(`<img src='./images/attackicon.png' />` + 'x' + leaderBoard[2].purchased[3].purchasedAttack + '<br />');
+    }
+}
+let round1ArmorBought3 = () => {
+    if (leaderBoard[2].purchased[0].purchasedArmor > 0){
+        $('.leaderThreePurchaseAfterBoss1').append(`<img src='./images/armor.png' />` + 'x' + leaderBoard[2].purchased[0].purchasedArmor + '<br />');
+    }
+}
+let round2ArmorBought3 = () => {
+    if (leaderBoard[2].purchased[1].purchasedArmor > 0){
+        $('.leaderThreePurchaseAfterBoss2').append(`<img src='./images/armor.png' />` + 'x' + leaderBoard[2].purchased[1].purchasedArmor + '<br />');
+    }
+}
+let round3ArmorBought3 = () => {
+    if (leaderBoard[2].purchased[2].purchasedArmor > 0){
+        $('.leaderThreePurchaseAfterBoss3').append(`<img src='./images/armor.png' />` + 'x' + leaderBoard[2].purchased[2].purchasedArmor + '<br />');
+    }
+}
+let round4ArmorBought3 = () => {
+    if (leaderBoard[2].purchased[3].purchasedArmor > 0){
+        $('.leaderThreePurchaseAfterBoss4').append(`<img src='./images/armor.png' />` + 'x' + leaderBoard[2].purchased[3].purchasedArmor + '<br />');
+    }
+}
+let round1AccuracyBought3 = () => {
+    if (leaderBoard[2].purchased[0].purchasedAccuracy > 0){
+        $('.leaderThreePurchaseAfterBoss1').append(`<img src='./images/accuracy.png' />` + 'x' + leaderBoard[2].purchased[0].purchasedAccuracy + '<br />');
+    }
+}
+let round2AccuracyBought3 = () => {
+    if (leaderBoard[2].purchased[1].purchasedAccuracy > 0){
+        $('.leaderThreePurchaseAfterBoss2').append(`<img src='./images/accuracy.png' />` + 'x' + leaderBoard[2].purchased[1].purchasedAccuracy + '<br />');
+    }
+}
+let round3AccuracyBought3 = () => {
+    if (leaderBoard[2].purchased[2].purchasedAccuracy > 0){
+        $('.leaderThreePurchaseAfterBoss3').append(`<img src='./images/accuracy.png' />` + 'x' + leaderBoard[2].purchased[2].purchasedAccuracy + '<br />');
+    }
+}
+let round4AccuracyBought3 = () => {
+    if (leaderBoard[2].purchased[3].purchasedAccuracy > 0){
+        $('.leaderThreePurchaseAfterBoss4').append(`<img src='./images/accuracy.png' />` + 'x' + leaderBoard[2].purchased[3].purchasedAccuracy + '<br />');
+    }
+}
+let round1MagicBought3 = () => {
+    if (leaderBoard[2].purchased[0].purchasedMagic > 0){
+        $('.leaderThreePurchaseAfterBoss1').append(`<img src='./images/magicaccuracy.png' />` + 'x' + leaderBoard[2].purchased[0].purchasedMagic + '<br />');
+    }
+}
+let round2MagicBought3 = () => {
+    if (leaderBoard[2].purchased[1].purchasedMagic > 0){
+        $('.leaderThreePurchaseAfterBoss2').append(`<img src='./images/magicaccuracy.png' />` + 'x' + leaderBoard[2].purchased[1].purchasedMagic + '<br />');
+    }
+}
+let round3MagicBought3 = () => {
+    if (leaderBoard[2].purchased[2].purchasedMagic > 0){
+        $('.leaderThreePurchaseAfterBoss3').append(`<img src='./images/magicaccuracy.png' />` + 'x' + leaderBoard[2].purchased[2].purchasedMagic + '<br />');
+    }
+}
+let round4MagicBought3 = () => {
+    if (leaderBoard[2].purchased[3].purchasedMagic > 0){
+        $('.leaderThreePurchaseAfterBoss4').append(`<img src='./images/magicaccuracy.png' />` + 'x' + leaderBoard[2].purchased[3].purchasedMagic + '<br />');
+    }
+}
+let round2FireballBought3 = () => {
+    if (leaderBoard[2].purchased[1].learnedFireball > 0){
+        $('.leaderThreePurchaseAfterBoss2').append(`<img src='./images/fireball.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round3FireballBought3 = () => {
+    if (leaderBoard[2].purchased[2].learnedFireball > 0){
+        $('.leaderThreePurchaseAfterBoss2').append(`<img src='./images/fireball.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round4FireballBought3 = () => {
+    if (leaderBoard[2].purchased[3].learnedFireball > 0){
+        $('.leaderThreePurchaseAfterBoss4').append(`<img src='./images/fireball.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round2BladeBought3 = () => {
+    if (leaderBoard[2].purchased[1].learnedBlade > 0){
+        $('.leaderThreePurchaseAfterBoss2').append(`<img src='./images/blade.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round3BladeBought3 = () => {
+    if (leaderBoard[2].purchased[2].learnedBlade > 0){
+        $('.leaderThreePurchaseAfterBoss3').append(`<img src='./images/blade.png' />&nbsp;&nbsp;`  + '<br />');
+    }
+}
+let round4BladeBought3 = () => {
+    if (leaderBoard[2].purchased[3].learnedBlade > 0){
+        $('.leaderThreePurchaseAfterBoss4').append(`<img src='./images/blade.png' />`  + '<br />');
+    }
+}
+//  fourth position stats displayed
+let fourthPositionName = ()=> {
+    $('.fourthPositionName').append(leaderBoard[3].name);
+}
+//  fifth position stats displayed
+let fifthPositionName = ()=> {
+    $('.fifthPositionName').append(leaderBoard[4].name);
+}
+//  sixth position stats displayed
+let sixthPositionName = ()=> {
+    $('.sixthPositionName').append(leaderBoard[5].name);
+}
+    //  seventh position stats displayed
+let seventhPositionName = ()=> {
+    $('.seventhPositionName').append(leaderBoard[6].name);
+}
+    //  eighth position stats displayed
+let eighthPositionName = ()=> {
+    $('.eighthPositionName').append(leaderBoard[7].name);
+}
+    //  ninth position stats displayed
+let ninthPositionName = ()=> {
+    $('.ninthPositionName').append(leaderBoard[8].name);
+}
+    //  tenth position stats displayed
+let tenthPositionName = ()=> {
+    $('.tenthPositionName').append(leaderBoard[9].name);
+}
+    //  tracks leader spot 1 bosses killed
+let bossesKilled = () => {
+    if (leaderBoard[0].round === 4 && leaderBoard[0].bossHealth5 <= 0) {
+        $('.oneBoss1Name').removeClass().addClass('boss1NameDead');
+        $('.oneBoss2Name').removeClass().addClass('boss1NameDead');
+        $('.oneBoss3Name').removeClass().addClass('boss1NameDead');
+        $('.oneBoss4Name').removeClass().addClass('boss1NameDead');
+        $('.oneBoss5Name').removeClass().addClass('boss1NameDead');
+        $('.leaderOnePurchaseAfterBoss5').empty();
+        $('.leaderOnePurchaseAfterBoss5').append(leaderBoard[0].health + ` player health left`);
+    } else if (leaderBoard[0].round === 4) {
+        $('.oneBoss1Name').removeClass().addClass('boss1NameDead');
+        $('.oneBoss2Name').removeClass().addClass('boss1NameDead');
+        $('.oneBoss3Name').removeClass().addClass('boss1NameDead');
+        $('.oneBoss4Name').removeClass().addClass('boss1NameDead');
+        $('.leaderOnePurchaseAfterBoss5').empty();
+        $('.leaderOnePurchaseAfterBoss5').append(leaderBoard[0].bossHealth5 + ` health left`);
+    } else if (leaderBoard[0].round === 3) {
+        $('.oneBoss1Name').removeClass().addClass('boss1NameDead');
+        $('.oneBoss2Name').removeClass().addClass('boss1NameDead');
+        $('.oneBoss3Name').removeClass().addClass('boss1NameDead');
+        $('.leaderOnePurchaseAfterBoss4').empty();
+        $('.leaderOnePurchaseAfterBoss4').append(leaderBoard[0].bossHealth4 + ` health left`);
+    } else if (leaderBoard[0].round === 2) {
+        $('.oneBoss1Name').removeClass().addClass('boss1NameDead');
+        $('.oneBoss2Name').removeClass().addClass('boss1NameDead');
+        $('.leaderOnePurchaseAfterBoss3').empty();
+        $('.leaderOnePurchaseAfterBoss3').append(leaderBoard[0].bossHealth3 + ` health left`);
+    } else if (leaderBoard[0].round === 1) {
+        $('.oneBoss1Name').removeClass().addClass('boss1NameDead');
+        $('.leaderOnePurchaseAfterBoss2').empty();
+        $('.leaderOnePurchaseAfterBoss2').append(leaderBoard[0].bossHealth2 + ` health left`);
+
+    }
+}
+// tracks leader board spot 2's bosses killed
+let bossesKilled2= () => {
+    if (leaderBoard[1].round == 4 && leaderBoard[1].bossHealth5 <= 0) {
+        $('.twoBoss1Name').removeClass().addClass('boss1NameDead');
+        $('.twoBoss2Name').removeClass().addClass('boss1NameDead');
+        $('.twoBoss3Name').removeClass().addClass('boss1NameDead');
+        $('.twoBoss4Name').removeClass().addClass('boss1NameDead');
+        $('.twoBoss5Name').removeClass().addClass('boss1NameDead');
+        $('.l2PAB5').empty();
+        $('.l2PAB5').append(leaderBoard[1].health + ` player health left`);
+    } else if (leaderBoard[1].round == 4) {
+        $('.twoBoss1Name').removeClass().addClass('boss1NameDead');
+        $('.twoBoss2Name').removeClass().addClass('boss1NameDead');
+        $('.twoBoss3Name').removeClass().addClass('boss1NameDead');
+        $('.twoBoss4Name').removeClass().addClass('boss1NameDead');
+        $('.l2PAB5').empty();
+        $('.l2PAB5').append(leaderBoard[1].bossHealth5 + ` health left`);
+    } else if (leaderBoard[1].round == 3) {
+        $('.twoBoss1Name').removeClass().addClass('boss1NameDead');
+        $('.twoBoss2Name').removeClass().addClass('boss1NameDead');
+        $('.twoBoss3Name').removeClass().addClass('boss1NameDead');
+        $('.l2PAB5').empty();
+        $('.l2PAB5').append(leaderBoard[1].bossHealth4 + ` health left`);
+    } else if (leaderBoard[1].round == 2) {
+        $('.twoBoss1Name').removeClass().addClass('boss1NameDead');
+        $('.twoBoss2Name').removeClass().addClass('boss1NameDead');
+        $('.l2PAB5').empty();
+        $('.l2PAB5').append(leaderBoard[1].bossHealth3 + ` health left`);
+    } else if (leaderBoard[1].round == 1) {
+        $('.twoBoss1Name').removeClass().addClass('boss1NameDead');
+        $('.l2PAB5').empty();
+        $('.l2PAB5').append(leaderBoard[1].bossHealth2 + ` health left`);
+    }
+}
+
+
+// //  tracks leader spot 3's bosses killed
+let bossesKilled3 = () => {
+    if (leaderBoard[2].round === 4 && leaderBoard[2].bossHealth5 <= 0) {
+        $('.div3Boss1').removeClass().addClass('boss1NameDead');
+        $('.div3Boss2').removeClass().addClass('boss1NameDead');
+        $('.div3Boss3').removeClass().addClass('boss1NameDead');
+        $('.div3Boss4').removeClass().addClass('boss1NameDead');
+        $('.div3Boss5').removeClass().addClass('boss1NameDead');
+        $('.leaderThreePurchaseAfterBoss5').empty();
+        $('.leaderThreePurchaseAfterBoss5').append(leaderBoard[2].health + ` player health left`);
+    } else if (leaderBoard[2].round === 4) {
+        $('.div3Boss1').removeClass().addClass('boss1NameDead');
+        $('.div3Boss2').removeClass().addClass('boss1NameDead');
+        $('.div3Boss3').removeClass().addClass('boss1NameDead');
+        $('.div3Boss4').removeClass().addClass('boss1NameDead');
+        $('.leaderThreePurchaseAfterBoss5').empty();
+        $('.leaderThreePurchaseAfterBoss5').append(leaderBoard[2].bossHealth5 + ` health left`);
+    } else if (leaderBoard[2].round === 3) {
+        $('.div3Boss1').removeClass().addClass('boss1NameDead');
+        $('.div3Boss2').removeClass().addClass('boss1NameDead');
+        $('.div3Boss3').removeClass().addClass('boss1NameDead');
+        $('.leaderThreePurchaseAfterBoss4').empty();
+        $('.leaderThreePurchaseAfterBoss4').append(leaderBoard[2].bossHealth4 + ` health left`);
+    } else if (leaderBoard[2].round === 2) {
+        $('.div3Boss1').removeClass().addClass('boss1NameDead');
+        $('.div3Boss2').removeClass().addClass('boss1NameDead');
+        $('.leaderThreePurchaseAfterBoss3').empty();
+        $('.leaderThreePurchaseAfterBoss3').append(leaderBoard[2].bossHealth3 + ` health left`);
+    } else if (leaderBoard[2].round === 1) {
+        $('.div3Boss1').removeClass().addClass('boss1NameDead');
+        $('.leaderThreePurchaseAfterBoss2').empty();
+        $('.leaderThreePurchaseAfterBoss2').append(leaderBoard[2].bossHealth2 + ` health left`);
+
+    }
+}
+//  function to determine if new score eclipses a current leaderboard score and replaces if it is
+let checkVsLeaderBoard = () => {
+    if (player.round > leaderBoard[0].round) {
+        let leaderOne = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(0, 0, leaderOne);
+        leaderBoard.splice(10, 1);
+    } else if (player.round == 5 && player.currentBossHealth <= 0 && leaderBoard[0].currentBossHealth <= 0 && player.round >= leaderBoard[0].round && player.health >= leaderBoard[0].health){
+        let leaderOne = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(0, 0, leaderOne);
+        leaderBoard.splice(10, 1);
+    } else if (player.round > leaderBoard[1].round) {
+        let leaderTwo = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(1, 0, leaderTwo);
+        leaderBoard.splice(10, 1);
+    } else if (player.currentBossHealth <=  leaderBoard[1].currentBossHealth  && player.round == leaderBoard[1].round) {
+        let leaderTwo = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(1, 0, leaderTwo);
+        leaderBoard.splice(10, 1);
+    } else if (player.round > leaderBoard[2].round) {
+        let leaderThree = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(2, 0, leaderThree);
+        leaderBoard.splice(10, 1);
+    } else if (player.currentBossHealth <=  leaderBoard[2].currentBossHealth  && player.round == leaderBoard[2].round) {
+        let leaderThree = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(2, 0, leaderThree);
+        leaderBoard.splice(10, 1);
+    } else if (player.currentBossHealth <=  leaderBoard[3].currentBossHealth  && player.round >= leaderBoard[3].round) {
+        let leaderFour = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(3, 0, leaderFour);
+        leaderBoard.splice(10, 1);
+    } else if (player.currentBossHealth <=  leaderBoard[4].currentBossHealth  && player.round >= leaderBoard[4].round) {
+        let leaderFive = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(4, 0, leaderFive);
+        leaderBoard.splice(10, 1);
+    } else if (player.currentBossHealth <=  leaderBoard[5].currentBossHealth  && player.round >= leaderBoard[5].round) {
+        let leaderSix = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(5, 0, leaderSix);
+        leaderBoard.splice(10, 1);
+    } else if (player.currentBossHealth <=  leaderBoard[6].currentBossHealth  && player.round >= leaderBoard[6].round) {
+        let leaderSeven = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(6, 0, leaderSeven);
+        leaderBoard.splice(10, 1);
+    } else if (player.currentBossHealth <= leaderBoard[7].currentBossHealth  && player.round >= leaderBoard[7].round) {
+        let leaderEight = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(7, 0, leaderEight);
+        leaderBoard.splice(10, 1);
+    } else if (player.currentBossHealth <= leaderBoard[8].currentBossHealth  && player.round >= leaderBoard[8].round) {
+        let leaderNine = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(8, 0, leaderNine);
+        leaderBoard.splice(10, 1);
+    } else if (player.currentBossHealth <= leaderBoard[9].currentBossHealth  && player.round >= leaderBoard[9].round) {
+        let leaderTen = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(9, 0, leaderTen);
+        leaderBoard.splice(10, 1);
+    } else {
+        console.log('not a top score')
+    }
+}
+//  clears divs and displays updated leader baord standings
+let leaderBoardOneDisplay = () => {
+    $('.firstPositionName').empty();
+    $('.secondPositionName').empty();
+    $('.thirdPositionName').empty();
+    $('.fourthPositionName').empty();
+    $('.fifthPositionName').empty();
+    $('.sixthPositionName').empty();
+    $('.seventhPositionName').empty();
+    $('.eighthPositionName').empty();
+    $('.ninthPositionName').empty();
+    $('.tenthPositionName').empty();
+    $('.leaderOnePurchaseAfterBoss1').empty();
+    $('.leaderOnePurchaseAfterBoss2').empty();
+    $('.leaderOnePurchaseAfterBoss3').empty();
+    $('.leaderOnePurchaseAfterBoss4').empty();
+    $('.leaderOnePurchaseAfterBoss5').empty();
+    $('.leaderTwoPurchaseAfterBoss1').empty();
+    $('.leaderTwoPurchaseAfterBoss2').empty();
+    $('.leaderTwoPurchaseAfterBoss3').empty();
+    $('.leaderTwoPurchaseAfterBoss4').empty();
+    $('.leaderTwoPurchaseAfterBoss5').empty();
+    $('.leaderThreePurchaseAfterBoss1').empty();
+    $('.leaderThreePurchaseAfterBoss2').empty();
+    $('.leaderThreePurchaseAfterBoss3').empty();
+    $('.leaderThreePurchaseAfterBoss4').empty();
+    $('.leaderThreePurchaseAfterBoss5').empty();
+    checkVsLeaderBoard();
+    localStorage.setItem(leaderBoard, JSON.stringify(leaderBoard));
+    let retrievedObject = localStorage.getItem(leaderBoard);
+    leaderBoard = JSON.parse(retrievedObject);
+    firstPositionName();
+    secondPositionName();
+    thirdPositionName();
+    fourthPositionName();
+    fifthPositionName();
+    sixthPositionName();
+    seventhPositionName();
+    eighthPositionName();
+    ninthPositionName();
+    tenthPositionName();
+    round1HealthBought();
+    round2HealthBought();
+    round3HealthBought();
+    round4HealthBought();
+    round1AttackBought();
+    round2AttackBought();
+    round3AttackBought();
+    round4AttackBought();
+    round1ArmorBought();
+    round2ArmorBought();
+    round3ArmorBought();
+    round4ArmorBought();
+    round1AccuracyBought();
+    round2AccuracyBought();
+    round3AccuracyBought();
+    round4AccuracyBought();
+    round1MagicBought();
+    round2MagicBought();
+    round3MagicBought();
+    round4MagicBought();
+    round2FireballBought();
+    round3FireballBought();
+    round4FireballBought();
+    round2BladeBought();
+    round3BladeBought();
+    round4BladeBought();
+    round1HealthBought2();
+    round2HealthBought2();
+    round3HealthBought2();
+    round4HealthBought2();
+    round1AttackBought2();
+    round2AttackBought2();
+    round3AttackBought2();
+    round4AttackBought2();
+    round1ArmorBought2();
+    round2ArmorBought2();
+    round3ArmorBought2();
+    round4ArmorBought2();
+    round1AccuracyBought2();
+    round2AccuracyBought2();
+    round3AccuracyBought2();
+    round4AccuracyBought2();
+    round1MagicBought2();
+    round2MagicBought2();
+    round3MagicBought2();
+    round4MagicBought2();
+    round2FireballBought2();
+    round3FireballBought2();
+    round4FireballBought2();
+    round2BladeBought2();
+    round3BladeBought2();
+    round4BladeBought2();
+    round1HealthBought3();
+    round2HealthBought3();
+    round3HealthBought3();
+    round4HealthBought3();
+    round1AttackBought3();
+    round2AttackBought3();
+    round3AttackBought3();
+    round4AttackBought3();
+    round1ArmorBought3();
+    round2ArmorBought3();
+    round3ArmorBought3();
+    round4ArmorBought3();
+    round1AccuracyBought3();
+    round2AccuracyBought3();
+    round3AccuracyBought3();
+    round4AccuracyBought3();
+    round1MagicBought3();
+    round2MagicBought3();
+    round3MagicBought3();
+    round4MagicBought3();
+    round2FireballBought3();
+    round3FireballBought3();
+    round4FireballBought3();
+    round2BladeBought3();
+    round3BladeBought3();
+    round4BladeBought3();
+    bossesKilled();
+    bossesKilled2();
+    bossesKilled3();
+    
+}
+leaderBoardOneDisplay();
+
 changeStage();
