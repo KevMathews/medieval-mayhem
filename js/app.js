@@ -12,9 +12,11 @@ img2.src = "./images/victory.gif";
 let img3 = document.createElement("img");
 img3.src = "./images/gameover.gif";
 let img4 = document.createElement("img");
-img4.src = "./images/reloadGame.gif";
+img4.src = "./images/reloadGame.gif"+"?a="+Math.random();
 let img5 = document.createElement("img");
 
+
+// create initial static leader board
 let leaderOne = {
     name: 'Kevin',
     health: 60,
@@ -251,33 +253,6 @@ console.log('made it')
     leaderBoard = JSON.parse(retrievedObject);
     console.log('got it')
 }
-
-//     let retrievedObject = localStorage.getItem('staticLeaderBoard');
-//     let leaderBoard = JSON.parse(retrievedObject);
-// if (localStorage.getItem('staticLeaderBoard') === null) {
-//     localStorage.setItem('staticLeaderBoard', JSON.stringify(staticLeaderBoard));
-//     let retrievedObject = localStorage.getItem('staticLeaderBoard');
-//     let leaderBoard = JSON.parse(retrievedObject);
-// } else {
-//     let retrievedObject = localStorage.getItem('staticLeaderBoard');
-//     let leaderBoard = JSON.parse(retrievedObject);
-// }
-
-
-// if (localStorage.hasOwnProperty('name') === null) {
-//     localStorage.setItem('staticLeaderBoard', JSON.stringify(staticLeaderBoard));
-//     let retrievedObject = localStorage.getItem('staticLeaderBoard');
-//     let leaderBoard = JSON.parse(retrievedObject);
-// } else {
-//     let retrievedObject = localStorage.getItem('staticLeaderBoard');
-//     let leaderBoard = JSON.parse(retrievedObject);
-// }
-// console.log(localStorage.hasOwnProperty('name'));
-// localStorage.setItem('staticLeaderBoard', JSON.stringify(staticLeaderBoard));
-// let retrievedObject = localStorage.getItem('staticLeaderBoard');
-// let leaderBoard = JSON.parse(retrievedObject);
-// console.log(leaderBoard);
-
 
 img5.src = "./images/1x1.png";
 $playerHealth = $('.playerHealth');
@@ -1404,19 +1379,8 @@ let bladePurchaseHistory = () => {
         player.purchased[3].learnedBlade ++;
     } else {
     }};
- 
 
-
-
-// let conditionalLeaderBoardCategories = () => {
-    
-//     checkVsLeaderBoard();
-//     leaderBoardOneDisplay();
-    
-    
-// }
-//  Leader Board Display
-//  1st leader spot stats displayed
+    //  Functions to set leader board spot 1 name and items purchased each round
 let firstPositionName = ()=> {
     $('.firstPositionName').append(leaderBoard[0].name);
 }
@@ -1550,7 +1514,7 @@ let round4BladeBought = () => {
         $('.leaderOnePurchaseAfterBoss4').append(`<img src='./images/blade.png' />`  + '<br />');
     }
 }
-//  second position stats displayed
+//  leader board second place position stats displayed
 let secondPositionName = ()=> {
     $('.secondPositionName').append(leaderBoard[1].name);
 }
@@ -1685,7 +1649,7 @@ let round4BladeBought2 = () => {
     }
 }
 
-//  third positions stats displayed
+//  third leader board position's stats displayed
 let thirdPositionName = ()=> {
     $('.thirdPositionName').append(leaderBoard[2].name);
 }
@@ -1882,6 +1846,7 @@ let bossesKilled = () => {
 
     }
 }
+// tracks leader board spot 2's bosses killed
 let bossesKilled2= () => {
     if (leaderBoard[1].round == 4 && leaderBoard[1].bossHealth5 <= 0) {
         $('.twoBoss1Name').removeClass().addClass('boss1NameDead');
@@ -1917,7 +1882,7 @@ let bossesKilled2= () => {
 }
 
 
-// //  tracks leader spot 3 bosses killed
+// //  tracks leader spot 3's bosses killed
 let bossesKilled3 = () => {
     if (leaderBoard[2].round === 4 && leaderBoard[2].bossHealth5 <= 0) {
         $('.div3Boss1').removeClass().addClass('boss1NameDead');
@@ -1945,7 +1910,6 @@ let bossesKilled3 = () => {
         $('.div3Boss2').removeClass().addClass('boss1NameDead');
         $('.leaderThreePurchaseAfterBoss3').empty();
         $('.leaderThreePurchaseAfterBoss3').append(leaderBoard[2].bossHealth3 + ` health left`);
- 
     } else if (leaderBoard[2].round === 1) {
         $('.div3Boss1').removeClass().addClass('boss1NameDead');
         $('.leaderThreePurchaseAfterBoss2').empty();
@@ -1953,6 +1917,7 @@ let bossesKilled3 = () => {
 
     }
 }
+//  function to determine if new score eclipses a current leaderboard score and replaces if it is
 let checkVsLeaderBoard = () => {
     if (player.round > leaderBoard[0].round) {
         let leaderOne = JSON.parse(JSON.stringify(player));
@@ -2010,7 +1975,7 @@ let checkVsLeaderBoard = () => {
         console.log('not a top score')
     }
 }
-
+//  clears divs and displays updated leader baord standings
 let leaderBoardOneDisplay = () => {
     $('.firstPositionName').empty();
     $('.secondPositionName').empty();
@@ -2132,6 +2097,7 @@ let leaderBoardOneDisplay = () => {
     bossesKilled();
     bossesKilled2();
     bossesKilled3();
+    
 }
 leaderBoardOneDisplay();
 
