@@ -27,13 +27,13 @@ body {
   }
   #myModal{
     display:flex;
-    background-color:#f15a29;
+    background-color:#ff4a01;
     align-items: center;
     justify-content: center;
     /* z-index: 100; */
   }
   #leaderModal{
-    background-color:#f15a29;
+    background-color:#f0592a;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -202,9 +202,10 @@ body {
     filter: drop-shadow(5px 5px 5px #222);
   }
   #maintitleLogo {
-    width: 180%;
-    transform: translateY(-50%);
-    transform: translateX(-20%);
+    width: 120%;
+    /* transform: translateY(-50%);
+    transform: translateX(-20%); */
+    margin-top: 20px;
   }
   .playerName{
     transform: translateY(50%)
