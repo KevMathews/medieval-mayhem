@@ -204,7 +204,7 @@ z-index: 1;
 #gameActionButtons {
   grid-column: 1 / 7;
   grid-row: 5;
-  transform: translateY(0px);
+  transform: translateY(-40px);
 }
 #titleLogo {
   width: 95%; 
