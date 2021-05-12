@@ -1,6 +1,7 @@
 // ////////////////////////////////////
 // ///  kevinmathews.cs@gmail.com   ///
 // ////////////////////////////////////
+
 let bladeCounter = 0;
 let lightningBoltCounter = 2;
 let fireBallCounter = 0;
@@ -293,7 +294,7 @@ $purchaseAfterBoss1 = $('.purchaseAfterBoss1');
 class Player {
     constructor(name){
         this.maxHealth = 500;
-        this.health = 500;
+        this.health = 50;
         this.healthPercent = 100;
         this.energy = 100;
         this.armor = 5;
@@ -1111,16 +1112,20 @@ let changeStage = function() {
     let randStage = Math.random();
     if (randStage < .25){
         $body.css('background-image','url(./images/game_background_11.png)')
-            .css('width', '100%');
+            // .css('width', '100%');
+            .css('no-repeat', 'center', 'center', 'fixed', 'background-size: cover')
         }else if (randStage >= .25 &&  randStage < .5){
             $body.css('background-image','url(./images/game_background_21.png)')
-                .css('width', '100%');
+                // .css('width', '100%');
+                .css('no-repeat', 'center', 'center', 'fixed', 'background-size: cover')
         }else if (randStage >= .5 &&  randStage < .75){
             $body.css('background-image','url(./images/game_background_31.png)')
-                .css('width', '100%');
+                // .css('width', '100%');
+                .css('no-repeat', 'center', 'center', 'fixed', 'background-size: cover')
         }else if (randStage >= .75 &&  randStage <= 1){
-            $body.css('background-image','url(./images/game_background_41.png)')
-                .css('width', '100%');
+            $body.css('background-image','url(./images/game_background_31.png)')
+                // .css('width', '100%');
+                .css('no-repeat', 'center', 'center', 'fixed', 'background-size: cover')
         }
 }
 // stage clear modal that pops up after beating a boss
@@ -1923,7 +1928,11 @@ let checkVsLeaderBoard = () => {
         let leaderOne = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(0, 0, leaderOne);
         leaderBoard.splice(10, 1);
-    } else if (player.round == 5 && player.currentBossHealth <= 0 && leaderBoard[0].currentBossHealth <= 0 && player.round >= leaderBoard[0].round && player.health >= leaderBoard[0].health){
+    } else if (player.round == 5 && player.bossHealth5 <= 0 && player.health >= leaderBoard[0].health){
+        let leaderOne = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(0, 0, leaderOne);
+        leaderBoard.splice(10, 1);
+    } else if (player.round == 5 && player.bossHealth5 <= leaderBoard[0].bossHealth5){
         let leaderOne = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(0, 0, leaderOne);
         leaderBoard.splice(10, 1);
@@ -1931,7 +1940,11 @@ let checkVsLeaderBoard = () => {
         let leaderTwo = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(1, 0, leaderTwo);
         leaderBoard.splice(10, 1);
-    } else if (player.currentBossHealth <=  leaderBoard[1].currentBossHealth  && player.round == leaderBoard[1].round) {
+    } else if (player.round == 5 && player.bossHealth5 <= 0 && player.health >= leaderBoard[1].health){
+        let leaderTwo = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(1, 0, leaderTwo);
+        leaderBoard.splice(10, 1);
+    } else if (player.round == 5 && player.bossHealth5 <= leaderBoard[1].bossHealth5){
         let leaderTwo = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(1, 0, leaderTwo);
         leaderBoard.splice(10, 1);
@@ -1939,7 +1952,11 @@ let checkVsLeaderBoard = () => {
         let leaderThree = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(2, 0, leaderThree);
         leaderBoard.splice(10, 1);
-    } else if (player.currentBossHealth <=  leaderBoard[2].currentBossHealth  && player.round == leaderBoard[2].round) {
+    } else if (player.round == 5 && player.bossHealth5 <= 0 && player.health >= leaderBoard[2].health){
+        let leaderThree = JSON.parse(JSON.stringify(player));
+        leaderBoard.splice(2, 0, leaderThree);
+        leaderBoard.splice(10, 1);
+    } else if (player.round == 5 && player.bossHealth5 <= leaderBoard[2].bossHealth5){
         let leaderThree = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(2, 0, leaderThree);
         leaderBoard.splice(10, 1);
