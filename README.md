@@ -10,7 +10,10 @@
 <img src="./images/screen2.jpg" width="80%" >
 
 ## Recent Updates:
-5/11/21 - Pushed beta of Leader Board addition with localStorage.  It tracks... EVERYTHING.  Leader board shows stats on what round items are purchased, how far you got in the game, and your final stats when you either win or lose vs the final boss.  All saved to local storage.  
+5/12/21 - Made game responsive and fully playable on mobile devices
+
+5/11/21 - Pushed beta of Leader Board addition with localStorage.  It tracks... EVERYTHING.  Leader board shows stats on what round items are purchased, how far you got in the game, and your final stats when you either win or lose vs the final boss.  All saved to local storage. 
+ 
 Next MAJOR update will be early summer 21 with another playable character, and an API to save leader board stats.  Also coming soon are the additions of sound effects as well as more fluid animations.
 
 
