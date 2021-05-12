@@ -1941,78 +1941,44 @@ let bossesKilled3 = () => {
 
     }
 }
-//  function to determine if new score eclipses a current leaderboard score and replaces if it is
+//  function to determine if new score eclipses a current leader board score and replaces if it is
 let checkVsLeaderBoard = () => {
-    // if (player.round > leaderBoard[0].round) {
-        if (player.score >= leaderBoard[0].score) {
+    if (player.score >= leaderBoard[0].score) {
         let leaderOne = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(0, 0, leaderOne);
         leaderBoard.splice(10, 1);
-    // } else if (player.round == 5 && player.bossHealth5 <= 0 && player.health >= leaderBoard[0].health){
-    //     let leaderOne = JSON.parse(JSON.stringify(player));
-    //     leaderBoard.splice(0, 0, leaderOne);
-    //     leaderBoard.splice(10, 1);
-    // } else if (player.round == 5 && player.bossHealth5 <= leaderBoard[0].bossHealth5){
-    //     let leaderOne = JSON.parse(JSON.stringify(player));
-    //     leaderBoard.splice(0, 0, leaderOne);
-    //     leaderBoard.splice(10, 1);
-    // } else if (player.round > leaderBoard[1].round) {
     } else if (player.score >= leaderBoard[1].score ) {
         let leaderTwo = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(1, 0, leaderTwo);
         leaderBoard.splice(10, 1);
-    // } else if (player.round == 5 && player.bossHealth5 <= 0 && player.health >= leaderBoard[1].health){
-    //     let leaderTwo = JSON.parse(JSON.stringify(player));
-    //     leaderBoard.splice(1, 0, leaderTwo);
-    //     leaderBoard.splice(10, 1);
-    // } else if (player.round == 5 && player.bossHealth5 <= leaderBoard[1].bossHealth5){
-    //     let leaderTwo = JSON.parse(JSON.stringify(player));
-    //     leaderBoard.splice(1, 0, leaderTwo);
-    //     leaderBoard.splice(10, 1);
-    // } else if (player.round > leaderBoard[2].round) {
     } else if (player.score >= leaderBoard[2].score ) {
         let leaderThree = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(2, 0, leaderThree);
         leaderBoard.splice(10, 1);
-    // } else if (player.round == 5 && player.bossHealth5 <= 0 && player.health >= leaderBoard[2].health){
-    //     let leaderThree = JSON.parse(JSON.stringify(player));
-    //     leaderBoard.splice(2, 0, leaderThree);
-    //     leaderBoard.splice(10, 1);
-    // } else if (player.round == 5 && player.bossHealth5 <= leaderBoard[2].bossHealth5){
-    //     let leaderThree = JSON.parse(JSON.stringify(player));
-    //     leaderBoard.splice(2, 0, leaderThree);
-    //     leaderBoard.splice(10, 1);
-    // } else if (player.currentBossHealth <=  leaderBoard[3].currentBossHealth  && player.round >= leaderBoard[3].round) {
     } else if (player.score >= leaderBoard[3].score ) {
         let leaderFour = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(3, 0, leaderFour);
         leaderBoard.splice(10, 1);
-    // } else if (player.currentBossHealth <=  leaderBoard[4].currentBossHealth  && player.round >= leaderBoard[4].round) {
     } else if (player.score >= leaderBoard[4].score ) {
         let leaderFive = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(4, 0, leaderFive);
         leaderBoard.splice(10, 1);
-    // } else if (player.currentBossHealth <=  leaderBoard[5].currentBossHealth  && player.round >= leaderBoard[5].round) {
     } else if (player.score >= leaderBoard[5].score ) {
         let leaderSix = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(5, 0, leaderSix);
         leaderBoard.splice(10, 1);
-    // } else if (player.currentBossHealth <=  leaderBoard[6].currentBossHealth  && player.round >= leaderBoard[6].round) {
     } else if (player.score >= leaderBoard[6].score ) {
         let leaderSeven = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(6, 0, leaderSeven);
         leaderBoard.splice(10, 1);
-    // } else if (player.currentBossHealth <= leaderBoard[7].currentBossHealth  && player.round >= leaderBoard[7].round) {
     } else if (player.score >= leaderBoard[7].score ) {
         let leaderEight = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(7, 0, leaderEight);
         leaderBoard.splice(10, 1);
-    // } else if (player.currentBossHealth <= leaderBoard[8].currentBossHealth  && player.round >= leaderBoard[8].round) {
     } else if (player.score >= leaderBoard[8].score ) {
         let leaderNine = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(8, 0, leaderNine);
         leaderBoard.splice(10, 1);
-    // } else if (player.currentBossHealth <= leaderBoard[9].currentBossHealth  && player.round >= leaderBoard[9].round) {
     } else if (player.score >= leaderBoard[9].score ) {
         let leaderTen = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(9, 0, leaderTen);
