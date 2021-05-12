@@ -289,7 +289,7 @@ body {
     margin-left: -150px;
   }
   #restartGameImage{
-    transform: translateX(-50%);
+    transform: translateX(-20%);
   }
   #modalShopImage {
     width: 60px;
