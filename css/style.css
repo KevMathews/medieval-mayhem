@@ -188,6 +188,7 @@ body {
     grid-column: 1 / 7;
     grid-row: 5;
     transform: translateY(-80px);
+    z-index: 200;
   }
   #titleLogo {
     width: 75%; 
@@ -219,6 +220,7 @@ body {
   box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
   -webkit-box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
   -moz-box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
+  
   }
   .resetGameButton{
     width: 100px;
@@ -273,8 +275,9 @@ body {
   }
   #stageClearedImage {
     width: 120%;
-    transform: translateX(-60%);
+    transform: translateX(-90%);
     transform: translateY(20%);
+    margin-right: 90px;
   }
   #victoryImage {
     width: 150%;
