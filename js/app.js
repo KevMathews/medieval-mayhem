@@ -32,6 +32,7 @@ let leaderOne = {
     bossHealth4: 0,
     bossHealth5: 0,
     currentBossHealth: 0,
+    score: 5060,
     purchased : [
         {
             'purchasedHealth': 0,
@@ -86,6 +87,7 @@ let leaderTwo = {
     bossHealth4: 0,
     bossHealth5: 30,
     currentBossHealth: 30,
+    score: 3970,
     purchased : [
         {
             'purchasedHealth': 2,
@@ -138,9 +140,10 @@ let leaderThree = {
     bossHealth2: 0,
     bossHealth3: 0,
     bossHealth4: 50,
-    bossHealth5: 200,
+    bossHealth5: 110,
     currentBossHealth: 50,
-    purchased : [
+    score: 3890,
+    purchased: [
         {
             'purchasedHealth': 0,
             'purchasedAttack': 1,
@@ -186,6 +189,7 @@ let leaderFour = {
     bossHealth1: -10,
     bossHealth2: 86,
     currentBossHealth: 86,
+    score: 3810,
 };
 let leaderFive = {
     name: 'Jennifer',
@@ -193,6 +197,7 @@ let leaderFive = {
     bossHealth1: -10,
     bossHealth2: 87,
     currentBossHealth: 87,
+    score: 3800,
 };
 let leaderSix = {
     name: 'Timmeh',
@@ -200,6 +205,7 @@ let leaderSix = {
     bossHealth1: -10,
     bossHealth2: 88,
     currentBossHealth: 88,
+    score: 2990,
 };
 let leaderSeven = {
     name: 'Luke',
@@ -207,6 +213,7 @@ let leaderSeven = {
     bossHealth1: -10,
     bossHealth2: 89,
     currentBossHealth: 89,
+    score: 2970,
 };
 let leaderEight = {
     name: 'Sky',
@@ -214,6 +221,7 @@ let leaderEight = {
     bossHealth1: -10,
     bossHealth2: 90,
     currentBossHealth: 90,
+    score: 1990,
 };
 let leaderNine = {
     name: 'Tony',
@@ -221,6 +229,7 @@ let leaderNine = {
     bossHealth1: -10,
     bossHealth2: 91,
     currentBossHealth: 91,
+    score: 1950,
 };
 let leaderTen = {
     name: 'Lawrence',
@@ -228,9 +237,10 @@ let leaderTen = {
     bossHealth1: -10,
     bossHealth2: 92,
     currentBossHealth: 92,
+    score: 990,
 };
 
-let leaderBoard = [
+let leaderBoard2 = [
     leaderOne, 
     leaderTwo, 
     leaderThree, 
@@ -244,14 +254,14 @@ let leaderBoard = [
 ];
 
 //  Check if localStorage for leader board exists if not creates one
-if (localStorage.getItem(leaderBoard) === null) {
-    localStorage.setItem(leaderBoard, JSON.stringify(leaderBoard));
-    let retrievedObject = localStorage.getItem(leaderBoard);
-    leaderBoard = JSON.parse(retrievedObject);
+if (localStorage.getItem(leaderBoard2) === null) {
+    localStorage.setItem(leaderBoard2, JSON.stringify(leaderBoard2));
+    let retrievedObject2 = localStorage.getItem(leaderBoard2);
+    leaderBoard = JSON.parse(retrievedObject2);
 console.log('made it')
 } else {
-    let retrievedObject = localStorage.getItem(leaderBoard);
-    leaderBoard = JSON.parse(retrievedObject);
+    let retrievedObject2 = localStorage.getItem(leaderBoard2);
+    leaderBoard = JSON.parse(retrievedObject2);
     console.log('got it')
 }
 
@@ -321,6 +331,7 @@ class Player {
         this.bossHealth4= 150,
         this.bossHealth5= 200,
         this.currentBossHealth = 75,
+        this.score = 0,
         this.purchased = [
             {
                 'purchasedHealth': 0,
@@ -826,6 +837,7 @@ let checkPlayerDead = function() {
         player.bossHealth4 = boss.enemy[3].health;
         player.bossHealth5 = boss.enemy[4].health;
         player.currentBossHealth = boss.enemy[currentEnemy].health;
+        player.score -= boss.enemy[currentEnemy].health;
         leaderBoardOneDisplay();
         defeat();
 
@@ -846,6 +858,8 @@ let checkPlayerDead = function() {
 //  function to see if the various bosses have been killed
 let checkIfDead = function(){
     if (boss.enemy[4].health <= 0){
+        player.score += 1000;
+        player.score += player.health;
         player.displayStats();
         setTimeout(function() {
             $enemyPicture.attr('src', './images/enemy5death.gif');
@@ -867,6 +881,7 @@ let checkIfDead = function(){
             reportedEnemy ++;
             player.round ++;
             player.gold += 50;
+            player.score += 1000;
             player.displayStats();
             stageCleared();
             setTimeout(
@@ -882,6 +897,7 @@ let checkIfDead = function(){
                     reportedEnemy ++;
                     player.round ++;
                     player.gold += 40;
+                    player.score += 1000;
                     player.displayStats();
                     stageCleared();
                     setTimeout(
@@ -896,6 +912,7 @@ let checkIfDead = function(){
                             reportedEnemy ++;
                             player.round ++;
                             player.gold += 30;
+                            player.score += 1000;
                             player.displayStats();
                             stageCleared();
                             setTimeout(
@@ -909,6 +926,7 @@ let checkIfDead = function(){
                                 reportedEnemy ++;
                                 player.round ++;
                                 player.gold += 20;
+                                player.score += 1000;
                                 player.displayStats();
                                 stageCleared();
                                 setTimeout(function(){
@@ -1206,6 +1224,7 @@ let resetGame = function() {
     player.bossHealth4= 150,
     player.bossHealth5= 200,
     player.currentBossHealth = 75,
+    player.score = 0,
     player.purchased = [
         {
             'purchasedHealth': 0,
@@ -1924,67 +1943,77 @@ let bossesKilled3 = () => {
 }
 //  function to determine if new score eclipses a current leaderboard score and replaces if it is
 let checkVsLeaderBoard = () => {
-    if (player.round > leaderBoard[0].round) {
+    // if (player.round > leaderBoard[0].round) {
+        if (player.score >= leaderBoard[0].score) {
         let leaderOne = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(0, 0, leaderOne);
         leaderBoard.splice(10, 1);
-    } else if (player.round == 5 && player.bossHealth5 <= 0 && player.health >= leaderBoard[0].health){
-        let leaderOne = JSON.parse(JSON.stringify(player));
-        leaderBoard.splice(0, 0, leaderOne);
-        leaderBoard.splice(10, 1);
-    } else if (player.round == 5 && player.bossHealth5 <= leaderBoard[0].bossHealth5){
-        let leaderOne = JSON.parse(JSON.stringify(player));
-        leaderBoard.splice(0, 0, leaderOne);
-        leaderBoard.splice(10, 1);
-    } else if (player.round > leaderBoard[1].round) {
+    // } else if (player.round == 5 && player.bossHealth5 <= 0 && player.health >= leaderBoard[0].health){
+    //     let leaderOne = JSON.parse(JSON.stringify(player));
+    //     leaderBoard.splice(0, 0, leaderOne);
+    //     leaderBoard.splice(10, 1);
+    // } else if (player.round == 5 && player.bossHealth5 <= leaderBoard[0].bossHealth5){
+    //     let leaderOne = JSON.parse(JSON.stringify(player));
+    //     leaderBoard.splice(0, 0, leaderOne);
+    //     leaderBoard.splice(10, 1);
+    // } else if (player.round > leaderBoard[1].round) {
+    } else if (player.score >= leaderBoard[1].score ) {
         let leaderTwo = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(1, 0, leaderTwo);
         leaderBoard.splice(10, 1);
-    } else if (player.round == 5 && player.bossHealth5 <= 0 && player.health >= leaderBoard[1].health){
-        let leaderTwo = JSON.parse(JSON.stringify(player));
-        leaderBoard.splice(1, 0, leaderTwo);
-        leaderBoard.splice(10, 1);
-    } else if (player.round == 5 && player.bossHealth5 <= leaderBoard[1].bossHealth5){
-        let leaderTwo = JSON.parse(JSON.stringify(player));
-        leaderBoard.splice(1, 0, leaderTwo);
-        leaderBoard.splice(10, 1);
-    } else if (player.round > leaderBoard[2].round) {
+    // } else if (player.round == 5 && player.bossHealth5 <= 0 && player.health >= leaderBoard[1].health){
+    //     let leaderTwo = JSON.parse(JSON.stringify(player));
+    //     leaderBoard.splice(1, 0, leaderTwo);
+    //     leaderBoard.splice(10, 1);
+    // } else if (player.round == 5 && player.bossHealth5 <= leaderBoard[1].bossHealth5){
+    //     let leaderTwo = JSON.parse(JSON.stringify(player));
+    //     leaderBoard.splice(1, 0, leaderTwo);
+    //     leaderBoard.splice(10, 1);
+    // } else if (player.round > leaderBoard[2].round) {
+    } else if (player.score >= leaderBoard[2].score ) {
         let leaderThree = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(2, 0, leaderThree);
         leaderBoard.splice(10, 1);
-    } else if (player.round == 5 && player.bossHealth5 <= 0 && player.health >= leaderBoard[2].health){
-        let leaderThree = JSON.parse(JSON.stringify(player));
-        leaderBoard.splice(2, 0, leaderThree);
-        leaderBoard.splice(10, 1);
-    } else if (player.round == 5 && player.bossHealth5 <= leaderBoard[2].bossHealth5){
-        let leaderThree = JSON.parse(JSON.stringify(player));
-        leaderBoard.splice(2, 0, leaderThree);
-        leaderBoard.splice(10, 1);
-    } else if (player.currentBossHealth <=  leaderBoard[3].currentBossHealth  && player.round >= leaderBoard[3].round) {
+    // } else if (player.round == 5 && player.bossHealth5 <= 0 && player.health >= leaderBoard[2].health){
+    //     let leaderThree = JSON.parse(JSON.stringify(player));
+    //     leaderBoard.splice(2, 0, leaderThree);
+    //     leaderBoard.splice(10, 1);
+    // } else if (player.round == 5 && player.bossHealth5 <= leaderBoard[2].bossHealth5){
+    //     let leaderThree = JSON.parse(JSON.stringify(player));
+    //     leaderBoard.splice(2, 0, leaderThree);
+    //     leaderBoard.splice(10, 1);
+    // } else if (player.currentBossHealth <=  leaderBoard[3].currentBossHealth  && player.round >= leaderBoard[3].round) {
+    } else if (player.score >= leaderBoard[3].score ) {
         let leaderFour = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(3, 0, leaderFour);
         leaderBoard.splice(10, 1);
-    } else if (player.currentBossHealth <=  leaderBoard[4].currentBossHealth  && player.round >= leaderBoard[4].round) {
+    // } else if (player.currentBossHealth <=  leaderBoard[4].currentBossHealth  && player.round >= leaderBoard[4].round) {
+    } else if (player.score >= leaderBoard[4].score ) {
         let leaderFive = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(4, 0, leaderFive);
         leaderBoard.splice(10, 1);
-    } else if (player.currentBossHealth <=  leaderBoard[5].currentBossHealth  && player.round >= leaderBoard[5].round) {
+    // } else if (player.currentBossHealth <=  leaderBoard[5].currentBossHealth  && player.round >= leaderBoard[5].round) {
+    } else if (player.score >= leaderBoard[5].score ) {
         let leaderSix = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(5, 0, leaderSix);
         leaderBoard.splice(10, 1);
-    } else if (player.currentBossHealth <=  leaderBoard[6].currentBossHealth  && player.round >= leaderBoard[6].round) {
+    // } else if (player.currentBossHealth <=  leaderBoard[6].currentBossHealth  && player.round >= leaderBoard[6].round) {
+    } else if (player.score >= leaderBoard[6].score ) {
         let leaderSeven = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(6, 0, leaderSeven);
         leaderBoard.splice(10, 1);
-    } else if (player.currentBossHealth <= leaderBoard[7].currentBossHealth  && player.round >= leaderBoard[7].round) {
+    // } else if (player.currentBossHealth <= leaderBoard[7].currentBossHealth  && player.round >= leaderBoard[7].round) {
+    } else if (player.score >= leaderBoard[7].score ) {
         let leaderEight = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(7, 0, leaderEight);
         leaderBoard.splice(10, 1);
-    } else if (player.currentBossHealth <= leaderBoard[8].currentBossHealth  && player.round >= leaderBoard[8].round) {
+    // } else if (player.currentBossHealth <= leaderBoard[8].currentBossHealth  && player.round >= leaderBoard[8].round) {
+    } else if (player.score >= leaderBoard[8].score ) {
         let leaderNine = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(8, 0, leaderNine);
         leaderBoard.splice(10, 1);
-    } else if (player.currentBossHealth <= leaderBoard[9].currentBossHealth  && player.round >= leaderBoard[9].round) {
+    // } else if (player.currentBossHealth <= leaderBoard[9].currentBossHealth  && player.round >= leaderBoard[9].round) {
+    } else if (player.score >= leaderBoard[9].score ) {
         let leaderTen = JSON.parse(JSON.stringify(player));
         leaderBoard.splice(9, 0, leaderTen);
         leaderBoard.splice(10, 1);
@@ -1994,6 +2023,7 @@ let checkVsLeaderBoard = () => {
 }
 //  clears divs and displays updated leader baord standings
 let leaderBoardOneDisplay = () => {
+    console.log(player.score)
     $('.firstPositionName').empty();
     $('.secondPositionName').empty();
     $('.thirdPositionName').empty();
@@ -2020,9 +2050,7 @@ let leaderBoardOneDisplay = () => {
     $('.leaderThreePurchaseAfterBoss4').empty();
     $('.leaderThreePurchaseAfterBoss5').empty();
     checkVsLeaderBoard();
-    localStorage.setItem(leaderBoard, JSON.stringify(leaderBoard));
-    let retrievedObject = localStorage.getItem(leaderBoard);
-    leaderBoard = JSON.parse(retrievedObject);
+    localStorage.setItem(leaderBoard2, JSON.stringify(leaderBoard));
     firstPositionName();
     secondPositionName();
     thirdPositionName();
@@ -2117,5 +2145,6 @@ let leaderBoardOneDisplay = () => {
     
 }
 leaderBoardOneDisplay();
-
+console.log(leaderBoard[0].score)
+console.log(leaderBoard[1].score)
 changeStage();
