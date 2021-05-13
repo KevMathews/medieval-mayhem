@@ -98,7 +98,7 @@ I want an RPG feel to the game so that you can enhance the character various way
 ####  Game Screen Shots
 
 <img src="./images/screen1.png" width="80%" >
-<img src="./images/screen2.png" width="80%" >
+<img src="./images/screen2.jpg" width="80%" >
 
 ## Challenges:
 

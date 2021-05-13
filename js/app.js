@@ -951,7 +951,7 @@ $('.fancy').click(function(){
 //  updates stats on the bosses
 boss.enemy[0].name='Taz\'dingo';
 boss.enemy[1].weapon2 = true;
-boss.enemy[1].name = 'Pozzik & Sluggo';
+boss.enemy[1].name = 'Pozik & Sluggo';
 boss.enemy[1].damage = 30;
 boss.enemy[1].health = 100;
 boss.enemy[1].armor = 5;
@@ -1137,11 +1137,11 @@ let changeStage = function() {
                 // .css('width', '100%');
                 .css('no-repeat', 'center', 'center', 'fixed', 'background-size: cover')
         }else if (randStage >= .5 &&  randStage < .75){
-            $body.css('background-image','url(./images/game_background_31.png)')
+            $body.css('background-image','url(./images/game_background_21.png)')
                 // .css('width', '100%');
                 .css('no-repeat', 'center', 'center', 'fixed', 'background-size: cover')
         }else if (randStage >= .75 &&  randStage <= 1){
-            $body.css('background-image','url(./images/game_background_31.png)')
+            $body.css('background-image','url(./images/game_background_11.png)')
                 // .css('width', '100%');
                 .css('no-repeat', 'center', 'center', 'fixed', 'background-size: cover')
         }
