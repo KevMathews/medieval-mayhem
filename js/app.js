@@ -951,7 +951,7 @@ $('.fancy').click(function(){
 //  updates stats on the bosses
 boss.enemy[0].name='Taz\'dingo';
 boss.enemy[1].weapon2 = true;
-boss.enemy[1].name = 'Pozik & Sluggo';
+boss.enemy[1].name = 'Poz & Sluggo';
 boss.enemy[1].damage = 30;
 boss.enemy[1].health = 100;
 boss.enemy[1].armor = 5;
