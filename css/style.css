@@ -202,7 +202,7 @@ body {
   #gameActionButtons {
     grid-column: 1 / 7;
     grid-row: 5;
-    transform: translateY(-80px);
+    transform: translateY(-130px);
     z-index: 200;
   }
   #titleLogo {
