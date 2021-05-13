@@ -108,7 +108,7 @@ body {
     margin-left: -10%;
   } 
   .enemyPlate {
-    width: 200%;
+    width: 100%;
   }
   #playerStats {
     grid-column: 2 / 3;
