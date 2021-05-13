@@ -27,7 +27,7 @@ body {
   }
   #myModal{
     display:flex;
-    background-color:#ff4a01;
+    background-color:#ff4d00;
     align-items: center;
     justify-content: center;
     /* z-index: 100; */
@@ -70,7 +70,8 @@ body {
     font-size: 36px;
     font-family: 'Boogaloo', cursive;
     text-shadow: 1px 2px 3px #4d4d4d; 
-      color: #222;
+    color: #222;
+    transform: translateY(-20px);
   }
   #bossNameDiv {
     grid-column: 6 / 7;
@@ -80,20 +81,23 @@ body {
     font-size: 36px;
     font-family: 'Boogaloo', cursive;
     text-shadow: 1px 2px 3px #4d4d4d; 
-      color: #222;
+    color: #222;
+    transform: translateY(-20px);
   }
   #playerName {
       grid-column: 1 / 2;
       grid-row: 1;
+      transform: translateY(-20px);
   }
   #gameTitle {
     grid-column: 2 / 6;
     grid-row: 1;
-    transform: translateY(60px);
+    transform: translateY(90px);
   }
   #enemyName {
     grid-column: 6 / 7;
     grid-row: 1;
+    transform: translateY(-20px);
   }
   #playerStats {
     grid-column: 2 / 3;
@@ -203,8 +207,8 @@ body {
   }
   #maintitleLogo {
     width: 120%;
-    /* transform: translateY(-50%);
-    transform: translateX(-20%); */
+    /* transform: translateY(-50%); */
+    transform: translateX(-7%);
     margin-top: 20px;
   }
   .playerName{
@@ -306,7 +310,7 @@ body {
     visibility: hidden;
   }
   .leaderLogo {
-    width: 10%;
+    width: 40%;
     height: auto;
     -webkit-filter: drop-shadow(5px 5px 5px 5px #222);
     filter: drop-shadow(5px 5px 5px #222);
@@ -328,6 +332,20 @@ body {
     -moz-box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
   }
   .resetGameButton:hover {
+    background-color: gray;
+    color: white;
+  }
+  #closeLeaderBoard {
+    width: 100px;
+    border-radius: 10px;
+    color: black;
+    background-color: white;    
+    box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
+    -webkit-box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
+    -moz-box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
+    margin-bottom: 30px;
+  }
+  #closeLeaderBoard:hover {
     background-color: gray;
     color: white;
   }

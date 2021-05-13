@@ -7,14 +7,18 @@
 ## Please adjust Zoom on your browser!
 
 ### The game is ideally played in the <b>Chrome Browser</b> with zoom set to 100% maybe 125 if you have a large screen.  Zooming in or out can greatly alter the animations so try to adjust zoom so the characters and screen are roughly spaced out like the screen below
-<img src="./images/screen2.jpg" width="80%" >
+<img src="./images/screen2.png" width="80%" >
 
 ## Recent Updates:
-5/12/21 - Made game responsive and fully playable on mobile devices
+5/12/21 - Made game responsive and fully playable on mobile devices.
 
-5/11/21 - Pushed beta of Leader Board addition with localStorage.  It tracks... EVERYTHING.  Leader board shows stats on what round items are purchased, how far you got in the game, and your final stats when you either win or lose vs the final boss.  All saved to local storage. 
- 
-Next MAJOR update will be early summer 21 with another playable character, and an API to save leader board stats.  Also coming soon are the additions of sound effects as well as more fluid animations.
+-Reworked logo graphics
+
+5/11/21 - Pushed beta of Leader Board addition with localStorage.  It tracks everything your character does.  Leader board shows stats on what round items are purchased, how far you got in the game, and your final stats when you either win or lose vs the final boss.  All saved to local storage. 
+<img src="./images/screen3.png" width="80%" > 
+
+
+-Next MAJOR update will be early summer 21 with another playable character, and an API to save leader board stats.  Also coming soon are the additions of sound effects as well as more fluid animations.
 
 
 ## Concept:
@@ -93,8 +97,8 @@ I want an RPG feel to the game so that you can enhance the character various way
 * Skill and attribute balance, balance and balance some more..
 ####  Game Screen Shots
 
-<img src="./images/screen1.jpg" width="80%" >
-<img src="./images/screen2.jpg" width="80%" >
+<img src="./images/screen1.png" width="80%" >
+<img src="./images/screen2.png" width="80%" >
 
 ## Challenges:
 
