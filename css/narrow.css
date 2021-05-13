@@ -71,7 +71,7 @@ section {
   padding-top: 63px; 
   padding-left: 50px;
   z-index:1000;
-  font-size: 13px;
+  font-size: 15px;
   font-family: 'Boogaloo', cursive;
   text-shadow: 1px 2px 3px #4d4d4d; 
     color: #222;
@@ -83,7 +83,7 @@ section {
   padding-left: -55px;
   transform: translateX(-25px); 
   z-index:1000;
-  font-size: 13px;
+  font-size:14px;
   font-family: 'Boogaloo', cursive;
   text-shadow: 1px 2px 3px #4d4d4d; 
     color: #222;
@@ -215,6 +215,12 @@ z-index: 1;
 .playerNamePlate {
   width: 160%;
   z-index:-1000;
+  -webkit-filter: drop-shadow(5px 5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+}
+.enemyNamePlate {
+  width:185%;
+  z-index:1000;
   -webkit-filter: drop-shadow(5px 5px 5px 5px #222);
   filter: drop-shadow(5px 5px 5px #222);
 }
