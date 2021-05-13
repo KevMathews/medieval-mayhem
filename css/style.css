@@ -67,37 +67,48 @@ body {
     grid-row: 1;
     padding-top: 15px; 
     z-index:1000;
-    font-size: 36px;
+    font-size: 53px;
     font-family: 'Boogaloo', cursive;
     text-shadow: 1px 2px 3px #4d4d4d; 
     color: #222;
-    transform: translateY(-20px);
+    margin-top: 60px;
+    transform: translateY(30px);
+    transform: translateX(40px);
   }
   #bossNameDiv {
     grid-column: 6 / 7;
     grid-row: 1;
     padding-top: 15px; 
     z-index:1000;
-    font-size: 36px;
+    font-size: 53px;
     font-family: 'Boogaloo', cursive;
     text-shadow: 1px 2px 3px #4d4d4d; 
     color: #222;
-    transform: translateY(-20px);
+    margin-top: 50px;
+    transform: translateY(30px);
+    transform: translateX(-60px);
   }
   #playerName {
       grid-column: 1 / 2;
       grid-row: 1;
-      transform: translateY(-20px);
+      transform: translateY(20px);
   }
   #gameTitle {
     grid-column: 2 / 6;
     grid-row: 1;
-    transform: translateY(90px);
+    transform: translateY(240px);
   }
   #enemyName {
     grid-column: 6 / 7;
     grid-row: 1;
-    transform: translateY(-20px);
+    margin-top: 30px;
+    transform: translateY(50px);
+    transform: translateX(-30%);
+    margin-right: 120px;
+    margin-left: -10%;
+  } 
+  .enemyPlate {
+    width: 200%;
   }
   #playerStats {
     grid-column: 2 / 3;
@@ -151,7 +162,7 @@ body {
     text-shadow: 2px 3px 5px #716D6D;
     transform: translateX(-95px);
     transform: translateY(-40px);
-    margin-left: -80px;
+    margin-left: -10px;
     text-align: left;
     border: solid #BDBDBD 1px; 
     box-shadow: 8px 14px 20px rgba(0, 0, 0, 0.5)  ; 
@@ -200,8 +211,14 @@ body {
     filter: drop-shadow(8px 8px 8px #222);
   }
   .playerNamePlate {
-    width: 90%;
-    z-index:-1000;
+    width:130%;
+    z-index:1000;
+    -webkit-filter: drop-shadow(5px 5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+  }
+  .enemyNamePlate {
+    width:185%;
+    z-index:1000;
     -webkit-filter: drop-shadow(5px 5px 5px 5px #222);
     filter: drop-shadow(5px 5px 5px #222);
   }
