@@ -70,10 +70,15 @@ body {
     font-size: 53px;
     font-family: 'Boogaloo', cursive;
     text-shadow: 1px 2px 3px #4d4d4d; 
-    color: #222;
+    color: rgb(255, 145, 0);
+    /* color: #222; */
     margin-top: 60px;
     transform: translateY(30px);
     transform: translateX(40px);
+    -webkit-filter: drop-shadow(8px 8px 8px #222);
+    filter: drop-shadow(3px 3px 2px rgb(88, 88, 88));
+    -webkit-text-stroke-width: 2.5px;
+    -webkit-text-stroke-color: black;
   }
   #bossNameDiv {
     grid-column: 6 / 7;
@@ -83,10 +88,14 @@ body {
     font-size: 53px;
     font-family: 'Boogaloo', cursive;
     text-shadow: 1px 2px 3px #4d4d4d; 
-    color: #222;
+    color: rgb(255, 145, 0);
     margin-top: 50px;
     transform: translateY(30px);
     transform: translateX(-60px);
+    -webkit-filter: drop-shadow(8px 8px 8px #222);
+    filter: drop-shadow(3px 3px 2px rgb(88, 88, 88));
+    -webkit-text-stroke-width: 2.5px;
+    -webkit-text-stroke-color: black;
   }
   #playerName {
       grid-column: 1 / 2;
@@ -96,7 +105,7 @@ body {
   #gameTitle {
     grid-column: 2 / 6;
     grid-row: 1;
-    transform: translateY(240px);
+    transform: translateY(200px);
   }
   #enemyName {
     grid-column: 6 / 7;
@@ -224,7 +233,6 @@ body {
   }
   #maintitleLogo {
     width: 120%;
-    /* transform: translateY(-50%); */
     transform: translateX(-7%);
     margin-top: 20px;
   }
