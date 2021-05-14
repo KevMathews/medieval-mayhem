@@ -205,6 +205,7 @@ z-index: 1;
   grid-column: 1 / 7;
   grid-row: 5;
   transform: translateY(-40px);
+  z-index: 500;
 }
 #titleLogo {
   width: 95%; 

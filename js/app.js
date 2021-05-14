@@ -2016,6 +2016,7 @@ let leaderBoardOneDisplay = () => {
     $('.leaderThreePurchaseAfterBoss4').empty();
     $('.leaderThreePurchaseAfterBoss5').empty();
     console.log(leaderBoard[0].score)
+    console.log(leaderBoard)
 console.log(leaderBoard[1].score)
     checkVsLeaderBoard();
     console.log(leaderBoard[0].score)
