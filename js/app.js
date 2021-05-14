@@ -7,13 +7,13 @@ let lightningBoltCounter = 2;
 let fireBallCounter = 0;
 let newEntry = '';
 let img1 = document.createElement("img");
-img1.src = "./images/stageCleared.gif"+"?a="+Math.random();
+img1.src = "./images/stageCleared.gif" + '?a=' + Math.random();
 let img2 = document.createElement("img");
 img2.src = "./images/victory.gif";
 let img3 = document.createElement("img");
 img3.src = "./images/gameover.gif";
 let img4 = document.createElement("img");
-img4.src = "./images/reloadGame.gif"+"?a="+Math.random();
+img4.src = "./images/reloadGame.gif" + '?a=' + Math.random();
 let img5 = document.createElement("img");
 
 
@@ -539,9 +539,6 @@ class Player {
                 bladeCounter += 1;
                 lightningBoltCounter += 1;
                 fireBallCounter =+ 1;
-                // setTimeout(function() {
-                //     player.displayStats();
-                // }, 4600);
                 player.displayStats();
                 checkIfDead();
                 player.showPlayerMiss();
@@ -1288,8 +1285,6 @@ $('.resetGameButton').on('click', () => {
     }, 5900);
 });   
 
-
-// $("#myModal").modal('show');
 // function to apply cooldown timer to Throwing Blade
 let bladeCounterFunction = function () {
     if(bladeCounter >= 1 && player.magicBladeLearned == true){
@@ -2015,15 +2010,8 @@ let leaderBoardOneDisplay = () => {
     $('.leaderThreePurchaseAfterBoss3').empty();
     $('.leaderThreePurchaseAfterBoss4').empty();
     $('.leaderThreePurchaseAfterBoss5').empty();
-    console.log(leaderBoard[0].score)
     console.log(leaderBoard)
-console.log(leaderBoard[1].score)
     checkVsLeaderBoard();
-    console.log(leaderBoard[0].score)
-console.log(leaderBoard[1].score)
-    localStorage.setItem(leaderBoard2, JSON.stringify(leaderBoard));
-    console.log(leaderBoard[0].score)
-console.log(leaderBoard[1].score)
     firstPositionName();
     secondPositionName();
     thirdPositionName();
@@ -2115,9 +2103,8 @@ console.log(leaderBoard[1].score)
     bossesKilled();
     bossesKilled2();
     bossesKilled3();
-    
 }
 leaderBoardOneDisplay();
-console.log(leaderBoard[0].score)
-console.log(leaderBoard[1].score)
+console.log(leaderBoard2)
+console.log(leaderBoard)
 changeStage();
